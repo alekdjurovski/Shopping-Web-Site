@@ -1,0 +1,17 @@
+@import '../../../styles.scss';
+
+nav{
+    background-color: $primary-color;
+    color: $dark-text;
+    height: 80px;
+    box-shadow: 8px 1px 23px darken($primary-color, 10);
+    img{
+      height: 70px;
+
+      &:hover{
+        background-color: darken($primary-color, 4);
+        border-radius: 50px;
+      }
+
+}
+}

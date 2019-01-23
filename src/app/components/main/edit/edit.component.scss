@@ -1,0 +1,22 @@
+@import '../../../../styles.scss';
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.btn-style{
+  background-color: $secondary-color;
+  color: $light-text;
+  border: 1px solid #AF7A6D;
+  font-family: $btn-text;
+
+  &:hover{
+    background-color: lighten($secondary-color, 4);
+  }
+}

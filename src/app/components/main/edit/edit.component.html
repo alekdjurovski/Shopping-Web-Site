@@ -1,0 +1,46 @@
+<div class="container jumbotron mt-5 ">
+  <h1 class="mt-5 mb-4">Edit {{ this.name }}'s Category</h1>
+
+  <div class="example-container container mt-5">
+    <mat-form-field>
+      <input
+        matInput
+        [(ngModel)]="ngName"
+        placeholder="Enter name of category"
+        (input)="(btnEnable)"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select
+        placeholder="Parent Categories"
+        [(ngModel)]="ngParentId"
+      >
+        <mat-option *ngFor="let item of categories" [value]="item.name"> {{item.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea
+        [(ngModel)]="ngDesc"
+        matInput
+        placeholder=" Description "
+      ></textarea>
+    </mat-form-field>
+
+    <div class="form-inline justify-content-center ">
+      <button type="reset" class="btn btn-style ml-5" (click)="saveCategory()">
+        Save
+      </button>
+      <button
+        type="reset"
+        class="btn btn-style ml-5"
+        [routerLink]="['/categories']"
+        routerLinkActive="router-link-active"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>

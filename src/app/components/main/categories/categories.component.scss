@@ -1,0 +1,48 @@
+@import '../../../../styles.scss';
+
+.right{
+  float: right;
+  width: 100%;
+}
+
+.btn-style{
+  background-color: $secondary-color;
+  color: $light-text;
+  border: 1px solid #AF7A6D;
+  font-family: $btn-text;
+
+  &:hover{
+    background-color: lighten($secondary-color, 4);
+  }
+}
+.btn-dark{
+  background-color: lighten($primary-color, 15);
+  color: $light-text;
+  font-family: $btn-text;
+  border: none;
+  border-radius: 12px;
+
+  i{
+    color: rgb(204, 135, 132);
+
+    &.fa-edit{
+      color:#F0F2A6;
+    }
+    }
+}
+
+
+
+.fa-times-circle{
+  font-size: 2.2em;
+  color: $dark-text;
+  border-radius: 5px;
+
+}
+
+.head-row{
+  background-color: lighten($primary-color, 15);
+  color: $light-text;
+
+}
+
