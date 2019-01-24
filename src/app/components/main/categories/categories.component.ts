@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ICategories } from '../../../model/category';
 import { CategoryService } from '../../../services/category.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-categories',
@@ -13,7 +14,8 @@ export class CategoriesComponent implements OnInit {
   showSearch = false;
 
 
-  constructor(private _service: CategoryService) {}
+  constructor(private _service: CategoryService,
+              private _toastr: ToastrService) {}
 
   ngOnInit() {
     this.getCategories();
@@ -58,6 +60,7 @@ export class CategoriesComponent implements OnInit {
     if (confirm('Are you sure you want to perform this action?')) {
       this._service.deleteCategories(id).subscribe(res => {
         this.getCategories();
+        this._toastr.success('Hello world!', 'Toastr fun!');
       });
     }
   }

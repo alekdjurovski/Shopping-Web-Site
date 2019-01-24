@@ -15,6 +15,8 @@ import { AddNewComponent } from './components/main/add-new/add-new.component';
 import { EditComponent } from './components/main/edit/edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatInputModule } from '@angular/material';
+import { CommonModule } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule
     MatButtonModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    CommonModule,
+    ToastrModule.forRoot({positionClass: 'toast-bottom-center'})
   ],
   providers: [
     CategoryService
