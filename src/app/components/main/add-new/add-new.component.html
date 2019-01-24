@@ -13,8 +13,8 @@
     </mat-form-field>
 
     <mat-form-field>
-      <mat-select placeholder="Parent Categories" [(ngModel)]="ngParentId">
-        <mat-option *ngFor="let item of categories" [value]="item.id">{{
+      <mat-select placeholder="Parent Categories" [(ngModel)]="ngParent">
+        <mat-option *ngFor="let item of categories" [value]="item.name">{{
           item.name
         }}</mat-option>
       </mat-select>

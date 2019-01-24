@@ -9,24 +9,9 @@ import { CategoryService } from '../../../services/category.service';
 })
 export class CategoriesComponent implements OnInit {
   categories: any;
-  id: number;
-  name: string;
-  parentCategoryId: number;
   searchName: string;
   showSearch = false;
-  hideForm = false;
-  editName: any;
-  editId: number;
-  inName: string;
-  category: any = {
-    // id: null,
-    name: ''
-    // products: [],
-    // parentCategoryId: null
-  };
-  oldName: any;
-  editRow: ICategories;
-  parentId: number;
+
 
   constructor(private _service: CategoryService) {}
 
@@ -76,5 +61,4 @@ export class CategoriesComponent implements OnInit {
       });
     }
   }
-
 }

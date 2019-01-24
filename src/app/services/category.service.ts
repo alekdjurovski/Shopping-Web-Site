@@ -9,7 +9,8 @@ import { Observable } from 'rxjs';
 export class CategoryService {
   public getPostUrl = 'http://127.0.0.1:3000/categories';
   public deleteCategoryUrl = 'http://127.0.0.1:3000/categories/';
-  public searchUrl = 'http://127.0.0.1:3000/categories?filter[where][name][eq]=';
+  public searchUrl =
+    'http://127.0.0.1:3000/categories?filter[where][name][eq]=';
   categoryData = {
     name: ''
   };
@@ -17,7 +18,6 @@ export class CategoryService {
   oldName = this.categoryData.name;
   categoriesList: ICategories[];
   addId: number;
-
 
   constructor(private http: HttpClient) {}
 
@@ -40,8 +40,6 @@ export class CategoryService {
   searchCategories(name) {
     return this.http.get(this.searchUrl + name);
   }
-
-  addNew() {}
 
   deleteCategories(id) {
     return this.http.delete(this.deleteCategoryUrl + id);

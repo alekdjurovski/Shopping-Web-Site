@@ -1,5 +1,5 @@
 <div class="container jumbotron mt-5 ">
-  <h1 class="mt-5 mb-4">Edit {{ this.name }}'s Category</h1>
+  <h1 class="mt-5 mb-4">Edit {{ ngName }} Category</h1>
 
   <div class="example-container container mt-5">
     <mat-form-field>
@@ -13,11 +13,10 @@
     </mat-form-field>
 
     <mat-form-field>
-      <mat-select
-        placeholder="Parent Categories"
-        [(ngModel)]="ngParentId"
-      >
-        <mat-option *ngFor="let item of categories" [value]="item.name"> {{item.name}}</mat-option>
+      <mat-select placeholder="Parent Categories" [(ngModel)]="ngParent">
+        <mat-option *ngFor="let item of categories" [value]="item.name">{{
+          item.name
+        }}</mat-option>
       </mat-select>
     </mat-form-field>
 

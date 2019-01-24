@@ -18,14 +18,11 @@ export class EditComponent implements OnInit {
   category: any = {
     name: '',
     description: '',
-    // products: [],
-    parentCategoryId: null
+    parentCategoryName: 'string'
   };
   ngName: string;
   ngDesc: string;
-  ngParentId: string;
-
-  nameParent: string;
+  ngParent: string;
 
   constructor(private _service: CategoryService, private router: Router) {}
 
@@ -39,14 +36,14 @@ export class EditComponent implements OnInit {
       console.log(this.category);
       this.ngName = this.category.name;
       this.ngDesc = this.category.description;
-      this.ngParentId = this.category.parentCategoryId;
+      this.ngParent = this.category.parentCategoryName;
     });
   }
 
   saveCategory() {
     this.category.name = this.ngName;
     this.category.description = this.ngDesc;
-    this.category.parentCategoryId = this.ngParentId;
+    this.category.parentCategoryName = this.ngParent;
     this._service
       .editCategories(this.category.id, this.category)
       .subscribe(res => {
