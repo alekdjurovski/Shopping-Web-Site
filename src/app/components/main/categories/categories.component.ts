@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ICategories } from '../../../model/category';
 import { CategoryService } from '../../../services/category.service';
 import { ToastrService } from 'ngx-toastr';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-categories',
@@ -12,10 +14,11 @@ export class CategoriesComponent implements OnInit {
   categories: any;
   searchName: string;
   showSearch = false;
-
+  bsModalRef: BsModalRef;
 
   constructor(private _service: CategoryService,
-              private _toastr: ToastrService) {}
+              private _toastr: ToastrService,
+              private modalService: BsModalService) {}
 
   ngOnInit() {
     this.getCategories();
@@ -55,6 +58,21 @@ export class CategoriesComponent implements OnInit {
   editCategory(id) {
     this._service.editId = id;
   }
+
+  openModalWithComponent() {
+    const initialState = {
+      list: [
+        'Open a modal with component',
+        'Pass your data',
+        'Do something else',
+        '...'
+      ],
+      title: 'Modal with component'
+    };
+    this.bsModalRef = this.modalService.show(ModalComponent, {initialState});
+    this.bsModalRef.content.closeBtnName = 'Close';
+  }
+
 
   removeCategory(id) {
     if (confirm('Are you sure you want to perform this action?')) {

@@ -17,6 +17,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatInputModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
+import { AlertModule } from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ModalComponent } from './components/main/modal/modal.component';
 
 
 @NgModule({
@@ -28,7 +31,8 @@ import { ToastrModule } from 'ngx-toastr';
     SidebarComponent,
     MainComponent,
     AddNewComponent,
-    EditComponent
+    EditComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -42,11 +46,14 @@ import { ToastrModule } from 'ngx-toastr';
     MatSelectModule,
     MatInputModule,
     CommonModule,
-    ToastrModule.forRoot({positionClass: 'toast-bottom-center'})
-  ],
+    ToastrModule.forRoot({positionClass: 'toast-bottom-center'}),
+    AlertModule.forRoot(),
+    ModalModule.forRoot()
+    ],
   providers: [
     CategoryService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ ModalComponent ]
 })
 export class AppModule { }
