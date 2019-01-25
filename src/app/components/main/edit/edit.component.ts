@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
-  btnEnable = false;
+  btnEnable = true;
   name: number;
   categories = this._service.categoriesList;
   editId: number;
@@ -21,9 +21,11 @@ export class EditComponent implements OnInit {
   ngDesc: string;
   ngParent: string;
 
-  constructor(private _service: CategoryService,
-              private _toastr: ToastrService,
-              private router: Router) {}
+  constructor(
+    private _service: CategoryService,
+    private _toastr: ToastrService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.editCategory();

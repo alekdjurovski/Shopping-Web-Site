@@ -41,15 +41,3 @@
   background-color: lighten($primary-color, 15);
   color: $light-text;
 }
-
-@media screen and (max-width: 575px) {
-  .right {
-    // float: right;
-    width: 100%;
-    margin-left: 20px !important;
-    margin-right: 0px;
-  }
-
-
-
-}

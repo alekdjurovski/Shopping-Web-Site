@@ -1,18 +1,17 @@
-@import '../../../styles.scss';
+@import "../../../styles.scss";
 
-.btn-start{
+.btn-start {
   background-color: $secondary-color;
   color: $light-text;
   font-size: 20px;
   font-weight: 800;
-  margin:50% auto ;
+  margin: 50% auto;
   padding: 2em 4em;
   box-shadow: 8px 1px 23px darken($primary-color, 10);
 
-  &:hover{
-    background-color: lighten($secondary-color, 6) ;
+  &:hover {
+    background-color: lighten($secondary-color, 6);
     transition: 0.3s;
     font-size: 1.1em;
   }
-
 }

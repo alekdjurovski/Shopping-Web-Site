@@ -1,13 +1,13 @@
 <div class="container jumbotron mt-5 ">
   <h1 class="mt-5 mb-4">Add New Categories</h1>
 
-  <div class="example-container container mt-5">
+  <div class="mat-container container mt-5">
     <mat-form-field>
       <input
         matInput
         [(ngModel)]="ngName"
         placeholder="Enter name of category"
-        (input)="(btnEnable)"
+
         required
       />
     </mat-form-field>
@@ -29,7 +29,7 @@
     </mat-form-field>
 
     <div class="form-inline justify-content-center ">
-      <button type="reset" class="btn btn-style ml-5" (click)="addCategory()">
+      <button type="reset" class="btn btn-style ml-5" [disabled]="!ngName" (click)="addCategory()">
         Save
       </button>
       <button

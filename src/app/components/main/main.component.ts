@@ -7,13 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
   showBtn = true;
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   hide() {
-this.showBtn = !this.showBtn;
+    this.showBtn = !this.showBtn;
   }
-
 }

@@ -17,17 +17,19 @@ export class CategoriesComponent implements OnInit {
   showSearch = false;
   bsModalRef: BsModalRef;
 
-  constructor(private _service: CategoryService,
-              private _toastr: ToastrService,
-              private modalService: BsModalService,
-              private _reloadService: ReloadCategoriesService) {}
+  constructor(
+    private _service: CategoryService,
+    private _toastr: ToastrService,
+    private modalService: BsModalService,
+    private _reloadService: ReloadCategoriesService
+  ) {}
 
   ngOnInit() {
     this.getCategories();
     this._reloadService.cast.subscribe(data => {
       this.categories = data;
     });
-      }
+  }
 
   getCategories() {
     this._service.getCategories().subscribe(data => {
@@ -67,13 +69,10 @@ export class CategoriesComponent implements OnInit {
   openModalWithComponent(id) {
     this._service.deleteId = id;
     const initialState = {
-      list: [
-        'Are you sure you want to perform this action?'
-      ],
+      list: ['Are you sure you want to perform this action?'],
       title: 'Delete category'
     };
-    this.bsModalRef = this.modalService.show(ModalComponent, {initialState});
+    this.bsModalRef = this.modalService.show(ModalComponent, { initialState });
     this.bsModalRef.content.okBtnName = 'Ok';
   }
-
 }

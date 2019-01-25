@@ -1,13 +1,24 @@
 <div class="row bg-body">
-  <div class="col-lg-3 col-md-1 col-sm-1">
-
+  <div class="col-lg-3 col-md-1 col-sm-1"></div>
+  <div class="col-lg-3 col-md-5 col-sm-5 col-xs-12">
+    <button
+      class="btn btn-start"
+      [routerLink]="['/categories']"
+      routerLinkActive="router-link-active"
+      (click)="hide()"
+    >
+      Category
+    </button>
   </div>
   <div class="col-lg-3 col-md-5 col-sm-5 col-xs-12">
-<button class="btn btn-start" [routerLink]="['/categories']" routerLinkActive="router-link-active" (click)="hide()" >Category</button>
+    <button
+      class="btn btn-start"
+      [routerLink]="['/products']"
+      routerLinkActive="router-link-active"
+      (click)="hide()"
+    >
+      Products
+    </button>
   </div>
-   <div class="col-lg-3 col-md-5 col-sm-5 col-xs-12">
-      <button class="btn btn-start" [routerLink]="['/products']" routerLinkActive="router-link-active" (click)="hide()" >Products</button>
-  </div>
-  <div class="col-lg-3 col-md-1 col-sm-1">
-  </div>
+  <div class="col-lg-3 col-md-1 col-sm-1"></div>
 </div>

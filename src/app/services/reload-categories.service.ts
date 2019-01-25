@@ -9,12 +9,11 @@ export class ReloadCategoriesService {
   private categories = new BehaviorSubject<any>([]);
   cast = this.categories.asObservable();
 
-  constructor(private _service: CategoryService) { }
+  constructor(private _service: CategoryService) {}
 
   getAllCategories() {
     this._service.getCategories().subscribe(data => {
       this.categories.next(data);
     });
   }
-
 }

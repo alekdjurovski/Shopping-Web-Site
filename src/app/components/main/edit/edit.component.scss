@@ -1,4 +1,4 @@
-@import '../../../../styles.scss';
+@import "../../../../styles.scss";
 
 .example-container {
   display: flex;
@@ -10,13 +10,13 @@
   margin: 0 auto;
 }
 
-.btn-style{
+.btn-style {
   background-color: $secondary-color;
   color: $light-text;
-  border: 1px solid #AF7A6D;
+  border: 1px solid #af7a6d;
   font-family: $btn-text;
 
-  &:hover{
+  &:hover {
     background-color: lighten($secondary-color, 4);
   }
 }

@@ -1,23 +1,27 @@
 <div class="">
-<div class="modal-header bg-color">
-  <h4 class="modal-title pull-left">{{ title }}</h4>
-  <button
-    type="button"
-    class="close pull-right d-flex align-items-center"
-    aria-label="Close"
-    (click)="bsModalRef.hide()"
-  >
-  <i class="fas fa-times-circle"></i>
-  </button>
-</div>
-<div class="modal-body">
-  <ul *ngIf="list.length">
-    <li *ngFor="let item of list">{{ item }}</li>
-  </ul>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn-style bg-color" (click)="removeCategory(); bsModalRef.hide()">
-    {{ okBtnName }}
-  </button>
-</div>
+  <div class="modal-header bg-color">
+    <h4 class="modal-title pull-left">{{ title }}</h4>
+    <button
+      type="button"
+      class="close pull-right d-flex align-items-center"
+      aria-label="Close"
+      (click)="bsModalRef.hide()"
+    >
+      <i class="fas fa-times-circle"></i>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ul *ngIf="list.length">
+      <li *ngFor="let item of list">{{ item }}</li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn-style bg-color"
+      (click)="removeCategory(); bsModalRef.hide()"
+    >
+      {{ okBtnName }}
+    </button>
+  </div>
 </div>

@@ -1,19 +1,18 @@
-@import '../../../../styles.scss';
+@import "../../../../styles.scss";
 
-.bg-color{
+.bg-color {
   background-color: $secondary-color;
   color: $light-text;
   top: 500px;
 }
 
-.btn-style{
+.btn-style {
   border: 1px solid $light-text;
   border-radius: 5px;
   padding: 4px 20px;
   cursor: pointer;
 }
-.fa-times-circle{
+.fa-times-circle {
   color: white;
   font-size: 1.4em;
-
 }
