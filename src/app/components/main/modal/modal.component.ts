@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
+import { CategoryService } from 'src/app/services/category.service';
+import { ToastrService } from 'ngx-toastr';
+import { ReloadCategoriesService } from 'src/app/services/reload-categories.service';
 
 @Component({
   selector: 'app-modal',
@@ -8,13 +11,21 @@ import { BsModalRef } from 'ngx-bootstrap';
 })
 export class ModalComponent implements OnInit {
   title: string;
-  closeBtnName: string;
+  okBtnName: string;
   list: any[] = [];
 
-  constructor(public bsModalRef: BsModalRef) {}
+  constructor(
+    public bsModalRef: BsModalRef,
+    private _service: CategoryService,
+    private _toastr: ToastrService,
+    private _reloadService: ReloadCategoriesService
+  ) {}
 
-  ngOnInit() {
-    this.list.push('PROFIT!!!');
+  ngOnInit() {}
+  removeCategory() {
+    this._service.deleteCategories().subscribe(res => {
+      this._reloadService.getAllCategories();
+      this._toastr.error('The Category is Successful Deleted');
+    });
   }
-
 }

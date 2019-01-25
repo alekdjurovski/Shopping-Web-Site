@@ -15,6 +15,7 @@ export class CategoryService {
     name: ''
   };
   editId: number;
+  deleteId: number;
   oldName = this.categoryData.name;
   categoriesList: ICategories[];
   addId: number;
@@ -41,7 +42,7 @@ export class CategoryService {
     return this.http.get(this.searchUrl + name);
   }
 
-  deleteCategories(id) {
-    return this.http.delete(this.deleteCategoryUrl + id);
+  deleteCategories() {
+    return this.http.delete(this.deleteCategoryUrl + this.deleteId);
   }
 }

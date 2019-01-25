@@ -5,8 +5,9 @@ $secondary-color:#AA6373;
 $dark-text: rgb(49, 47, 95);
 $light-text: #F7F7FF;
 $background-color:#F1F2EB;
-$body-txt: 'Padauk', sans-serif;
-$btn-text: 'Londrina Solid', cursive;
+$body-txt: 'Noto Serif SC', serif;
+$btn-text: 'Prompt', sans-serif;
+$title-font: 'Viga', sans-serif;
 
 body{
   margin: 0;
@@ -15,6 +16,7 @@ body{
   font-family: $body-txt;
   font-size: 1.2em;
 }
-
+h1{
+  font-family: $title-font;
+}
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

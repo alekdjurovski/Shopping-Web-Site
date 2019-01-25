@@ -4,6 +4,7 @@ import { CategoryService } from '../../../services/category.service';
 import { ToastrService } from 'ngx-toastr';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { ModalComponent } from '../modal/modal.component';
+import { ReloadCategoriesService } from 'src/app/services/reload-categories.service';
 
 @Component({
   selector: 'app-categories',
@@ -18,11 +19,15 @@ export class CategoriesComponent implements OnInit {
 
   constructor(private _service: CategoryService,
               private _toastr: ToastrService,
-              private modalService: BsModalService) {}
+              private modalService: BsModalService,
+              private _reloadService: ReloadCategoriesService) {}
 
   ngOnInit() {
     this.getCategories();
-  }
+    this._reloadService.cast.subscribe(data => {
+      this.categories = data;
+    });
+      }
 
   getCategories() {
     this._service.getCategories().subscribe(data => {
@@ -59,27 +64,16 @@ export class CategoriesComponent implements OnInit {
     this._service.editId = id;
   }
 
-  openModalWithComponent() {
+  openModalWithComponent(id) {
+    this._service.deleteId = id;
     const initialState = {
       list: [
-        'Open a modal with component',
-        'Pass your data',
-        'Do something else',
-        '...'
+        'Are you sure you want to perform this action?'
       ],
-      title: 'Modal with component'
+      title: 'Delete category'
     };
     this.bsModalRef = this.modalService.show(ModalComponent, {initialState});
-    this.bsModalRef.content.closeBtnName = 'Close';
+    this.bsModalRef.content.okBtnName = 'Ok';
   }
 
-
-  removeCategory(id) {
-    if (confirm('Are you sure you want to perform this action?')) {
-      this._service.deleteCategories(id).subscribe(res => {
-        this.getCategories();
-        this._toastr.success('Hello world!', 'Toastr fun!');
-      });
-    }
-  }
 }

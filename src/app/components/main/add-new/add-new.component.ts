@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../../services/category.service';
 import { Router } from '@angular/router';
 import { ICategories } from 'src/app/model/category';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-new',
@@ -11,16 +12,18 @@ import { ICategories } from 'src/app/model/category';
 export class AddNewComponent implements OnInit {
   btnEnable = false;
   categories = this._service.categoriesList;
+  ngName: string;
+  ngDesc: string;
+  ngParent: string;
   category = {
     name: '',
     description: '',
     parentCategoryName: ''
   };
-  ngName: string;
-  ngDesc: string;
-  ngParent: string;
 
-  constructor(private _service: CategoryService, private router: Router) {}
+  constructor(private _service: CategoryService,
+              private _toastr: ToastrService,
+              private router: Router) {}
 
   ngOnInit() {}
 
@@ -29,8 +32,8 @@ export class AddNewComponent implements OnInit {
     this.category.description = this.ngDesc;
     this.category.parentCategoryName = this.ngParent;
     this._service.addCategories(this.category).subscribe(res => {
-      this._service.getCategories();
       this.router.navigate(['/categories']);
+      this._toastr.info('The Category is Successful Added');
     });
   }
 }

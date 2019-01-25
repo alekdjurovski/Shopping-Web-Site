@@ -1,6 +1,6 @@
-@import '../../../styles.scss';
+@import "../../../styles.scss";
 
-.left{
+.left {
   float: left;
 }
 .sidebar {
@@ -9,7 +9,7 @@
   top: 80px;
   bottom: 0;
   left: 0;
-  background-color: lighten($primary-color, 1);;
+  background-color: lighten($primary-color, 1);
   color: white;
   font-weight: 600;
   box-shadow: 3px 0px 23px darken($primary-color, 5);
@@ -17,14 +17,14 @@
   .active {
     border: none;
     background-color: lighten($secondary-color, 3);
-    // -webkit-box-shadow: 0px 18px 41px -10px rgba(167,158,186,0.93);
-    // -moz-box-shadow: 0px 18px 41px -10px rgba(167,158,186,0.93);
-    // box-shadow: 1px 6px 9px 0px  rgba(167,158,186,0.93);
+    -webkit-box-shadow: 0px 18px 41px -10px rgba(167, 158, 186, 0.93);
+    -moz-box-shadow: 0px 18px 41px -10px rgba(167, 158, 186, 0.93);
+    box-shadow: 1px 6px 9px 0px rgba(167, 158, 186, 0.93);
     font-size: 1.2em;
     font-weight: 700;
   }
 
-  li{
+  li {
     padding: 4px;
     margin-top: 10px;
     margin-left: 8px;
@@ -32,56 +32,58 @@
     border-bottom-left-radius: 25px;
     text-align: center;
 
-    a:hover, a:active, a:focus {
-    cursor: pointer;
-    border-color:lighten($secondary-color, 3);
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
-
-    // background-color: lighten($secondary-color, 3);
-
+    a:hover,
+    a:active,
+    a:focus {
+      cursor: pointer;
+      border-color: lighten($secondary-color, 3);
+      border-top-left-radius: 25px;
+      border-bottom-left-radius: 25px;
     }
   }
 }
 
-@media screen and (max-width: 595px) {
+@media screen and (max-width: 575px) {
   .sidebar {
     display: flex;
     flex-direction: row !important;
-  position: fixed;
-  width: 180px;
-  top: 5px;
-  height: 50px;
-  left: 95px;
-  // background-color: lighten($primary-color, 1);;
-  color: white;
-  font-weight: 600;
+    justify-content: space-around;
+    top: 5px;
+    height: 50px;
+    left: 95px;
+    color: white;
+    font-weight: 600;
 
-  .active {
-    border: none;
-    // background-color: lighten($secondary-color, 3);
-    font-size: 1.1em;
-    font-weight: 700;
-  }
-
-  li{
-    padding: 4px;
-    // margin-top: 10px;
-    margin-left: 8px;
-    border-radius: 15px;
-    text-align: center;
-
-    a:hover, a:active, a:focus {
-    cursor: pointer;
-    border-color:lighten($secondary-color, 3);
-    // background-color: lighten($secondary-color, 3);
-
+    .active {
+      border: none;
+      background-color: lighten($primary-color, 3);
+      color: $light-text;
+      -webkit-box-shadow: 0px 18px 41px -10px rgba(167, 158, 186, 0.93);
+      -moz-box-shadow: 0px 18px 41px -10px rgba(167, 158, 186, 0.93);
+      box-shadow: 1px 6px 9px 0px rgba(167, 158, 186, 0.041);
+      font-size: 1.3em;
+      font-weight: 700;
+      top: -3;
     }
 
+    li {
+      padding: 4px;
+      // margin-top: 10px;
+      margin-left: 8px;
+      border-radius: 15px;
+      text-align: center;
+
+      a:hover{
+        cursor: pointer;
+        background-color: lighten($primary-color, 5);
+        font-weight: 500;
+        color: $light-text;
+        border-color: $primary-color;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        border-radius: 15px;
+      }
+
+    }
   }
-
-
-}
-
-
 }

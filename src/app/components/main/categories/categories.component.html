@@ -1,11 +1,11 @@
-<div class="col-lg-3 col-md-3 col-sm-3 bg-body">
+<div class="col-lg-2 col-md-3 col-sm-3 bg-body">
   <app-sidebar></app-sidebar>
 </div>
 
-<div class="col-lg-9 col-md-8 col-sm-7 right mr-3 mt-3 ">
+<div class="col-lg-10 col-md-8 col-sm-7 col-xs-12 right mt-3 ">
   <h1 class="mt-2 mb-4">Categories</h1>
   <div class="form-group form-inline">
-    <p class="ml-3">Add new category</p>
+    <p class="ml-3 mt-2">Add new category</p>
     <button
       type="reset"
       class="btn btn-style ml-5"
@@ -41,7 +41,6 @@
   <table class="table table-striped">
     <thead>
       <tr class="head-row">
-        <th scope="col">#</th>
         <th scope="col">Name</th>
         <th scope="col">Parent Category</th>
         <th scope="col">Action</th>
@@ -49,7 +48,6 @@
     </thead>
     <tbody class="">
       <tr *ngFor="let item of categories">
-        <th scope="row">{{ item.id }}</th>
         <td>{{ item.name }}</td>
         <td>{{ item.parentCategoryName }}</td>
 
@@ -66,7 +64,7 @@
           <button
             class="inline btn-dark"
             id="delete"
-            (click)="removeCategory(item.id); openModalWithComponent()"
+            (click)="openModalWithComponent(item.id)"
           >
             <i class="fas fa-trash-alt"></i>
           </button>

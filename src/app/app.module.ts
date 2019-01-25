@@ -20,6 +20,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AlertModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ModalComponent } from './components/main/modal/modal.component';
+import { ReloadCategoriesService } from './services/reload-categories.service';
 
 
 @NgModule({
@@ -46,12 +47,13 @@ import { ModalComponent } from './components/main/modal/modal.component';
     MatSelectModule,
     MatInputModule,
     CommonModule,
-    ToastrModule.forRoot({positionClass: 'toast-bottom-center'}),
+    ToastrModule.forRoot(),
     AlertModule.forRoot(),
     ModalModule.forRoot()
     ],
   providers: [
-    CategoryService
+    CategoryService,
+    ReloadCategoriesService
   ],
   bootstrap: [AppComponent],
   entryComponents: [ ModalComponent ]

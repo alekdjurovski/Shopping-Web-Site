@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/services/category.service';
 import { ICategories } from '../../../model/category';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit',
@@ -15,23 +16,21 @@ export class EditComponent implements OnInit {
   editId: number;
   editName: string;
   id: number;
-  category: any = {
-    name: '',
-    description: '',
-    parentCategoryName: 'string'
-  };
+  category: ICategories;
   ngName: string;
   ngDesc: string;
   ngParent: string;
 
-  constructor(private _service: CategoryService, private router: Router) {}
+  constructor(private _service: CategoryService,
+              private _toastr: ToastrService,
+              private router: Router) {}
 
   ngOnInit() {
     this.editCategory();
   }
 
   editCategory() {
-    this._service.getOneCategory().subscribe(res => {
+    this._service.getOneCategory().subscribe((res: ICategories) => {
       this.category = res;
       console.log(this.category);
       this.ngName = this.category.name;
@@ -47,8 +46,8 @@ export class EditComponent implements OnInit {
     this._service
       .editCategories(this.category.id, this.category)
       .subscribe(res => {
-        // this._service.getCategories();
         this.router.navigate(['/categories']);
+        this._toastr.info('The Category is Successful Updated');
       });
   }
 }

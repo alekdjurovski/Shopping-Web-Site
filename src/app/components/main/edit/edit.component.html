@@ -14,6 +14,7 @@
 
     <mat-form-field>
       <mat-select placeholder="Parent Categories" [(ngModel)]="ngParent">
+        <mat-option [value]="">No Category</mat-option>
         <mat-option *ngFor="let item of categories" [value]="item.name">{{
           item.name
         }}</mat-option>
