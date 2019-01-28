@@ -3,7 +3,7 @@ export interface IProduct {
   name: string;
   imageUrl: string;
   manufacturer: string;
-  isAvailable: true;
+  isAvailable: boolean;
   shortDescription: string;
   fullDescription: string;
   categoryId: number;

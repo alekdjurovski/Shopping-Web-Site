@@ -5,16 +5,16 @@
     <mat-form-field>
       <input
         matInput
-        [(ngModel)]="ngName"
+        [(ngModel)]="category.name"
         placeholder="Enter name of category"
-
         required
       />
     </mat-form-field>
 
     <mat-form-field>
       <mat-select placeholder="Parent Categories" [(ngModel)]="ngParent">
-        <mat-option *ngFor="let item of categories" [value]="item.name">{{
+          <mat-option [value]="">No Parent</mat-option>
+        <mat-option *ngFor="let item of categories" [value]="item">{{
           item.name
         }}</mat-option>
       </mat-select>
@@ -22,14 +22,14 @@
 
     <mat-form-field>
       <textarea
-        [(ngModel)]="ngDesc"
+        [(ngModel)]="category.description"
         matInput
         placeholder=" Description "
       ></textarea>
     </mat-form-field>
 
     <div class="form-inline justify-content-center ">
-      <button type="reset" class="btn btn-style ml-5" [disabled]="!ngName" (click)="addCategory()">
+      <button type="reset" class="btn btn-style ml-5" [disabled]="!category.name" (click)="addCategory()">
         Save
       </button>
       <button

@@ -19,24 +19,20 @@
           </div>
         </div>
 
-        <!-- <div class="row inputBox">
+        <div class="row inputBox">
           <div class="col-sm-4"><div class="inputText">Categories:</div></div>
           <div class="col-sm-8">
             <select
-              class="form-control"
-              id="selectCategory"
-              name="ngParent"
-              placeholder="Parent Categories"
+              name="categoryId"
               formControlName="categoryId"
-              [(ngModel)]="ngParent"
+              placeholder="Parent Categories"
             >
-              <option>1</option>
               <option *ngFor="let item of categories" [value]="item.id">{{
                 item.name
               }}</option>
             </select>
           </div>
-        </div> -->
+        </div>
 
         <div class="row inputBox">
           <div class="col-sm-4"><div class="inputText">Manufacturer:</div></div>
@@ -48,6 +44,17 @@
               class="input"
               placeholder="Enter manufacturer"
             />
+          </div>
+        </div>
+
+        <div class="row inputBox">
+          <div class="col-sm-4"><div class="inputText">Availability:</div></div>
+          <div class="col-sm-8">
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" /> Available
+              </label>
+            </div>
           </div>
         </div>
 

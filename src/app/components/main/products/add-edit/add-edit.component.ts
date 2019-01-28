@@ -13,29 +13,28 @@ export class AddEditComponent implements OnInit {
   ngParent: string;
   form: FormGroup;
 
-  constructor(private formBuild: FormBuilder,
-              private _serviceProduct: ProductService,
-              private _serviceCategory: CategoryService) {
-              }
+  constructor(
+    private formBuild: FormBuilder,
+    private _serviceProduct: ProductService,
+    private _serviceCategory: CategoryService
+  ) {}
 
   ngOnInit() {
     this.categories = this._serviceCategory.categoriesList;
     this.form = this.formBuild.group({
       name: ['', Validators.required],
-      // categoryId: [null, Validators.required],
       manufacturer: ['', Validators.required],
+      // isAvailable: [false, Validators.required],
       shortDescription: ['', Validators.required],
-      fullDescription: ['', Validators.required]
-
+      fullDescription: ['', Validators.required],
+      categoryId: [0, Validators.required]
     });
   }
 
   onSubmit() {
     this._serviceProduct.addProduct(this.form.value).subscribe(data => {
       console.log(data);
-
     });
     console.log(this.form.value);
   }
-
 }
