@@ -5,6 +5,7 @@ import { CategoriesComponent } from './components/main/categories/categories.com
 import { MainComponent } from './components/main/main.component';
 import { AddNewComponent } from './components/main/add-new/add-new.component';
 import { EditComponent } from './components/main/edit/edit.component';
+import { AddEditComponent } from './components/main/products/add-edit/add-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'categories', component: CategoriesComponent },
   { path: 'add', component: AddNewComponent},
   { path: 'edit', component: EditComponent },
-  { path: 'products', component: ProductsComponent }
+  { path: 'products', component: ProductsComponent },
+  { path: 'add-edit-product', component: AddEditComponent }
 ];
 
 @NgModule({

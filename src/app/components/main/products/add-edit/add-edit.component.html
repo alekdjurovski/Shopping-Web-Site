@@ -1,0 +1,98 @@
+<div class="row">
+  <div class="container jumbotron">
+    <div class="container-fluid">
+      <form class="formBox" [formGroup]="form" (submit)="onSubmit()">
+        <div class="row">
+          <div class="col-sm-12"><h1>Add Product</h1></div>
+        </div>
+
+        <div class="row inputBox">
+          <div class="col-sm-4"><div class="inputText">Name</div></div>
+          <div class="col-sm-8">
+            <input
+              type="text"
+              name="name"
+              formControlName="name"
+              class="form-control input"
+              placeholder="Enter name of product"
+            />
+          </div>
+        </div>
+
+        <!-- <div class="row inputBox">
+          <div class="col-sm-4"><div class="inputText">Categories:</div></div>
+          <div class="col-sm-8">
+            <select
+              class="form-control"
+              id="selectCategory"
+              name="ngParent"
+              placeholder="Parent Categories"
+              formControlName="categoryId"
+              [(ngModel)]="ngParent"
+            >
+              <option>1</option>
+              <option *ngFor="let item of categories" [value]="item.id">{{
+                item.name
+              }}</option>
+            </select>
+          </div>
+        </div> -->
+
+        <div class="row inputBox">
+          <div class="col-sm-4"><div class="inputText">Manufacturer:</div></div>
+          <div class="col-sm-8">
+            <input
+              type="text"
+              name=""
+              formControlName="manufacturer"
+              class="input"
+              placeholder="Enter manufacturer"
+            />
+          </div>
+        </div>
+
+        <div class="row inputBox">
+          <div class="col-sm-4">
+            <div class="inputText">Short Description:</div>
+          </div>
+          <div class="col-sm-8">
+            <textarea
+              type="text"
+              name=""
+              formControlName="shortDescription"
+              class="input"
+              placeholder="Enter description"
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="row inputBox">
+          <div class="col-sm-4">
+            <div class="inputText">Long Description:</div>
+          </div>
+          <div class="col-sm-8">
+            <textarea
+              type="text"
+              name=""
+              formControlName="fullDescription"
+              class="input"
+              placeholder="Enter description"
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <input
+              type="submit"
+              name=""
+              class="button"
+              [disabled]="form.invalid"
+              value="Add Product"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

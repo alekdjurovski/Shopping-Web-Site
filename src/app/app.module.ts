@@ -8,7 +8,7 @@ import { ProductsComponent } from './components/main/products/products.component
 import { CategoriesComponent } from './components/main/categories/categories.component';
 import { CategoryService } from './services/category.service';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MainComponent } from './components/main/main.component';
 import { AddNewComponent } from './components/main/add-new/add-new.component';
@@ -21,6 +21,8 @@ import { AlertModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ModalComponent } from './components/main/modal/modal.component';
 import { ReloadCategoriesService } from './services/reload-categories.service';
+import { AddEditComponent } from './components/main/products/add-edit/add-edit.component';
+import { ProductService } from './services/product.service';
 
 
 @NgModule({
@@ -33,13 +35,15 @@ import { ReloadCategoriesService } from './services/reload-categories.service';
     MainComponent,
     AddNewComponent,
     EditComponent,
-    ModalComponent
+    ModalComponent,
+    AddEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatCheckboxModule,
     MatButtonModule,
@@ -53,7 +57,8 @@ import { ReloadCategoriesService } from './services/reload-categories.service';
     ],
   providers: [
     CategoryService,
-    ReloadCategoriesService
+    ReloadCategoriesService,
+    ProductService
   ],
   bootstrap: [AppComponent],
   entryComponents: [ ModalComponent ]
