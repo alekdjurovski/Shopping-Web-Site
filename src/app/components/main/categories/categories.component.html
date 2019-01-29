@@ -44,6 +44,7 @@
         <tr class="head-row">
           <th scope="col">Name</th>
           <th scope="col">Parent Category</th>
+          <th scope="col">Parent id</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
@@ -51,6 +52,7 @@
         <tr *ngFor="let item of categories">
           <td>{{ item.name }}</td>
           <td>{{ item.parentCategoryName }}</td>
+          <td>{{ item.parentCategoryId }}</td>
 
           <td>
             <button

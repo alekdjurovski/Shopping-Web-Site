@@ -17,13 +17,13 @@ export class CategoryService {
   editId: number;
   deleteId: number;
   oldName = this.categoryData.name;
-  categoriesList: ICategories[];
+  categoriesList: ICategories;
   addId: number;
 
   constructor(private http: HttpClient) {}
 
-  getCategories(): Observable<ICategories[]> {
-    return this.http.get<ICategories[]>(this.getPostUrl);
+  getCategories(): Observable<ICategories> {
+    return this.http.get<ICategories>(this.getPostUrl);
   }
 
   addCategories(category) {

@@ -11,6 +11,7 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   addProduct(product) {
+    // debugger;
     return this.http.post<IProduct>(this.productUrl, product);
   }
 }
