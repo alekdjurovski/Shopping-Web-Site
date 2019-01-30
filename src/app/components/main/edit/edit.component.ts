@@ -34,7 +34,6 @@ export class EditComponent implements OnInit {
   editCategory() {
     this._service.getOneCategory().subscribe((res: ICategories) => {
       this.category = res;
-      console.log(this.category);
       this.ngName = this.category.name;
       this.ngDesc = this.category.description;
       this.ngParent = this.category.parentCategoryName;

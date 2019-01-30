@@ -14,7 +14,13 @@ const routes: Routes = [
   { path: 'add', component: AddNewComponent},
   { path: 'edit', component: EditComponent },
   { path: 'products', component: ProductsComponent },
-  { path: 'add-edit-product', component: AddEditComponent }
+  { path: 'add-edit-product', component: AddEditComponent },
+  { path: 'products', children: [
+      { path: '', component: ProductsComponent },
+      { path: ':addedit', component: AddEditComponent },
+      { path: ':addedit/:id', component: AddEditComponent }
+    ]
+  }
 ];
 
 @NgModule({
