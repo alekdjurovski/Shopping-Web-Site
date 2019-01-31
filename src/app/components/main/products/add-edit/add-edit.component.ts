@@ -8,8 +8,16 @@ import { IProduct } from 'src/app/model/iproduct';
 import { ICategories } from '../../../../model/category';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AngularFireStorage, createStorageRef, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
+import {
+  AngularFireStorage,
+  createStorageRef,
+  AngularFireStorageReference,
+  AngularFireUploadTask
+} from 'angularfire2/storage';
 import * as firebase from 'firebase';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-add-edit',
@@ -34,13 +42,15 @@ export class AddEditComponent implements OnInit {
   ngShortDescription: string;
   ngFullDescription: string;
   ngCategoryId: number;
-  storage = firebase.storage();
-  storageRef = this.storage.ref();
-  ref: AngularFireStorageReference;
+  storageRef: AngularFireStorageReference;
   task: AngularFireUploadTask;
+  downloadURL: Observable<string>;
+  uploadProgress: Observable<number>;
+  // downloadSrc: Observable<string>;
+  uploadState: Observable<string>;
+
 
   selectPic: File = null;
-
 
   constructor(
     private formBuild: FormBuilder,
@@ -95,6 +105,7 @@ export class AddEditComponent implements OnInit {
   }
 
   onSubmit() {
+    this.uploadPic();
     if (this.add) {
       this.addProduct();
     } else {
@@ -106,7 +117,7 @@ export class AddEditComponent implements OnInit {
     this.newForm = this.form.value;
     this._serviceProduct.addProduct(this.newForm).subscribe((res: IProduct) => {
       this._toastr.info('New Product is Successful Added');
-      this.route.navigate(['/products']);
+      // this.route.navigate(['/products']);
     });
   }
 
@@ -116,11 +127,13 @@ export class AddEditComponent implements OnInit {
       this.form.get('name').setValue(this.editForm.name);
       this.form.get('manufacturer').setValue(this.editForm.manufacturer);
       this.form.get('isAvailable').setValue(this.editForm.isAvailable);
-      this.form.get('shortDescription').setValue(this.editForm.shortDescription);
+      this.form
+        .get('shortDescription')
+        .setValue(this.editForm.shortDescription);
       this.form.get('fullDescription').setValue(this.editForm.fullDescription);
       this.form.get('categoryId').setValue(this.editForm.categoryId);
-  });
-}
+    });
+  }
 
   updateProduct() {
     this._serviceProduct
@@ -131,47 +144,44 @@ export class AddEditComponent implements OnInit {
       });
   }
 
-  // onImgSelect(event) {
-  //   this.selectPic = event.target.files[0];
-  // }
-
-  // inputPic(file: FileList) {
-  //   this.picToUpload = file.item(0);
-
-  // show image
-  // const reader = new FileReader();
-  // reader.onload = (event: any) => {
-  //   this.imageUrl = event.target.result;
-  // };
-  // reader.readAsDataURL(this.picToUpload);
-  // }
-
-  uploadPic(event) {
+  chooseImg(event) {
     // lisen for file selection on some event on input change (change)="$event"
     // get image
     this.selectPic = <File>event.target.files[0];
 
-    // Create a storage ref
+    // show image
+    // const reader = new FileReader();
+    // reader.onload = (eve: any) => {
+    //   this.imageUrl = eve.target.result;
+    // };
+    // reader.readAsDataURL(this.selectPic);
+  }
 
-
-    // Upload File
-    // this.storageRef.put(this.selectPic);
-
-
+  uploadPic() {
+    // ova e eden nacin
+    const id = Math.random().toString(36).substring(2);
+    this.storageRef = this.fireStorage.ref(id);
+    this.task = this.storageRef.put(this.selectPic);
+     this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
+    this.uploadProgress = this.task.percentageChanges();
+    this.downloadURL = this.storageRef.getDownloadURL();
+    debugger;
+    // this.storageRef.getDownloadURL().subscribe(res => {
+    //   this.downloadSrc = res;
+    // });
 
     // max nacin
-//     const fd = new FormData();
-// fd.append('image', this.selectPic, this.selectPic.name);
-// this.http.post('https://product-img.firebaseio.com', fd).subscribe(res => {
-//   console.log('res');
-// });
-
-
-
-
-    // ova e eden nacin
-    // const id = Math.random().toString(36).substring(2);
-    // this.ref = this.fireStorage.ref();
-    // this.task = this.ref.put(this.selectPic);
+    // const fd = new FormData();
+    // fd.append('image', this.selectPic, this.selectPic.name);
+    // this.http
+    //   .post(
+    //     'https://firebasestorage.googleapis.com/v0/b/product-img.appspot.com/productImg',
+    //     fd
+    //   )
+    //   .subscribe(res => {
+    //     console.log('res');
+    //   });
   }
+
+
 }

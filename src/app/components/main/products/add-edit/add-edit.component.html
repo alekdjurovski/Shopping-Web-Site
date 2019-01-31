@@ -9,7 +9,11 @@
         </div>
 
         <div class="row inputBox">
-          <div class="col-sm-4"><div class="inputText">Picture:</div></div>
+          <div class="col-sm-4">
+            <div class="inputText" *ngIf="downloadURL | async; let downloadSrc" >Picture:
+                File uploaded: <a [href]="downloadSrc">{{downloadSrc}}</a>
+            </div>
+          </div>
           <div class="col-sm-8">
             <img
               [src]="imageUrl"
@@ -21,7 +25,7 @@
               name="picture"
               value="Upload"
               class="form-control input"
-              (change)="uploadPic($event)"
+              (change)="chooseImg($event)"
             />
             <button>Remove</button>
           </div>
@@ -34,7 +38,6 @@
               type="text"
               name="name"
               formControlName="name"
-              [(ngModel)]="ngName"
               class="form-control input"
               placeholder="Enter name of product"
             />
@@ -47,7 +50,6 @@
             <select
               name="categoryId"
               formControlName="categoryId"
-              [(ngModel)]="ngCategoryId"
               placeholder="Parent Categories"
             >
               <option *ngFor="let item of categories" [ngValue]="item.id">{{
@@ -64,7 +66,6 @@
               type="text"
               name=""
               formControlName="manufacturer"
-              [(ngModel)]="ngManufacturer"
               class="input"
               placeholder="Enter manufacturer"
             />
@@ -79,7 +80,6 @@
                 <input
                   class="form-check-input"
                   formControlName="isAvailable"
-                  [(ngModel)]="ngIsAvailable"
                   type="checkbox"
                 />
                 Available
@@ -97,7 +97,6 @@
               type="text"
               name=""
               formControlName="shortDescription"
-              [(ngModel)]="ngShortDescription"
               class="input"
               placeholder="Enter description"
             ></textarea>
@@ -113,7 +112,6 @@
               type="text"
               name=""
               formControlName="fullDescription"
-              [(ngModel)]="ngFullDescription"
               class="input"
               placeholder="Enter description"
             ></textarea>
