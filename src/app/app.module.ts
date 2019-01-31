@@ -23,6 +23,9 @@ import { ModalComponent } from './components/main/modal/modal.component';
 import { ReloadCategoriesService } from './services/reload-categories.service';
 import { AddEditComponent } from './components/main/products/add-edit/add-edit.component';
 import { ProductService } from './services/product.service';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -53,7 +56,9 @@ import { ProductService } from './services/product.service';
     CommonModule,
     ToastrModule.forRoot(),
     AlertModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule
     ],
   providers: [
     CategoryService,

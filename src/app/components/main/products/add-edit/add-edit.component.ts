@@ -7,7 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 import { IProduct } from 'src/app/model/iproduct';
 import { ICategories } from '../../../../model/category';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AngularFireStorage } from 'angularfire2/storage';
 
 @Component({
   selector: 'app-add-edit',
@@ -27,15 +28,23 @@ export class AddEditComponent implements OnInit {
   btnName: string;
   editForm: any;
   newForm: any;
+  ngName: string;
+  ngManufacturer: string;
+  ngIsAvailable: boolean;
+  ngShortDescription: string;
+  ngFullDescription: string;
+  ngCategoryId: number;
 
   constructor(
     private formBuild: FormBuilder,
     private _serviceProduct: ProductService,
     private _serviceCategory: CategoryService,
     private activeRoute: ActivatedRoute,
+    private route: Router,
     private _toastr: ToastrService,
     private _serviceReloadCategories: ReloadCategoriesService,
-    private http: HttpClient
+    private http: HttpClient,
+    private fireStorage: AngularFireStorage
   ) {}
 
   ngOnInit() {
@@ -47,7 +56,8 @@ export class AddEditComponent implements OnInit {
       this.title = 'Add';
       this.btnName = 'Add Product';
     } else if (page === 'edit') {
-      this.productId = this.activeRoute.snapshot.params.id;
+      // tslint:disable-next-line:radix
+      this.productId = parseInt(this.activeRoute.snapshot.params.id);
       this.title = 'Edit';
       this.btnName = 'Update';
       this.fillForm();
@@ -68,7 +78,7 @@ export class AddEditComponent implements OnInit {
 
   formBuilder() {
     this.form = this.formBuild.group({
-      name: ['alek', Validators.required],
+      name: ['', Validators.required],
       manufacturer: ['', Validators.required],
       isAvailable: [false, Validators.required],
       shortDescription: [''],
@@ -86,18 +96,22 @@ export class AddEditComponent implements OnInit {
   }
 
   addProduct() {
-    debugger;
     this.newForm = this.form.value;
     this._serviceProduct.addProduct(this.newForm).subscribe((res: IProduct) => {
       this._toastr.info('New Product is Successful Added');
+      this.route.navigate(['/products']);
     });
   }
 
   fillForm() {
-    debugger;
     this._serviceProduct.getOneProduct(this.productId).subscribe(res => {
-      console.log(res);
       this.editForm = res;
+      this.ngName = this.editForm.name;
+      this.ngManufacturer = this.editForm.manufacturer;
+      this.ngIsAvailable = this.editForm.isAvailable;
+      this.ngShortDescription = this.editForm.shortDescription;
+      this.ngFullDescription = this.editForm.fullDescription;
+      this.ngCategoryId = this.editForm.categoryId;
     });
   }
 
@@ -106,6 +120,7 @@ export class AddEditComponent implements OnInit {
       .updateProduct(this.productId, this.form.value)
       .subscribe((res: IProduct) => {
         this._toastr.info('Product is Successful Updated');
+        this.route.navigate(['/products']);
       });
   }
 
@@ -117,11 +132,11 @@ export class AddEditComponent implements OnInit {
     this.picToUpload = file.item(0);
 
     // show image
-    const reader = new FileReader();
-    reader.onload = (event: any) => {
-      this.imageUrl = event.target.result;
-    };
-    reader.readAsDataURL(this.picToUpload);
+    // const reader = new FileReader();
+    // reader.onload = (event: any) => {
+    //   this.imageUrl = event.target.result;
+    // };
+    // reader.readAsDataURL(this.picToUpload);
   }
 
   uploadPic() {
