@@ -14,7 +14,13 @@ import { MainComponent } from './components/main/main.component';
 import { AddNewComponent } from './components/main/add-new/add-new.component';
 import { EditComponent } from './components/main/edit/edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatInputModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  MatInputModule
+} from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { AlertModule } from 'ngx-bootstrap';
@@ -26,7 +32,6 @@ import { ProductService } from './services/product.service';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { environment } from 'src/environments/environment';
-
 
 @NgModule({
   declarations: [
@@ -57,15 +62,11 @@ import { environment } from 'src/environments/environment';
     ToastrModule.forRoot(),
     AlertModule.forRoot(),
     ModalModule.forRoot(),
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule
-    ],
-  providers: [
-    CategoryService,
-    ReloadCategoriesService,
-    ProductService
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.fireBaseConfig)
   ],
+  providers: [CategoryService, ReloadCategoriesService, ProductService],
   bootstrap: [AppComponent],
-  entryComponents: [ ModalComponent ]
+  entryComponents: [ModalComponent]
 })
-export class AppModule { }
+export class AppModule {}

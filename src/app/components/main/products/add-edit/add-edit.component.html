@@ -19,11 +19,10 @@
             <input
               type="file"
               name="picture"
-              accept="image/*"
+              value="Upload"
               class="form-control input"
-              (change)="inputPic($event.target.files)"
+              (change)="uploadPic($event)"
             />
-            <button type="button" (click)="uploadPic()">Upload</button>
             <button>Remove</button>
           </div>
         </div>

@@ -8,7 +8,8 @@ import { IProduct } from 'src/app/model/iproduct';
 import { ICategories } from '../../../../model/category';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AngularFireStorage } from 'angularfire2/storage';
+import { AngularFireStorage, createStorageRef, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-add-edit',
@@ -19,7 +20,6 @@ export class AddEditComponent implements OnInit {
   classAdd = false;
   categories: any;
   form: FormGroup;
-  selectPic: null;
   imageUrl = '../../../../../assets/img/img-upload.jpg';
   picToUpload: File = null;
   add: boolean;
@@ -34,6 +34,13 @@ export class AddEditComponent implements OnInit {
   ngShortDescription: string;
   ngFullDescription: string;
   ngCategoryId: number;
+  storage = firebase.storage();
+  storageRef = this.storage.ref();
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
+
+  selectPic: File = null;
+
 
   constructor(
     private formBuild: FormBuilder,
@@ -106,14 +113,14 @@ export class AddEditComponent implements OnInit {
   fillForm() {
     this._serviceProduct.getOneProduct(this.productId).subscribe(res => {
       this.editForm = res;
-      this.ngName = this.editForm.name;
-      this.ngManufacturer = this.editForm.manufacturer;
-      this.ngIsAvailable = this.editForm.isAvailable;
-      this.ngShortDescription = this.editForm.shortDescription;
-      this.ngFullDescription = this.editForm.fullDescription;
-      this.ngCategoryId = this.editForm.categoryId;
-    });
-  }
+      this.form.get('name').setValue(this.editForm.name);
+      this.form.get('manufacturer').setValue(this.editForm.manufacturer);
+      this.form.get('isAvailable').setValue(this.editForm.isAvailable);
+      this.form.get('shortDescription').setValue(this.editForm.shortDescription);
+      this.form.get('fullDescription').setValue(this.editForm.fullDescription);
+      this.form.get('categoryId').setValue(this.editForm.categoryId);
+  });
+}
 
   updateProduct() {
     this._serviceProduct
@@ -124,24 +131,47 @@ export class AddEditComponent implements OnInit {
       });
   }
 
-  onImgSelect(event) {
-    this.selectPic = event.target.files[0];
-  }
+  // onImgSelect(event) {
+  //   this.selectPic = event.target.files[0];
+  // }
 
-  inputPic(file: FileList) {
-    this.picToUpload = file.item(0);
+  // inputPic(file: FileList) {
+  //   this.picToUpload = file.item(0);
 
-    // show image
-    // const reader = new FileReader();
-    // reader.onload = (event: any) => {
-    //   this.imageUrl = event.target.result;
-    // };
-    // reader.readAsDataURL(this.picToUpload);
-  }
+  // show image
+  // const reader = new FileReader();
+  // reader.onload = (event: any) => {
+  //   this.imageUrl = event.target.result;
+  // };
+  // reader.readAsDataURL(this.picToUpload);
+  // }
 
-  uploadPic() {
-    const formData = new FormData();
-    // formData.append('image', this.selectPic, this.selectPic.name);
-    this.http.post('http://product-img.appspot.com', formData);
+  uploadPic(event) {
+    // lisen for file selection on some event on input change (change)="$event"
+    // get image
+    this.selectPic = <File>event.target.files[0];
+
+    // Create a storage ref
+
+
+    // Upload File
+    // this.storageRef.put(this.selectPic);
+
+
+
+    // max nacin
+//     const fd = new FormData();
+// fd.append('image', this.selectPic, this.selectPic.name);
+// this.http.post('https://product-img.firebaseio.com', fd).subscribe(res => {
+//   console.log('res');
+// });
+
+
+
+
+    // ova e eden nacin
+    // const id = Math.random().toString(36).substring(2);
+    // this.ref = this.fireStorage.ref();
+    // this.task = this.ref.put(this.selectPic);
   }
 }
