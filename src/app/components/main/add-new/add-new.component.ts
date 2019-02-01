@@ -12,8 +12,6 @@ import { ToastrService } from 'ngx-toastr';
 export class AddNewComponent implements OnInit {
   btnEnable = true;
   categories = this._service.categoriesList;
-  // ngName: string;
-  // ngDesc: string;
   id: number;
   name: string;
   ngParent = {
@@ -21,11 +19,6 @@ export class AddNewComponent implements OnInit {
     name: ''
   };
   category: ICategories = {} as ICategories;
-  // = {
-  //   name: '',
-  //   description: '',
-  //   parentCategoryName: ''
-  // };
 
   constructor(
     private _service: CategoryService,

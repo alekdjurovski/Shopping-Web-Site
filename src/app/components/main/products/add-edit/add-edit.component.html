@@ -9,25 +9,20 @@
         </div>
 
         <div class="row inputBox">
-          <div class="col-sm-4">
-
-
-
-          </div>
+          <div class="col-sm-4"><div class="inputText">Picture:</div></div>
           <div class="col-sm-8">
-              <!-- <input class="form-control input" type="text"> -->
-              <div
-              *ngIf="imgUrl | async; let imageeSrc"
-
-            >
-            <input id="ccc" class="form-control input" type="text" placeholder="nahuahfuhfguh">
-              File uploaded: <a [href]="imageeSrc">{{ imageeSrc }}</a>
-              <input
-              type="text"
-              [value]="imageeSrc"
-              formControlName="imageUrl"
-            />
-            <img [src]="imageeSrc" alt="" style="width: 250px; height:200px">
+            <div *ngIf="(imgUrl | async); let imageeSrc">
+              <!-- <input
+                type="text"
+                ngValue="imageeSrc"
+                formControlName="imageUrl"
+              /> -->
+              <img
+                [src]="imageeSrc"
+                alt=""
+                style="width: 250px; height:200px"
+              />
+              Img URL: <a formControlName="imageUrl" [href]="imageeSrc">{{ imageeSrc }}</a>
             </div>
             <!-- <img
               [src]="imageDefault"
@@ -38,10 +33,10 @@
               type="file"
               name="picture"
               value="Upload"
-              class="form-control input"
+              class="form-control input no-border"
               (change)="chooseImg($event)"
             />
-            <button>Remove</button>
+            <button (click)="deleteImg()">Remove</button>
           </div>
         </div>
 
@@ -52,7 +47,7 @@
               type="text"
               name="name"
               formControlName="name"
-              class="form-control input"
+              class="wide form-control input"
               placeholder="Enter name of product"
             />
           </div>
@@ -80,7 +75,7 @@
               type="text"
               name=""
               formControlName="manufacturer"
-              class="input"
+              class="wide input"
               placeholder="Enter manufacturer"
             />
           </div>
@@ -111,7 +106,7 @@
               type="text"
               name=""
               formControlName="shortDescription"
-              class="input"
+              class="wide input"
               placeholder="Enter description"
             ></textarea>
           </div>
@@ -126,7 +121,7 @@
               type="text"
               name=""
               formControlName="fullDescription"
-              class="input"
+              class="wide input"
               placeholder="Enter description"
             ></textarea>
           </div>

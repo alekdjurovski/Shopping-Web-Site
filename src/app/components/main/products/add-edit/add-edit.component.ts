@@ -6,7 +6,6 @@ import { ReloadCategoriesService } from 'src/app/services/reload-categories.serv
 import { ToastrService } from 'ngx-toastr';
 import { IProduct } from 'src/app/model/iproduct';
 import { ICategories } from '../../../../model/category';
-import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
@@ -28,11 +27,12 @@ export class AddEditComponent implements OnInit {
   btnName: string;
   editForm: any;
   newForm: any;
-  imgUrl: Observable<string>;
+  imgUrl: any;
   uploadStatus: Observable<number>;
   imageUrl: string;
   newImgUrl: string;
   selectPic: File = null;
+  remId: string;
 
   constructor(
     private formBuild: FormBuilder,
@@ -42,7 +42,6 @@ export class AddEditComponent implements OnInit {
     private route: Router,
     private _toastr: ToastrService,
     private _serviceReloadCategories: ReloadCategoriesService,
-    private http: HttpClient,
     private fireStorage: AngularFireStorage
   ) {}
 
@@ -83,7 +82,7 @@ export class AddEditComponent implements OnInit {
       isAvailable: [false, Validators.required],
       shortDescription: [''],
       fullDescription: [''],
-      categoryId: [0, Validators.required]
+      categoryId: [0]
     });
   }
 
@@ -100,7 +99,7 @@ export class AddEditComponent implements OnInit {
     this.newForm = this.form.value;
     this._serviceProduct.addProduct(this.newForm).subscribe((res: IProduct) => {
       this._toastr.info('New Product is Successful Added');
-      // this.route.navigate(['/products']);
+      this.route.navigate(['/products']);
     });
   }
 
@@ -129,27 +128,15 @@ export class AddEditComponent implements OnInit {
   }
 
   chooseImg(event) {
-    // lisen for file selection on some event on input change (change)="$event"
-    // get image
     this.selectPic = <File>event.target.files[0];
     this.uploadPic();
-    // show image
-    // const reader = new FileReader();
-    // reader.onload = (eve: any) => {
-    //   this.imageDefault = eve.target.result;
-    // };
-    // reader.readAsDataURL(this.selectPic);
-    // this.uploadPic();
-  }
-
-  func() {
-    this.form.get('imageUrl').setValue(this.imageUrl);
   }
 
   uploadPic() {
     const id = Math.random()
       .toString(36)
       .substring(8);
+    this.remId = id;
     const srcPath = `images/img_${id}`;
     const task = this.fireStorage.upload(srcPath, this.selectPic);
     const ref = this.fireStorage.ref(srcPath);
@@ -158,5 +145,15 @@ export class AddEditComponent implements OnInit {
       .snapshotChanges()
       .pipe(finalize(() => (this.imgUrl = ref.getDownloadURL())))
       .subscribe();
+  }
+
+  deleteImg() {
+    const refStor = this.fireStorage.storage
+      .ref()
+      .child(this.remId)
+      .delete()
+      .then(res => {
+        this.imgUrl = '';
+      });
   }
 }
