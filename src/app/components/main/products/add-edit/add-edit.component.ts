@@ -87,7 +87,6 @@ export class AddEditComponent implements OnInit {
   }
 
   onSubmit() {
-    this.form.get('imageUrl').setValue(this.imgUrl);
     if (this.add) {
       this.addProduct();
     } else {
