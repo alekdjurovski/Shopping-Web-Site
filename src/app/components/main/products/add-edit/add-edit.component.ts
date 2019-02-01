@@ -8,16 +8,9 @@ import { IProduct } from 'src/app/model/iproduct';
 import { ICategories } from '../../../../model/category';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import {
-  AngularFireStorage,
-  createStorageRef,
-  AngularFireStorageReference,
-  AngularFireUploadTask
-} from 'angularfire2/storage';
-import * as firebase from 'firebase';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-edit',
@@ -28,28 +21,17 @@ export class AddEditComponent implements OnInit {
   classAdd = false;
   categories: any;
   form: FormGroup;
-  imageUrl = '../../../../../assets/img/img-upload.jpg';
-  picToUpload: File = null;
+  imageDefault = '../../../../../assets/img/img-upload.jpg';
   add: boolean;
   productId: number;
   title: string;
   btnName: string;
   editForm: any;
   newForm: any;
-  ngName: string;
-  ngManufacturer: string;
-  ngIsAvailable: boolean;
-  ngShortDescription: string;
-  ngFullDescription: string;
-  ngCategoryId: number;
-  storageRef: AngularFireStorageReference;
-  task: AngularFireUploadTask;
-  downloadURL: Observable<string>;
-  uploadProgress: Observable<number>;
-  // downloadSrc: Observable<string>;
-  uploadState: Observable<string>;
-
-
+  imgUrl: Observable<string>;
+  uploadStatus: Observable<number>;
+  imageUrl: string;
+  newImgUrl: string;
   selectPic: File = null;
 
   constructor(
@@ -96,6 +78,7 @@ export class AddEditComponent implements OnInit {
   formBuilder() {
     this.form = this.formBuild.group({
       name: ['', Validators.required],
+      imageUrl: [''],
       manufacturer: ['', Validators.required],
       isAvailable: [false, Validators.required],
       shortDescription: [''],
@@ -105,7 +88,7 @@ export class AddEditComponent implements OnInit {
   }
 
   onSubmit() {
-    this.uploadPic();
+    this.form.get('imageUrl').setValue(this.imgUrl);
     if (this.add) {
       this.addProduct();
     } else {
@@ -125,6 +108,7 @@ export class AddEditComponent implements OnInit {
     this._serviceProduct.getOneProduct(this.productId).subscribe(res => {
       this.editForm = res;
       this.form.get('name').setValue(this.editForm.name);
+      this.form.get('imageUrl').setValue(this.editForm.imageUrl);
       this.form.get('manufacturer').setValue(this.editForm.manufacturer);
       this.form.get('isAvailable').setValue(this.editForm.isAvailable);
       this.form
@@ -148,40 +132,31 @@ export class AddEditComponent implements OnInit {
     // lisen for file selection on some event on input change (change)="$event"
     // get image
     this.selectPic = <File>event.target.files[0];
-
+    this.uploadPic();
     // show image
     // const reader = new FileReader();
     // reader.onload = (eve: any) => {
-    //   this.imageUrl = eve.target.result;
+    //   this.imageDefault = eve.target.result;
     // };
     // reader.readAsDataURL(this.selectPic);
+    // this.uploadPic();
+  }
+
+  func() {
+    this.form.get('imageUrl').setValue(this.imageUrl);
   }
 
   uploadPic() {
-    // ova e eden nacin
-    const id = Math.random().toString(36).substring(2);
-    this.storageRef = this.fireStorage.ref(id);
-    this.task = this.storageRef.put(this.selectPic);
-     this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
-    this.uploadProgress = this.task.percentageChanges();
-    this.downloadURL = this.storageRef.getDownloadURL();
-    debugger;
-    // this.storageRef.getDownloadURL().subscribe(res => {
-    //   this.downloadSrc = res;
-    // });
-
-    // max nacin
-    // const fd = new FormData();
-    // fd.append('image', this.selectPic, this.selectPic.name);
-    // this.http
-    //   .post(
-    //     'https://firebasestorage.googleapis.com/v0/b/product-img.appspot.com/productImg',
-    //     fd
-    //   )
-    //   .subscribe(res => {
-    //     console.log('res');
-    //   });
+    const id = Math.random()
+      .toString(36)
+      .substring(8);
+    const srcPath = `images/img_${id}`;
+    const task = this.fireStorage.upload(srcPath, this.selectPic);
+    const ref = this.fireStorage.ref(srcPath);
+    this.uploadStatus = task.percentageChanges();
+    task
+      .snapshotChanges()
+      .pipe(finalize(() => (this.imgUrl = ref.getDownloadURL())))
+      .subscribe();
   }
-
-
 }

@@ -30,7 +30,8 @@ import { ReloadCategoriesService } from './services/reload-categories.service';
 import { AddEditComponent } from './components/main/products/add-edit/add-edit.component';
 import { ProductService } from './services/product.service';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
 
 @NgModule({
@@ -63,7 +64,8 @@ import { environment } from 'src/environments/environment';
     AlertModule.forRoot(),
     ModalModule.forRoot(),
     AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.fireBaseConfig)
+    AngularFireModule.initializeApp(environment.fireBaseConfig),
+    AngularFireDatabaseModule
   ],
   providers: [CategoryService, ReloadCategoriesService, ProductService],
   bootstrap: [AppComponent],

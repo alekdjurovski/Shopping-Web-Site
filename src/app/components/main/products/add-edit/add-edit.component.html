@@ -10,16 +10,30 @@
 
         <div class="row inputBox">
           <div class="col-sm-4">
-            <div class="inputText" *ngIf="downloadURL | async; let downloadSrc" >Picture:
-                File uploaded: <a [href]="downloadSrc">{{downloadSrc}}</a>
-            </div>
+
+
+
           </div>
           <div class="col-sm-8">
-            <img
-              [src]="imageUrl"
+              <!-- <input class="form-control input" type="text"> -->
+              <div
+              *ngIf="imgUrl | async; let imageeSrc"
+
+            >
+            <input id="ccc" class="form-control input" type="text" placeholder="nahuahfuhfguh">
+              File uploaded: <a [href]="imageeSrc">{{ imageeSrc }}</a>
+              <input
+              type="text"
+              [value]="imageeSrc"
+              formControlName="imageUrl"
+            />
+            <img [src]="imageeSrc" alt="" style="width: 250px; height:200px">
+            </div>
+            <!-- <img
+              [src]="imageDefault"
               alt="image"
               style="width: 250px; height:200px"
-            />
+            /> -->
             <input
               type="file"
               name="picture"
