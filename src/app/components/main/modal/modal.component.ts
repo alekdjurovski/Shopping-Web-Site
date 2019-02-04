@@ -34,14 +34,11 @@ export class ModalComponent implements OnInit {
         this._reloadService.getAllProducts();
         this._toastr.error('Product is Successful Deleted');
       });
-
     } else {
       this._categoryService.deleteCategories().subscribe(res => {
         this._reloadService.getAllCategories();
         this._toastr.error('Category is Successful Deleted');
       });
-
     }
-
   }
 }

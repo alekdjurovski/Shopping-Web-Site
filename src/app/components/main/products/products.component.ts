@@ -32,17 +32,13 @@ export class ProductsComponent implements OnInit {
     this.getProducts();
     this.reloadProduct();
     this.getCategories();
-    // this._reloadService.cast.subscribe(data => {
-    //   this.products = data;
-    // });
   }
 
   getProducts() {
     this._productService.getProducts().subscribe(data => {
       this.products = data;
-      this._productService.productsList = data;
+      // this._productService.productsList = data;
     });
-
   }
 
   reloadProduct() {
@@ -71,7 +67,7 @@ export class ProductsComponent implements OnInit {
 
   resetSearch() {
     if (this.searchName === '') {
-      this.getCategories();
+      this.getProducts();
     }
   }
 
@@ -80,10 +76,6 @@ export class ProductsComponent implements OnInit {
     this.resetSearch();
     this.showSearch = false;
   }
-
-  // editCategory(id) {
-  //   this._service.editId = id;
-  // }
 
   openModalWithComponent(id: number, param: string) {
     this._productService.deleteId = id;
