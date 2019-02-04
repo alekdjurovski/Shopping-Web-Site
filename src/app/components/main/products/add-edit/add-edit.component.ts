@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-add-edit',
@@ -33,6 +34,9 @@ export class AddEditComponent implements OnInit {
   newImgUrl: string;
   selectPic: File = null;
   remId: string;
+  imageSrc: string;
+  deleteRef: any;
+  idImg: string;
 
   constructor(
     private formBuild: FormBuilder,
@@ -106,7 +110,7 @@ export class AddEditComponent implements OnInit {
     this._serviceProduct.getOneProduct(this.productId).subscribe(res => {
       this.editForm = res;
       this.form.get('name').setValue(this.editForm.name);
-      this.form.get('imageUrl').setValue(this.editForm.imageUrl);
+      this.imageSrc = this.editForm.imageUrl;
       this.form.get('manufacturer').setValue(this.editForm.manufacturer);
       this.form.get('isAvailable').setValue(this.editForm.isAvailable);
       this.form
@@ -132,27 +136,30 @@ export class AddEditComponent implements OnInit {
   }
 
   uploadPic() {
-    const id = Math.random()
+    this.idImg = Math.random()
       .toString(36)
       .substring(8);
-    this.remId = id;
-    const srcPath = `images/img_${id}`;
+    const srcPath = `images/img_${this.idImg}`;
     const task = this.fireStorage.upload(srcPath, this.selectPic);
     const ref = this.fireStorage.ref(srcPath);
     this.uploadStatus = task.percentageChanges();
     task
       .snapshotChanges()
-      .pipe(finalize(() => (this.imgUrl = ref.getDownloadURL())))
+      .pipe(finalize(() => (this.imgUrl = ref.getDownloadURL().subscribe(
+        data => {
+          this.imageSrc = data;
+          this.form.get('imageUrl').setValue(this.imageSrc);
+        }
+      ))))
       .subscribe();
   }
 
   deleteImg() {
-    const refStor = this.fireStorage.storage
-      .ref()
-      // .child(this.remId)
-      .delete();
-      // .then(res => {
-      //   this.imgUrl = '';
-      // });
+    this.imageSrc = '';
+    const deleteRef = firebase.storage().ref();
+    deleteRef.child(`images/img_${this.idImg}`).delete().then(function() {
+    });
+    this._toastr.warning('Image is Deleted');
   }
 }
+

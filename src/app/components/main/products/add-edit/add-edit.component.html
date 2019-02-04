@@ -11,18 +11,18 @@
         <div class="row inputBox">
           <div class="col-sm-4"><div class="inputText">Picture:</div></div>
           <div class="col-sm-8">
-            <div *ngIf="(imgUrl | async); let imageeSrc">
+            <div >
               <!-- <input
                 type="text"
                 ngValue="imageeSrc"
                 formControlName="imageUrl"
               /> -->
               <img
-                [src]="imageeSrc"
+                [src]="imageSrc"
                 alt=""
                 style="width: 250px; height:200px"
               />
-              Img URL: <a [href]="imageeSrc">{{ imageeSrc }}</a>
+              <!-- Img URL: <a [href]="imageeSrc">{{ imageeSrc }}</a> -->
             </div>
             <!-- <img
               [src]="imageDefault"
@@ -36,7 +36,7 @@
               class="form-control input no-border"
               (change)="chooseImg($event)"
             />
-            <button (click)="deleteImg()">Remove</button>
+            <button type="button" (click)="deleteImg()">Remove</button>
           </div>
         </div>
 
