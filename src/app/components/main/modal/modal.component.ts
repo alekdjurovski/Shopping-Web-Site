@@ -31,6 +31,7 @@ export class ModalComponent implements OnInit {
   removeCategory() {
     if (this.activePage) {
       this._productService.deleteProduct().subscribe(res => {
+        this._reloadService.getAllProducts();
         this._toastr.error('Product is Successful Deleted');
       });
 

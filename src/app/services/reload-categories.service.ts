@@ -18,16 +18,14 @@ export class ReloadCategoriesService {
   ) {}
 
   getAllCategories() {
-    debugger;
     this._categoryService.getCategories().subscribe(data => {
       this.categories.next(data);
     });
   }
 
   getAllProducts() {
-    debugger;
-    this._productService.getProducts().subscribe(data => {
-      this.products.next(data);
+    this._productService.getProducts().subscribe(res => {
+      this.products.next(res);
     });
   }
 }

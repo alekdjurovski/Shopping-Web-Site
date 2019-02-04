@@ -26,9 +26,7 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit() {
     this.getCategories();
-    this._reloadService.cast.subscribe(data => {
-      this.categories = data;
-    });
+this.reloadCategoties();
   }
 
   getCategories() {
@@ -36,6 +34,11 @@ export class CategoriesComponent implements OnInit {
       this.categories = data;
       this.categories.id = this._service.addId;
       this._service.categoriesList = data;
+    });
+  }
+  reloadCategoties() {
+    this._reloadService.cast.subscribe(res => {
+      this.categories = res;
     });
   }
 

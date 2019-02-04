@@ -30,9 +30,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.getProducts();
-    this._reloadService.castProd.subscribe(data => {
-      this.products = data;
-    });
+    this.reloadProduct();
     this.getCategories();
     // this._reloadService.cast.subscribe(data => {
     //   this.products = data;
@@ -45,6 +43,12 @@ export class ProductsComponent implements OnInit {
       this._productService.productsList = data;
     });
 
+  }
+
+  reloadProduct() {
+    this._reloadService.castProd.subscribe(res => {
+      this.products = res;
+    });
   }
 
   getCategories() {
