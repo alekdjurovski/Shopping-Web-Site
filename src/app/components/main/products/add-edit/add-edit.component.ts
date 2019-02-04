@@ -149,10 +149,10 @@ export class AddEditComponent implements OnInit {
   deleteImg() {
     const refStor = this.fireStorage.storage
       .ref()
-      .child(this.remId)
-      .delete()
-      .then(res => {
-        this.imgUrl = '';
-      });
+      // .child(this.remId)
+      .delete();
+      // .then(res => {
+      //   this.imgUrl = '';
+      // });
   }
 }
