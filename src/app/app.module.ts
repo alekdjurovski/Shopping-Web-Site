@@ -34,6 +34,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { PortalComponent } from './components/portal/portal.component';
+import { NavbarComponent } from './components/portal/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     AddNewComponent,
     EditComponent,
     ModalComponent,
-    AddEditComponent
+    AddEditComponent,
+    PortalComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

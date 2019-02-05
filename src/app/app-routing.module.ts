@@ -6,6 +6,7 @@ import { MainComponent } from './components/main/main.component';
 import { AddNewComponent } from './components/main/add-new/add-new.component';
 import { EditComponent } from './components/main/edit/edit.component';
 import { AddEditComponent } from './components/main/products/add-edit/add-edit.component';
+import { PortalComponent } from './components/portal/portal.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,7 +21,8 @@ const routes: Routes = [
       { path: ':addedit', component: AddEditComponent },
       { path: ':addedit/:id', component: AddEditComponent }
     ]
-  }
+  },
+  { path: 'portal', component: PortalComponent}
 ];
 
 @NgModule({
