@@ -33,6 +33,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { environment } from 'src/environments/environment';
     ModalModule.forRoot(),
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.fireBaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    NgxPaginationModule
   ],
   providers: [CategoryService, ReloadCategoriesService, ProductService],
   bootstrap: [AppComponent],

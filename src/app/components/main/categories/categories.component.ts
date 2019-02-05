@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ICategories } from '../../../model/category';
 import { CategoryService } from '../../../services/category.service';
-import { ToastrService } from 'ngx-toastr';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { ModalComponent } from '../modal/modal.component';
 import { ReloadCategoriesService } from 'src/app/services/reload-categories.service';
@@ -19,7 +18,6 @@ export class CategoriesComponent implements OnInit {
 
   constructor(
     private _service: CategoryService,
-    private _toastr: ToastrService,
     private modalService: BsModalService,
     private _reloadService: ReloadCategoriesService
   ) {}

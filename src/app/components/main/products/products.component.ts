@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ICategories } from '../../../model/category';
 import { CategoryService } from '../../../services/category.service';
-import { ToastrService } from 'ngx-toastr';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { ModalComponent } from '../modal/modal.component';
 import { ReloadCategoriesService } from 'src/app/services/reload-categories.service';
@@ -19,11 +18,15 @@ export class ProductsComponent implements OnInit {
   showSearch = false;
   bsModalRef: BsModalRef;
   categories: ICategories;
+  p = 1;
+  collection: any[] = this.products;
+  // page: number;
+  // pages: string;
+  // allProducts: number;
 
   constructor(
     private _productService: ProductService,
     private _categoryService: CategoryService,
-    private _toastr: ToastrService,
     private modalService: BsModalService,
     private _reloadService: ReloadCategoriesService
   ) {}
@@ -37,6 +40,9 @@ export class ProductsComponent implements OnInit {
   getProducts() {
     this._productService.getProducts().subscribe(data => {
       this.products = data;
+      // debugger;
+      // this.allProducts = this.products.length;
+      // this.pages = this.allProducts / 2;
       // this._productService.productsList = data;
     });
   }
@@ -87,4 +93,12 @@ export class ProductsComponent implements OnInit {
     this.bsModalRef = this.modalService.show(ModalComponent, { initialState });
     this.bsModalRef.content.okBtnName = 'Ok';
   }
+
+// paginate(i: number) {
+// this._productService.pagination(i).subscribe(data => {
+//   this.products = data;
+//   // this._productService.productsList = data;
+// });
+// }
+
 }

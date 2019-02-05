@@ -3,7 +3,6 @@ import { BsModalRef } from 'ngx-bootstrap';
 import { CategoryService } from 'src/app/services/category.service';
 import { ToastrService } from 'ngx-toastr';
 import { ReloadCategoriesService } from 'src/app/services/reload-categories.service';
-import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({

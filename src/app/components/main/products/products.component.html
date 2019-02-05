@@ -49,7 +49,7 @@
         </tr>
       </thead>
       <tbody class="">
-        <tr *ngFor="let item of products">
+        <tr *ngFor="let item of products | paginate: { itemsPerPage:2, currentPage: page}">
           <td> <img [src]="item.imageUrl" alt="" height="40px"> </td>
           <td>{{ item.name }}</td>
           <td>{{ item.categoryId }}</td>
@@ -75,6 +75,16 @@
         </tr>
       </tbody>
     </table>
+    <hr>
+       <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+       <pagination-controls (pageChange)="page = $event" style='float:right'></pagination-controls>
+    <!-- <nav aria-label="Page navigation example">
+      <ul class="pagination pagination-lg justify-content-center" *ngFor="let page of products; let i = index">
+        <li class="page-item"><a class="page-link" (click)="paginate(i)" >{{ i + 1 }}</a></li>
+
+
+      </ul>
+    </nav> -->
   </div>
   <div class="col-lg-1"></div>
 </div>

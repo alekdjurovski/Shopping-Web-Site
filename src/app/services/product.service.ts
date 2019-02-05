@@ -10,6 +10,7 @@ export class ProductService {
   public productsUrl = 'http://127.0.0.1:3000/products';
   public searchUrl =
     'http://127.0.0.1:3000/products?filter[where][name][eq]=';
+  public paginationUrl = 'http://localhost:3000/products?filter[limit]=2&filter[skip]=1';
 
   deleteId: number;
   deleteParam: string;
@@ -39,6 +40,10 @@ export class ProductService {
 
   deleteProduct() {
     return this.http.delete(this.productsUrl + '/' + this.deleteId);
+  }
+
+  pagination(i): Observable<IProduct> {
+    return this.http.get<IProduct>(this.productsUrl + '?filter[limit]=2&filter[skip]=' + (i * 2));
   }
 
 
