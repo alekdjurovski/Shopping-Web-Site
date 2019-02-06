@@ -112,6 +112,7 @@ export class AddEditComponent implements OnInit {
       this.editForm = res;
       this.form.get('name').setValue(this.editForm.name);
       this.imageSrc = this.editForm.imageUrl;
+      this.form.get('price').setValue(this.editForm.price);
       this.form.get('manufacturer').setValue(this.editForm.manufacturer);
       this.form.get('isAvailable').setValue(this.editForm.isAvailable);
       this.form

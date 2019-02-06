@@ -20,6 +20,8 @@ export class ProductsComponent implements OnInit {
   categories: ICategories;
   p = 1;
   collection: any[] = this.products;
+  categoriesLength: any;
+  categoryName: string;
   // page: number;
   // pages: string;
   // allProducts: number;
@@ -40,7 +42,6 @@ export class ProductsComponent implements OnInit {
   getProducts() {
     this._productService.getProducts().subscribe(data => {
       this.products = data;
-      // debugger;
       // this.allProducts = this.products.length;
       // this.pages = this.allProducts / 2;
       // this._productService.productsList = data;
@@ -56,8 +57,15 @@ export class ProductsComponent implements OnInit {
   getCategories() {
     this._categoryService.getCategories().subscribe(data => {
       this.categories = data;
-      this._categoryService.categoriesList = data;
     });
+  }
+
+  findCategoryName() {
+    for (let i = 0; i < this.categories.length; i++) {
+      if (this.products.categoryId === this.categories.id ) {
+        this.categoryName = this.categories.name;
+      }
+    }
   }
 
   search() {
