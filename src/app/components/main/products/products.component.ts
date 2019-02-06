@@ -60,13 +60,13 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  findCategoryName() {
-    for (let i = 0; i < this.categories.length; i++) {
-      if (this.products.categoryId === this.categories.id ) {
-        this.categoryName = this.categories.name;
-      }
-    }
-  }
+  // findCategoryName() {
+  //   for (let i = 0; i < this.categories.length; i++) {
+  //     if (this.products.categoryId === this.categories.id ) {
+  //       this.categoryName = this.categories.name;
+  //     }
+  //   }
+  // }
 
   search() {
     if (this.searchName) {

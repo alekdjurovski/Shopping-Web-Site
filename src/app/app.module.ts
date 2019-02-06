@@ -11,8 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MainComponent } from './components/main/main.component';
-import { AddNewComponent } from './components/main/add-new/add-new.component';
-import { EditComponent } from './components/main/edit/edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatButtonModule,
@@ -36,6 +34,7 @@ import { environment } from 'src/environments/environment';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { PortalComponent } from './components/portal/portal.component';
 import { NavbarComponent } from './components/portal/navbar/navbar.component';
+import { AddEditCategoryComponent } from './components/main/categories/add-edit-category/add-edit-category.component';
 
 @NgModule({
   declarations: [
@@ -45,12 +44,11 @@ import { NavbarComponent } from './components/portal/navbar/navbar.component';
     CategoriesComponent,
     SidebarComponent,
     MainComponent,
-    AddNewComponent,
-    EditComponent,
     ModalComponent,
     AddEditComponent,
     PortalComponent,
-    NavbarComponent
+    NavbarComponent,
+    AddEditCategoryComponent
   ],
   imports: [
     BrowserModule,

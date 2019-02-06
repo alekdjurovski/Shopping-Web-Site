@@ -11,14 +11,9 @@ export class CategoryService {
   public deleteCategoryUrl = 'http://127.0.0.1:3000/categories/';
   public searchUrl =
     'http://127.0.0.1:3000/categories?filter[where][name][eq]=';
-  categoryData = {
-    name: ''
-  };
-  editId: number;
+
   deleteId: number;
-  oldName = this.categoryData.name;
   categoriesList: ICategories;
-  addId: number;
 
   constructor(private http: HttpClient) {}
 
@@ -30,11 +25,11 @@ export class CategoryService {
     return this.http.post<any>(this.getPostUrl, category);
   }
 
-  getOneCategory(): Observable<any> {
-    return this.http.get<any>(this.getPostUrl + '/' + this.editId);
+  getOneCategory(id: number): Observable<any> {
+    return this.http.get<any>(this.getPostUrl + '/' + id);
   }
 
-  editCategories(id, category) {
+  updateCategories(id, category) {
     return this.http.put<any>(this.getPostUrl + '/' + id, category);
   }
 

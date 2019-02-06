@@ -1,7 +1,8 @@
 @import "../../../styles.scss";
 
 nav {
-  background-color: $primary-color;
+  // background-color: $primary-color;
+  background: darken($bg-nav, 6);
   color: $dark-text;
   height: 80px;
   box-shadow: 8px 1px 23px darken($primary-color, 10);
