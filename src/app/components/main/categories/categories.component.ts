@@ -30,7 +30,6 @@ this.reloadCategoties();
   getCategories() {
     this._service.getCategories().subscribe(data => {
       this.categories = data;
-      this.categories.id = this._service.addId;
       this._service.categoriesList = data;
     });
   }
@@ -61,10 +60,6 @@ this.reloadCategoties();
     this.searchName = '';
     this.resetSearch();
     this.showSearch = false;
-  }
-
-  editCategory(id) {
-    this._service.editId = id;
   }
 
   openModalWithComponent(id) {
