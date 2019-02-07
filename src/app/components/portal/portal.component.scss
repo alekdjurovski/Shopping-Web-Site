@@ -1,14 +1,48 @@
-@import "../../../styles.scss";
+@import "../header/header.component.scss";
 
-div{
-  .row{
+div {
+  .row {
     margin-right: 0px;
     margin-left: 0px;
+    height: 100px !important;
+    align-items: bottom;
+  }
+}
+.logo {
+  height: 70px;
+  align-items: center;
+  &:hover {
+    background-color: darken($primary-color, 4);
+    border-radius: 50px;
   }
 }
 
+.icon-style {
+  height: 35px;
+  &:hover{
+    transition: 0.4s;
+    cursor: pointer;
+    border-radius: 15px;
+    &.edit{
+      background-color: rgba(28, 146, 91, 0.239);
+    }
+    }
+ }
 
-  .card-img-top{
-    height: 200px;
-    padding: 10px;
+ .search-style {
+  border-radius: 15px;
+  width: 30%;
+  align-items: center;
+  &:focus{
+    transition: 0.5s;
+    width: 50% !important;
+    font-size: 1.3em;
+    opacity: 1;
+    color: #00bcd4;
   }
+}
+
+.card-img-top {
+  height: 200px;
+  padding: 10px;
+}

@@ -1,9 +1,33 @@
 <div class="row">
-    <div class="col-lg-11">
-
+  <div class="col-lg-3">
+    <div class="d-flex">
+        <img class="logo d-flex justify-content-center" src="../../../assets/img/logoo.png" alt="logo">
+        <h3>Tech Bay</h3>
     </div>
-    <div class="col-lg-1">cart IMG</div>
+
   </div>
+  <div class="col-lg-7">
+      <form class="form-inline d-flex flex-row-reverse d-flex justify-content-center">
+          <img
+            src="../../../../assets/img/icons8-search-512.png"
+            alt="search"
+            class="icon-style edit"
+          />
+
+          <input
+            class="form-control mr-sm-2 search-style"
+            type="search"
+            name="search"
+            placeholder="Search by name"
+            aria-label="Search"
+          />
+        </form>
+  </div>
+  <div class="col-lg-2">
+    <img class="logo d-flex justify-content-center align-items-center"  src="../../../assets/img/icons8-checkout-96.png" alt="logo">
+  </div>
+</div>
+
 <app-navbar></app-navbar>
 <div class="container">
   <div class="row">
@@ -13,7 +37,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ item.name }}</h5>
           <p class="card-text">{{ item.shortDescription }}</p>
-          <p class="card-text">{{ item.price }}</p>
+          <p class="card-text">{{ item.price }}$</p>
           <a href="#" class="btn btn-primary">Add to cart</a>
         </div>
       </div>
