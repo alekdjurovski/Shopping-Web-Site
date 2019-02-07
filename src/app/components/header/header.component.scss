@@ -2,7 +2,8 @@
 
 nav {
   // background-color: $primary-color;
-  background: darken($bg-nav, 6);
+  // background: darken($bg-nav, 6);
+  background: url('../../../assets/img/bg-dark-blue.png');
   color: $dark-text;
   height: 80px;
   box-shadow: 8px 1px 23px darken($primary-color, 10);

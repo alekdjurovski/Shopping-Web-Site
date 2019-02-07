@@ -38,6 +38,7 @@ export class CategoryService {
   }
 
   deleteCategories() {
+    debugger;
     return this.http.delete(this.deleteCategoryUrl + this.deleteId);
   }
 }

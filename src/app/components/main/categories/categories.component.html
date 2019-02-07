@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <div class="row">
   <div class="container jumbotron">
     <div class="container-fluid">
@@ -19,27 +21,17 @@
             </button>
           </div>
           <form class="form-inline d-flex flex-row-reverse">
+            <img src="../../../../assets/img/icons8-search-512.png" alt="search" class="icon-style edit" (click)="search()">
+
             <input
-              class="form-control mr-sm-2"
-              type="text"
+              class="form-control mr-sm-2 search-style"
+              type="search"
               name="search"
               placeholder="Search by name"
               aria-label="Search"
               [(ngModel)]="searchName"
               (input)="resetSearch()"
             />
-            <i
-              *ngIf="showSearch"
-              class="fas fa-times-circle"
-              (click)="clearSearch()"
-            ></i>
-            <button
-              class="btn btn-dark my-2 my-sm-0 mr-1"
-              type="submit"
-              (click)="search()"
-            >
-              Search
-            </button>
           </form>
           <table class="table table-striped">
             <thead>
@@ -53,24 +45,22 @@
               <tr *ngFor="let item of categories">
                 <td>{{ item.name }}</td>
                 <td>{{ item.parentCategoryName }}</td>
-
                 <td>
-                  <button
-                    class=" btn-dark mr-2"
-                    id="edit"
-                    (click)="editCategory(item.id)"
+                  <div class="d-flex justify-content-around">
+                  <img
+                    src="../../../../assets/img/icons8-create-96.png"
+                    class="icon-style edit"
+                    alt="edit"
                     [routerLink]="['/categories/edit', item.id]"
                     routerLinkActive="router-link-active"
-                  >
-                    <i class="fas fa-edit"></i>
-                  </button>
-                  <button
-                    class="inline btn-dark"
-                    id="delete"
+                  />
+                  <img
+                    src="../../../../assets/img/icons8-trash-96.png"
+                    class="icon-style del"
+                    alt="delete"
                     (click)="openModalWithComponent(item.id)"
-                  >
-                    <i class="fas fa-trash-alt"></i>
-                  </button>
+                  />
+                </div>
                 </td>
               </tr>
             </tbody>

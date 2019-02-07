@@ -5,13 +5,12 @@
   width: 100%;
 }
 
-.jumbotron{
+.jumbotron {
   background: $bg-body;
 }
 
-
 .btn-style {
-  background-color: $secondary-color;
+  background-color: $btn-color;
   color: $light-text;
   border: 1px solid #af7a6d;
   font-family: $btn-text;
@@ -20,8 +19,39 @@
     background-color: lighten($secondary-color, 4);
   }
 }
+
+i{
+  &.fa-search {
+    color: $btn-color;
+    font-size: 1.5em;
+    &:hover{
+      cursor: pointer;
+      font-size: 1.7em;
+      transition: 0.5s;
+    }
+  }
+
+
+}
+
+.icon-style {
+ height: 35px;
+ &:hover{
+   transition: 0.4s;
+   cursor: pointer;
+   border-radius: 15px;
+   &.del{
+    background-color: rgba(255, 0, 0, 0.205);
+   }
+   &.edit{
+     background-color: rgba(28, 146, 91, 0.239);
+   }
+   }
+}
+
+
 .btn-dark {
-  background-color: lighten($primary-color, 15);
+  background-color: $btn-color;
   color: $light-text;
   font-family: $btn-text;
   border: none;
@@ -36,13 +66,26 @@
   }
 }
 
-.fa-times-circle {
-  font-size: 2.2em;
-  color: $secondary-color;
-  border-radius: 5px;
+.search-style {
+  border-radius: 15px;
+  width: 25%;
+
+  &:focus{
+    transition: 0.5s;
+    width: 50% !important;
+    font-size: 1.3em;
+    opacity: 1;
+    color: #00bcd4;
+  }
 }
 
+// .fa-times-circle {
+//   font-size: 2.2em;
+//   color: $secondary-color;
+//   border-radius: 5px;
+// }
+
 .head-row {
-  background-color: lighten($primary-color, 15);
+  background: url("../../../../assets/img/bg-pattern-blue.png");
   color: $light-text;
 }

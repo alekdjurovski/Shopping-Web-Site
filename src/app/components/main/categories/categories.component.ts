@@ -13,7 +13,7 @@ import { ReloadCategoriesService } from 'src/app/services/reload-categories.serv
 export class CategoriesComponent implements OnInit {
   categories: any;
   searchName: string;
-  showSearch = false;
+  // showSearch = false;
   bsModalRef: BsModalRef;
 
   constructor(
@@ -41,7 +41,6 @@ this.reloadCategoties();
 
   search() {
     if (this.searchName) {
-      this.showSearch = true;
       this._service.searchCategories(this.searchName).subscribe(res => {
         return (this.categories = res);
       });
@@ -56,11 +55,11 @@ this.reloadCategoties();
     }
   }
 
-  clearSearch() {
-    this.searchName = '';
-    this.resetSearch();
-    this.showSearch = false;
-  }
+  // clearSearch() {
+  //   this.searchName = '';
+  //   this.resetSearch();
+  //   this.showSearch = false;
+  // }
 
   openModalWithComponent(id) {
     this._service.deleteId = id;
