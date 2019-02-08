@@ -13,15 +13,21 @@
           <div class="form-group form-inline">
             <button
               type="reset"
-              class="btn btn-style ml-5"
+              class="btn btn-style"
               [routerLink]="['/categories/add']"
               routerLinkActive="router-link-active"
             >
+              <img src="../../../../assets/img/icons8-plus-64.png" alt="" />
               Add New
             </button>
           </div>
           <form class="form-inline d-flex flex-row-reverse">
-            <img src="../../../../assets/img/icons8-search-512.png" alt="search" class="icon-style edit" (click)="search()">
+            <img
+              src="../../../../assets/img/icons8-search-512.png"
+              alt="search"
+              class="icon-style edit"
+              (click)="search()"
+            />
 
             <input
               class="form-control mr-sm-2 search-style"
@@ -47,20 +53,20 @@
                 <td>{{ item.parentCategoryName }}</td>
                 <td>
                   <div class="d-flex justify-content-around">
-                  <img
-                    src="../../../../assets/img/icons8-create-96.png"
-                    class="icon-style edit"
-                    alt="edit"
-                    [routerLink]="['/categories/edit', item.id]"
-                    routerLinkActive="router-link-active"
-                  />
-                  <img
-                    src="../../../../assets/img/icons8-trash-96.png"
-                    class="icon-style del"
-                    alt="delete"
-                    (click)="openModalWithComponent(item.id)"
-                  />
-                </div>
+                    <img
+                      src="../../../../assets/img/icons8-create-96.png"
+                      class="icon-style edit"
+                      alt="edit"
+                      [routerLink]="['/categories/edit', item.id]"
+                      routerLinkActive="router-link-active"
+                    />
+                    <img
+                      src="../../../../assets/img/icons8-trash-96.png"
+                      class="icon-style del"
+                      alt="delete"
+                      (click)="openModalWithComponent(item.id)"
+                    />
+                  </div>
                 </td>
               </tr>
             </tbody>

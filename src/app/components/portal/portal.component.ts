@@ -13,8 +13,10 @@ export class PortalComponent implements OnInit {
   products: IProduct;
   categories: ICategories;
 
-  constructor(private _productService: ProductService,
-              private _categoriesService: CategoryService) { }
+  constructor(
+    private _productService: ProductService,
+    private _categoriesService: CategoryService
+  ) {}
 
   ngOnInit() {
     this.getProducts();
@@ -30,7 +32,7 @@ export class PortalComponent implements OnInit {
   getCategories() {
     this._categoriesService.getCategories().subscribe(data => {
       this.categories = data;
+      this._categoriesService.categoriesList = data;
     });
   }
-
 }

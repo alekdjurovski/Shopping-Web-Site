@@ -1,54 +1,59 @@
 @import "../../../../../styles.scss";
 
-.formBox{
-	margin-top: 50px;
+.formBox {
+  margin-top: 50px;
   padding: 20px;
 
-  h1{
+  h1 {
     font-size: 40px;
   }
 }
 
-.inputBox{
-	position: relative;
-	// box-sizing: border-box;
+.inputBox {
+  position: relative;
+  // box-sizing: border-box;
   margin-bottom: 50px;
 
-  .inputText{
+  .inputText {
     position: absolute;
     font-size: 24px;
     line-height: 50px;
-    transition: .5s;
-    opacity: .5;
+    transition: 0.5s;
+    opacity: 0.5;
   }
-  .input{
+  .input {
     position: relative;
     width: 70%;
     height: 70px;
     background: transparent;
     border: none;
     font-size: 24px;
-    border-bottom: 1px solid rgba(0,0,0,.5);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   }
-  .no-border{
+  .no-border {
     border-bottom: none;
   }
 }
 
-.wide:focus{
+.wide:focus {
   transition: 0.5s;
   width: 100% !important;
-	font-size: 1.3em;
-	opacity: 1;
-	color: #00bcd4;
+  font-size: 1.3em;
+  opacity: 1;
+  color: #00bcd4;
 }
-textarea{
-	height: 100px !important;
+textarea {
+  height: 100px !important;
 }
-.button{
-	width: 100%;
+.button {
+  width: 100%;
   height: 50px;
   border: none;
-  background: rgb(43, 118, 153);
-  color: #fff;
+  background-color: $color-btn;
+  color: $light-text;
+  border: 1px solid $primary-color;
+  font-family: $btn-text;
+  &:hover {
+    background-color: lighten($color-btn, 4);
+  }
 }

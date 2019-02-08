@@ -19,15 +19,14 @@ import * as firebase from 'firebase';
 })
 export class AddEditComponent implements OnInit {
   classAdd = false;
-  categories: any;
+  categories: ICategories;
   form: FormGroup;
-  imageDefault = '../../../../../assets/img/img-upload.jpg';
   add: boolean;
   productId: number;
   title: string;
   btnName: string;
-  editForm: any;
-  newForm: any;
+  editForm: IProduct = {} as IProduct;
+  newForm: IProduct;
   imgUrl: any;
   uploadStatus: Observable<number>;
   imageUrl: string;
@@ -35,7 +34,6 @@ export class AddEditComponent implements OnInit {
   selectPic: File = null;
   remId: string;
   imageSrc: string;
-  deleteRef: any;
   idImg: string;
 
   constructor(
@@ -70,7 +68,7 @@ export class AddEditComponent implements OnInit {
   }
 
   getCategories() {
-    this._serviceCategory.getCategories().subscribe(data => {
+    this._serviceCategory.getCategories().subscribe((data: ICategories) => {
       this.categories = data;
     });
     this._serviceReloadCategories.cast.subscribe((data: ICategories) => {
@@ -81,13 +79,13 @@ export class AddEditComponent implements OnInit {
   formBuilder() {
     this.form = this.formBuild.group({
       name: ['', Validators.required],
-      imageUrl: [''],
+      imageUrl: ['', Validators.required],
       price: [0, Validators.required],
       manufacturer: ['', Validators.required],
       isAvailable: [false, Validators.required],
       shortDescription: [''],
       fullDescription: [''],
-      categoryId: [0]
+      categoryId: [0, Validators.required]
     });
   }
 
@@ -108,7 +106,7 @@ export class AddEditComponent implements OnInit {
   }
 
   fillForm() {
-    this._serviceProduct.getOneProduct(this.productId).subscribe(res => {
+    this._serviceProduct.getOneProduct(this.productId).subscribe((res: IProduct) => {
       this.editForm = res;
       this.form.get('name').setValue(this.editForm.name);
       this.imageSrc = this.editForm.imageUrl;

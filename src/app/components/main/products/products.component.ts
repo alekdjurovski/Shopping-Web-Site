@@ -5,7 +5,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { ModalComponent } from '../modal/modal.component';
 import { ReloadCategoriesService } from 'src/app/services/reload-categories.service';
 import { ProductService } from 'src/app/services/product.service';
-
+import { IProduct } from 'src/app/model/iproduct';
 
 @Component({
   selector: 'app-products',
@@ -13,18 +13,13 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  products: any;
+  products: IProduct;
   searchName: string;
   showSearch = false;
   bsModalRef: BsModalRef;
   categories: ICategories;
-  p = 1;
-  collection: any[] = this.products;
-  categoriesLength: any;
+  categoriesLength: number;
   categoryName: string;
-  // page: number;
-  // pages: string;
-  // allProducts: number;
 
   constructor(
     private _productService: ProductService,
@@ -40,40 +35,31 @@ export class ProductsComponent implements OnInit {
   }
 
   getProducts() {
-    this._productService.getProducts().subscribe(data => {
+    this._productService.getProducts().subscribe((data: IProduct) => {
       this.products = data;
-      // this.allProducts = this.products.length;
-      // this.pages = this.allProducts / 2;
-      // this._productService.productsList = data;
     });
   }
 
   reloadProduct() {
-    this._reloadService.castProd.subscribe(res => {
+    this._reloadService.castProd.subscribe((res: IProduct) => {
       this.products = res;
     });
   }
 
   getCategories() {
-    this._categoryService.getCategories().subscribe(data => {
+    this._categoryService.getCategories().subscribe((data: ICategories) => {
       this.categories = data;
     });
   }
 
-  // findCategoryName() {
-  //   for (let i = 0; i < this.categories.length; i++) {
-  //     if (this.products.categoryId === this.categories.id ) {
-  //       this.categoryName = this.categories.name;
-  //     }
-  //   }
-  // }
-
   search() {
     if (this.searchName) {
       this.showSearch = true;
-      this._productService.searchProduct(this.searchName).subscribe(res => {
-        return (this.products = res);
-      });
+      this._productService
+        .searchProduct(this.searchName)
+        .subscribe((res: IProduct) => {
+          return (this.products = res);
+        });
     } else {
       this.resetSearch();
     }
@@ -101,12 +87,4 @@ export class ProductsComponent implements OnInit {
     this.bsModalRef = this.modalService.show(ModalComponent, { initialState });
     this.bsModalRef.content.okBtnName = 'Ok';
   }
-
-// paginate(i: number) {
-// this._productService.pagination(i).subscribe(data => {
-//   this.products = data;
-//   // this._productService.productsList = data;
-// });
-// }
-
 }

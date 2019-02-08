@@ -9,10 +9,13 @@ nav {
   box-shadow: 8px 1px 23px darken($primary-color, 10);
   #logo {
     height: 50px;
-
     &:hover {
       background-color: darken($primary-color, 4);
       border-radius: 50px;
     }
+  }
+  .logo {
+    color: $color-logo;
+    height: 40px;
   }
 }

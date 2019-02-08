@@ -10,80 +10,63 @@
 }
 
 .btn-style {
-  background-color: $btn-color;
+  background-color: $color-btn;
   color: $light-text;
-  border: 1px solid #af7a6d;
+  border: 1px solid $primary-color;
   font-family: $btn-text;
-
   &:hover {
-    background-color: lighten($secondary-color, 4);
+    background-color: lighten($color-btn, 4);
   }
 }
 
-// i{
-//   &.fa-search {
-//     color: $btn-color;
-//     font-size: 1.5em;
-//     &:hover{
-//       cursor: pointer;
-//       font-size: 1.7em;
-//       transition: 0.5s;
-//     }
-//   }
-
-
-// }
-
-.icon-style {
- height: 35px;
- &:hover{
-   transition: 0.4s;
-   cursor: pointer;
-   border-radius: 15px;
-   &.del{
-    background-color: rgba(255, 0, 0, 0.205);
-   }
-   &.edit{
-     background-color: rgba(28, 146, 91, 0.239);
-   }
-   }
+button{
+  img{
+    height: 35px;
+  }
 }
 
-
-.btn-dark {
-  background-color: $btn-color;
-  color: $light-text;
-  font-family: $btn-text;
-  border: none;
-  border-radius: 12px;
-
-  i {
-    color: rgb(204, 135, 132);
-
-    &.fa-edit {
-      color: #f0f2a6;
+.icon-style {
+  height: 35px;
+  &:hover {
+    transition: 0.4s;
+    cursor: pointer;
+    border-radius: 15px;
+    &.del {
+      background-color: rgba(255, 0, 0, 0.205);
+    }
+    &.edit {
+      background-color: rgba(28, 146, 91, 0.239);
     }
   }
 }
 
+.btn-dark {
+  background-color: $color-btn;
+  color: $light-text;
+  font-family: $btn-text;
+  border: none;
+  border-radius: 12px;
+}
+//   i {
+//     color: rgb(204, 135, 132);
+//     &.fa-edit {
+//       color: #f0f2a6;
+//     }
+//   }
+// }
+
 .search-style {
   border-radius: 15px;
-  width: 25%;
+  width: 50%;
 
-  &:focus{
+  &:focus {
     transition: 0.5s;
-    width: 50% !important;
+    width: 80% !important;
     font-size: 1.3em;
     opacity: 1;
     color: #00bcd4;
   }
 }
-
-// .fa-times-circle {
-//   font-size: 2.2em;
-//   color: $secondary-color;
-//   border-radius: 5px;
-// }
 
 .head-row {
   background: url("../../../../assets/img/bg-pattern-blue.png");
