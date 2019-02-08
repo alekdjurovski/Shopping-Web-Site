@@ -96,8 +96,8 @@ export class AddEditCategoryComponent implements OnInit {
   updateCategory() {
     this._serviceCategory
       .updateCategories(this.categoryId, this.form.value)
-      .subscribe((res: IProduct) => {
-        this._toastr.info('Product is Successful Updated');
+      .subscribe((res: ICategories) => {
+        this._toastr.info('Category is Successful Updated');
         this.route.navigate(['/categories']);
       });
   }

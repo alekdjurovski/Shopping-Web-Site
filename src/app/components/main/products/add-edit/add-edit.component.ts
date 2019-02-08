@@ -79,10 +79,10 @@ export class AddEditComponent implements OnInit {
   formBuilder() {
     this.form = this.formBuild.group({
       name: ['', Validators.required],
-      imageUrl: ['', Validators.required],
+      imageUrl: [''],
       price: [0, Validators.required],
       manufacturer: ['', Validators.required],
-      isAvailable: [false, Validators.required],
+      isAvailable: [false],
       shortDescription: [''],
       fullDescription: [''],
       categoryId: [0, Validators.required]
