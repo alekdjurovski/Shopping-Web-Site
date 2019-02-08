@@ -24,13 +24,13 @@ export class PortalComponent implements OnInit {
   }
 
   getProducts() {
-    this._productService.getProducts().subscribe(data => {
+    this._productService.getProducts().subscribe((data: IProduct) => {
       this.products = data;
     });
   }
 
   getCategories() {
-    this._categoriesService.getCategories().subscribe(data => {
+    this._categoriesService.getCategories().subscribe((data: ICategories) => {
       this.categories = data;
       this._categoriesService.categoriesList = data;
     });

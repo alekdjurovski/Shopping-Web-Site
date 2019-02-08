@@ -106,19 +106,23 @@ export class AddEditComponent implements OnInit {
   }
 
   fillForm() {
-    this._serviceProduct.getOneProduct(this.productId).subscribe((res: IProduct) => {
-      this.editForm = res;
-      this.form.get('name').setValue(this.editForm.name);
-      this.imageSrc = this.editForm.imageUrl;
-      this.form.get('price').setValue(this.editForm.price);
-      this.form.get('manufacturer').setValue(this.editForm.manufacturer);
-      this.form.get('isAvailable').setValue(this.editForm.isAvailable);
-      this.form
-        .get('shortDescription')
-        .setValue(this.editForm.shortDescription);
-      this.form.get('fullDescription').setValue(this.editForm.fullDescription);
-      this.form.get('categoryId').setValue(this.editForm.categoryId);
-    });
+    this._serviceProduct
+      .getOneProduct(this.productId)
+      .subscribe((res: IProduct) => {
+        this.editForm = res;
+        this.form.get('name').setValue(this.editForm.name);
+        this.imageSrc = this.editForm.imageUrl;
+        this.form.get('price').setValue(this.editForm.price);
+        this.form.get('manufacturer').setValue(this.editForm.manufacturer);
+        this.form.get('isAvailable').setValue(this.editForm.isAvailable);
+        this.form
+          .get('shortDescription')
+          .setValue(this.editForm.shortDescription);
+        this.form
+          .get('fullDescription')
+          .setValue(this.editForm.fullDescription);
+        this.form.get('categoryId').setValue(this.editForm.categoryId);
+      });
   }
 
   updateProduct() {
@@ -145,21 +149,25 @@ export class AddEditComponent implements OnInit {
     this.uploadStatus = task.percentageChanges();
     task
       .snapshotChanges()
-      .pipe(finalize(() => (this.imgUrl = ref.getDownloadURL().subscribe(
-        data => {
-          this.imageSrc = data;
-          this.form.get('imageUrl').setValue(this.imageSrc);
-        }
-      ))))
+      .pipe(
+        finalize(
+          () =>
+            (this.imgUrl = ref.getDownloadURL().subscribe(data => {
+              this.imageSrc = data;
+              this.form.get('imageUrl').setValue(this.imageSrc);
+            }))
+        )
+      )
       .subscribe();
   }
 
   deleteImg() {
     this.imageSrc = '';
     const deleteRef = firebase.storage().ref();
-    deleteRef.child(`images/img_${this.idImg}`).delete().then(function() {
-    });
+    deleteRef
+      .child(`images/img_${this.idImg}`)
+      .delete()
+      .then(function() {});
     this._toastr.warning('Image is Deleted');
   }
 }
-

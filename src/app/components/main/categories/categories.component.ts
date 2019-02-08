@@ -11,9 +11,8 @@ import { ReloadCategoriesService } from 'src/app/services/reload-categories.serv
   styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent implements OnInit {
-  categories: any;
+  categories: ICategories;
   searchName: string;
-  // showSearch = false;
   bsModalRef: BsModalRef;
 
   constructor(
@@ -28,20 +27,20 @@ this.reloadCategoties();
   }
 
   getCategories() {
-    this._service.getCategories().subscribe(data => {
+    this._service.getCategories().subscribe((data: ICategories) => {
       this.categories = data;
       this._service.categoriesList = data;
     });
   }
   reloadCategoties() {
-    this._reloadService.cast.subscribe(res => {
+    this._reloadService.cast.subscribe((res: ICategories) => {
       this.categories = res;
     });
   }
 
   search() {
     if (this.searchName) {
-      this._service.searchCategories(this.searchName).subscribe(res => {
+      this._service.searchCategories(this.searchName).subscribe((res: ICategories) => {
         return (this.categories = res);
       });
     } else {
@@ -54,12 +53,6 @@ this.reloadCategoties();
       this.getCategories();
     }
   }
-
-  // clearSearch() {
-  //   this.searchName = '';
-  //   this.resetSearch();
-  //   this.showSearch = false;
-  // }
 
   openModalWithComponent(id) {
     this._service.deleteId = id;
