@@ -4,7 +4,10 @@
         <form class="formBox" [formGroup]="form" (submit)="onSubmit()">
           <div class="row">
             <div class="col-sm-12">
-              <h1>{{ title }} Categories</h1>
+              <h1 class="title" *ngIf="add; else edit" >Add Categories</h1>
+              <ng-template #edit>
+                <h1 class="title">Edit Category</h1>
+              </ng-template>
             </div>
           </div>
 
@@ -57,7 +60,7 @@
                 name=""
                 class="button"
                 [disabled]="form.invalid"
-                [value]="btnName"
+                [value]="(add == true) ? 'Add Category' : 'Update'"
               />
             </div>
             <div class="col-sm-6">

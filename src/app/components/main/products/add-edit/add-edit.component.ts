@@ -18,23 +18,17 @@ import * as firebase from 'firebase';
   styleUrls: ['./add-edit.component.scss']
 })
 export class AddEditComponent implements OnInit {
-  classAdd = false;
   categories: ICategories;
   form: FormGroup;
   add: boolean;
   productId: number;
-  title: string;
-  btnName: string;
   editForm: IProduct = {} as IProduct;
   newForm: IProduct;
   imgUrl: any;
-  uploadStatus: Observable<number>;
-  imageUrl: string;
-  newImgUrl: string;
   selectPic: File = null;
-  remId: string;
   imageSrc: string;
   idImg: string;
+  page: string;
 
   constructor(
     private formBuild: FormBuilder,
@@ -50,21 +44,8 @@ export class AddEditComponent implements OnInit {
   ngOnInit() {
     this.getCategories();
     this.formBuilder();
-    const page = this.activeRoute.snapshot.params.addedit;
-    if (page === 'add') {
-      this.add = true;
-      this.title = 'Add';
-      this.btnName = 'Add Product';
-    } else if (page === 'edit') {
-      // tslint:disable-next-line:radix
-      this.productId = parseInt(this.activeRoute.snapshot.params.id);
-      this.title = 'Edit';
-      this.btnName = 'Update';
-      this.fillForm();
-      this.add = false;
-    } else {
-      this._toastr.error('Page Not Find');
-    }
+    this.page = this.activeRoute.snapshot.params.addedit;
+    this.addOrEdit();
   }
 
   getCategories() {
@@ -89,6 +70,19 @@ export class AddEditComponent implements OnInit {
     });
   }
 
+  addOrEdit() {
+    if (this.page === 'add') {
+      this.add = true;
+    } else if (this.page === 'edit') {
+      // tslint:disable-next-line:radix
+      this.productId = parseInt(this.activeRoute.snapshot.params.id);
+      this.fillForm();
+      this.add = false;
+    } else {
+      this._toastr.error('Page Not Find');
+    }
+  }
+
   onSubmit() {
     if (this.add) {
       this.addProduct();
@@ -111,8 +105,10 @@ export class AddEditComponent implements OnInit {
       .subscribe((res: IProduct) => {
         this.editForm = res;
         this.form.get('name').setValue(this.editForm.name);
+        this.form.get('imageUrl').setValue(this.editForm.imageUrl);
         this.imageSrc = this.editForm.imageUrl;
         this.form.get('price').setValue(this.editForm.price);
+        debugger;
         this.form.get('manufacturer').setValue(this.editForm.manufacturer);
         this.form.get('isAvailable').setValue(this.editForm.isAvailable);
         this.form
@@ -146,7 +142,6 @@ export class AddEditComponent implements OnInit {
     const srcPath = `images/img_${this.idImg}`;
     const task = this.fireStorage.upload(srcPath, this.selectPic);
     const ref = this.fireStorage.ref(srcPath);
-    this.uploadStatus = task.percentageChanges();
     task
       .snapshotChanges()
       .pipe(

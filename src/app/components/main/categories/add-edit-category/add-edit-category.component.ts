@@ -12,15 +12,13 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./add-edit-category.component.scss']
 })
 export class AddEditCategoryComponent implements OnInit {
-  classAdd = false;
   categories: ICategories;
   form: FormGroup;
   add: boolean;
   categoryId: number;
-  title: string;
-  btnName: string;
   editForm: ICategories = {} as ICategories;
   newForm: ICategories;
+  page: string;
 
   constructor(
     private formBuild: FormBuilder,
@@ -33,21 +31,8 @@ export class AddEditCategoryComponent implements OnInit {
   ngOnInit() {
     this.getCategories();
     this.formBuilder();
-    const page = this.activeRoute.snapshot.params.mode;
-    if (page === 'add') {
-      this.add = true;
-      this.title = 'Add';
-      this.btnName = 'Add Category';
-    } else if (page === 'edit') {
-      // tslint:disable-next-line:radix
-      this.categoryId = parseInt(this.activeRoute.snapshot.params.id);
-      this.title = 'Edit';
-      this.btnName = 'Update';
-      this.fillForm();
-      this.add = false;
-    } else {
-      this._toastr.error('Page Not Find');
-    }
+    this.page = this.activeRoute.snapshot.params.mode;
+    this.addOrEdit();
   }
 
   getCategories() {
@@ -62,6 +47,19 @@ export class AddEditCategoryComponent implements OnInit {
       parentCategoryName: [''],
       description: ['']
     });
+  }
+
+  addOrEdit() {
+    if (this.page === 'add') {
+      this.add = true;
+    } else if (this.page === 'edit') {
+      // tslint:disable-next-line:radix
+      this.categoryId = parseInt(this.activeRoute.snapshot.params.id);
+      this.fillForm();
+      this.add = false;
+    } else {
+      this._toastr.error('Page Not Find');
+    }
   }
 
   onSubmit() {
@@ -83,14 +81,16 @@ export class AddEditCategoryComponent implements OnInit {
   }
 
   fillForm() {
-    this._serviceCategory.getOneCategory(this.categoryId).subscribe((res: ICategories) => {
-      this.editForm = res;
-      this.form.get('name').setValue(this.editForm.name);
-      this.form
-        .get('parentCategoryName')
-        .setValue(this.editForm.parentCategoryName);
-      this.form.get('description').setValue(this.editForm.description);
-    });
+    this._serviceCategory
+      .getOneCategory(this.categoryId)
+      .subscribe((res: ICategories) => {
+        this.editForm = res;
+        this.form.get('name').setValue(this.editForm.name);
+        this.form
+          .get('parentCategoryName')
+          .setValue(this.editForm.parentCategoryName);
+        this.form.get('description').setValue(this.editForm.description);
+      });
   }
 
   updateCategory() {
