@@ -31,10 +31,12 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { PortalComponent } from './components/portal/portal.component';
-import { NavbarComponent } from './components/portal/navbar/navbar.component';
 import { AddEditCategoryComponent } from './components/main/categories/add-edit-category/add-edit-category.component';
+import { ViewProductComponent } from './components/portal/view-product/view-product.component';
+import { ProductListComponent } from './components/portal/product-list/product-list.component';
+import { HeaderNavComponent } from './components/portal/header-nav/header-nav.component';
 
 @NgModule({
   declarations: [
@@ -47,8 +49,10 @@ import { AddEditCategoryComponent } from './components/main/categories/add-edit-
     ModalComponent,
     AddEditComponent,
     PortalComponent,
-    NavbarComponent,
-    AddEditCategoryComponent
+    AddEditCategoryComponent,
+    ViewProductComponent,
+    ProductListComponent,
+    HeaderNavComponent
   ],
   imports: [
     BrowserModule,

@@ -1,20 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/services/product.service';
-import { CategoryService } from 'src/app/services/category.service';
 import { ICategories } from 'src/app/model/category';
-import { IProduct } from 'src/app/model/iproduct';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
-  selector: 'app-portal',
-  templateUrl: './portal.component.html',
-  styleUrls: ['./portal.component.scss']
+  selector: 'app-header-nav',
+  templateUrl: './header-nav.component.html',
+  styleUrls: ['./header-nav.component.scss']
 })
-export class PortalComponent implements OnInit {
-  products: IProduct;
+export class HeaderNavComponent implements OnInit {
+
   categories: ICategories;
 
   constructor(
-    private _productService: ProductService,
     private _categoriesService: CategoryService
   ) {}
 
