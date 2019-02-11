@@ -4,7 +4,9 @@
       <form class="formBox" [formGroup]="form" (submit)="onSubmit()">
         <div class="row">
           <div class="col-sm-12">
-            <h1 class="title" *ngIf="add; else edit" >Add Product</h1>
+            <ng-template [ngIf]="add" [ngIfElse]="edit">
+              <h1 class="title">Add Product</h1>
+            </ng-template>
             <ng-template #edit>
               <h1 class="title">Edit Product</h1>
             </ng-template>
@@ -14,12 +16,8 @@
         <div class="row inputBox">
           <div class="col-sm-4"><div class="inputText">Picture *</div></div>
           <div class="col-sm-8">
-            <div >
-              <img
-                [src]="imageSrc"
-                alt=""
-                style="width: 250px; height:200px"
-              />
+            <div>
+              <img [src]="imageSrc" alt="" style="width: 250px; height:200px" />
             </div>
             <input
               type="file"
@@ -48,17 +46,17 @@
         </div>
 
         <div class="row inputBox">
-            <div class="col-sm-4"><div class="inputText">Price *</div></div>
-            <div class="col-sm-8">
-              <input
-                type="number"
-                formControlName="price"
-                class="wide form-control input"
-                placeholder="Enter price"
-                required
-              />
-            </div>
+          <div class="col-sm-4"><div class="inputText">Price *</div></div>
+          <div class="col-sm-8">
+            <input
+              type="number"
+              formControlName="price"
+              class="wide form-control input"
+              placeholder="Enter price"
+              required
+            />
           </div>
+        </div>
 
         <div class="row inputBox">
           <div class="col-sm-4"><div class="inputText">Categories *</div></div>
@@ -77,7 +75,9 @@
         </div>
 
         <div class="row inputBox">
-          <div class="col-sm-4"><div class="inputText">Manufacturer *</div></div>
+          <div class="col-sm-4">
+            <div class="inputText">Manufacturer *</div>
+          </div>
           <div class="col-sm-8">
             <input
               type="text"
@@ -91,7 +91,9 @@
         </div>
 
         <div class="row inputBox">
-          <div class="col-sm-4"><div class="inputText">Availability *</div></div>
+          <div class="col-sm-4">
+            <div class="inputText">Availability *</div>
+          </div>
           <div class="col-sm-8">
             <div class="form-check">
               <label class="form-check-label">
@@ -143,7 +145,7 @@
               name=""
               class="button"
               [disabled]="form.invalid"
-              [value]="(add == true) ? 'Add Product' : 'Update'"
+              [value]="add == true ? 'Add Product' : 'Update'"
             />
           </div>
           <div class="col-sm-6">

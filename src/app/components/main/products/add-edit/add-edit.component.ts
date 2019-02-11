@@ -60,7 +60,7 @@ export class AddEditComponent implements OnInit {
   formBuilder() {
     this.form = this.formBuild.group({
       name: ['', Validators.required],
-      imageUrl: [''],
+      imageUrl: ['', Validators.required],
       price: [0, Validators.required],
       manufacturer: ['', Validators.required],
       isAvailable: [false],
@@ -108,7 +108,6 @@ export class AddEditComponent implements OnInit {
         this.form.get('imageUrl').setValue(this.editForm.imageUrl);
         this.imageSrc = this.editForm.imageUrl;
         this.form.get('price').setValue(this.editForm.price);
-        debugger;
         this.form.get('manufacturer').setValue(this.editForm.manufacturer);
         this.form.get('isAvailable').setValue(this.editForm.isAvailable);
         this.form
