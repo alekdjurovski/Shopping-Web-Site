@@ -9,6 +9,7 @@ import { IProduct } from 'src/app/model/iproduct';
 })
 export class ProductListComponent implements OnInit {
   products: IProduct;
+  addProduct: any;
   constructor(private _productService: ProductService) {}
 
   ngOnInit() {
@@ -20,4 +21,10 @@ export class ProductListComponent implements OnInit {
       this.products = data;
     });
   }
+
+addToCart(i: number) {
+  this.addProduct = this.products[i];
+  debugger;
+}
+
 }

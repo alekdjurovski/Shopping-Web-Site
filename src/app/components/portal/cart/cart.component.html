@@ -1,0 +1,39 @@
+<div class="container">
+  <h1 class="well">Shopping Cart</h1>
+  <hr />
+  <p *ngIf="shoppingCart.items.length === 0">Your cart is empty</p>
+  <table class="table table-striped">
+    <thead>
+      <tr class="head-row">
+        <th scope="col">Picture</th>
+        <th scope="col">Product</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total Price</th>
+        <th scope="col">Remove</th>
+      </tr>
+    </thead>
+    <tbody class="">
+      <tr *ngFor="let item of shoppingCart">
+        <td><img [src]="item.imageUrl" alt="" height="40px" /></td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.totalPrice }}</td>
+        <td>
+          <div class="d-flex justify-content-around">
+            <img
+              src="../../../../assets/img/icons8-trash-96.png"
+              class="icon-style del"
+              alt="delete"
+              (click)="openModalWithComponent(item.id, 'deleteProduct')"
+            />
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <p>Total: 0 $</p>
+  <button class="btn btn-primary">Checkout</button>
+</div>

@@ -37,6 +37,7 @@ import { AddEditCategoryComponent } from './components/main/categories/add-edit-
 import { ViewProductComponent } from './components/portal/view-product/view-product.component';
 import { ProductListComponent } from './components/portal/product-list/product-list.component';
 import { HeaderNavComponent } from './components/portal/header-nav/header-nav.component';
+import { CartComponent } from './components/portal/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { HeaderNavComponent } from './components/portal/header-nav/header-nav.co
     AddEditCategoryComponent,
     ViewProductComponent,
     ProductListComponent,
-    HeaderNavComponent
+    HeaderNavComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

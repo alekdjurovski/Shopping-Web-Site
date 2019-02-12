@@ -1,17 +1,31 @@
+<app-header-nav></app-header-nav>
+
 <div class="main">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="card">
-            <img src="{{ product.imageUrl }}" class="card-img-top" alt=""/>
-            <div class="card-body">
-              <h5 class="card-title">{{ product.name }}</h5>
-              <p class="card-text">{{ product.shortDescription }}</p>
-              <p class="card-text">{{ product.price }}$</p>
-              <a href="#" class="btn btn-style">Add to cart</a>
-            </div>
-          </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <!-- <div class="card"> -->
+        <img src="{{ product.imageUrl }}" class="card-img-top mt-4" alt="" />
+
+        <!-- </div> -->
+      </div>
+      <div class="col-lg-8">
+        <div>
+          <h5 class="mt-4">{{ product.name }}</h5>
+          <hr />
+          <p>{{ product.shortDescription }}</p>
+          <p><span>Manufacturer: </span> {{ product.manufacturer }}</p>
+          <p><span> Availability: </span>{{ product.isAvailable }}</p>
+          <p><span>Quantity: </span> <input type="number" /></p>
+          <p><span>Total Price:</span> {{ product.price }}$</p>
+          <a href="#" class="btn btn-style">Add to cart</a>
         </div>
       </div>
     </div>
+    <div class="row mt-4">
+      <p>
+        <span> About {{ product.name }}:</span> {{ product.fullDescription }}
+      </p>
+    </div>
   </div>
+</div>
