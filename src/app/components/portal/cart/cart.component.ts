@@ -16,12 +16,11 @@ export class CartComponent implements OnInit {
     private modalService: BsModalService) {}
 
   ngOnInit() {
-    if (window.localStorage && window.localStorage.shoppingCart) {
-      this.shoppingCart = JSON.parse(window.localStorage.shoppingCart);
+    if (localStorage && localStorage.shoppingCart) {
+      this.shoppingCart = JSON.parse(localStorage.shoppingCart);
     } else {
       this.shoppingCart = {
-        items: [],
-        total: 0
+        items: []
       };
     }
   }
@@ -31,10 +30,17 @@ export class CartComponent implements OnInit {
     this._cartService.deleteParam = param;
     const initialState = {
       list: ['Are you sure you want to perform this action?'],
-      title: 'Delete category'
+      title: 'Delete Product'
     };
     this.bsModalRef = this.modalService.show(ModalComponent, { initialState });
     this.bsModalRef.content.okBtnName = 'Ok';
+  }
+
+  emptyCart() {
+    this.shoppingCart = {
+      items: []
+    };
+    delete window.localStorage.shoppingCart;
   }
 
 }

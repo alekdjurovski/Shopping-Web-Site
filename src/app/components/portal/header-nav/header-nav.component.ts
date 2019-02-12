@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ICategories } from 'src/app/model/category';
 import { CategoryService } from 'src/app/services/category.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-header-nav',
@@ -10,13 +11,14 @@ import { CategoryService } from 'src/app/services/category.service';
 export class HeaderNavComponent implements OnInit {
 
   categories: ICategories;
+  itemsCount: number;
 
   constructor(
-    private _categoriesService: CategoryService
+    private _categoriesService: CategoryService,
+    private _cartService: CartService
   ) {}
 
   ngOnInit() {
-
     this.getCategories();
   }
 

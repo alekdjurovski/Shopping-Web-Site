@@ -1,3 +1,5 @@
+<app-header-nav></app-header-nav>
+
 <div class="container">
   <h1 class="well">Shopping Cart</h1>
   <hr />
@@ -14,7 +16,7 @@
       </tr>
     </thead>
     <tbody class="">
-      <tr *ngFor="let item of shoppingCart">
+      <tr *ngFor="let item of shoppingCart.items">
         <td><img [src]="item.imageUrl" alt="" height="40px" /></td>
         <td>{{ item.name }}</td>
         <td>{{ item.price }}</td>
@@ -36,4 +38,5 @@
   <hr>
   <p>Total: 0 $</p>
   <button class="btn btn-primary">Checkout</button>
+    <button class="btn" type="submit" (click)="emptyCart()">Clear Cart</button>
 </div>

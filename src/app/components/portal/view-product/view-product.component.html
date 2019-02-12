@@ -18,7 +18,7 @@
           <p><span> Availability: </span>{{ product.isAvailable }}</p>
           <p><span>Quantity: </span> <input type="number" /></p>
           <p><span>Total Price:</span> {{ product.price }}$</p>
-          <a href="#" class="btn btn-style">Add to cart</a>
+          <a class="btn btn-style" (click)="addToCart()">Add to cart</a>
         </div>
       </div>
     </div>

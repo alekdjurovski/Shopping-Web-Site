@@ -1,0 +1,11 @@
+.icon-style {
+  height: 35px;
+  &:hover {
+    transition: 0.4s;
+    cursor: pointer;
+    border-radius: 15px;
+    &.del {
+      background-color: rgba(255, 0, 0, 0.205);
+    }
+  }
+}
