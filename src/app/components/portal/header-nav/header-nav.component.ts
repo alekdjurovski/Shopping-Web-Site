@@ -4,6 +4,7 @@ import { CategoryService } from 'src/app/services/category.service';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 import { IProduct } from 'src/app/model/iproduct';
+import { FilterService } from 'src/app/services/filter.service';
 
 @Component({
   selector: 'app-header-nav',
@@ -20,7 +21,8 @@ export class HeaderNavComponent implements OnInit {
   constructor(
     private _categoriesService: CategoryService,
     private _productService: ProductService,
-    private _cartService: CartService
+    private _cartService: CartService,
+    private _filterService: FilterService
   ) {}
 
   ngOnInit() {
@@ -42,20 +44,11 @@ export class HeaderNavComponent implements OnInit {
     });
   }
   search() {
-    if (this.searchName) {
-      this._productService
-        .searchProduct(this.searchName)
-        .subscribe((res: IProduct) => {
-          return (this.products = res);
-        });
-    } else {
-      this.resetSearch();
-    }
+      this._filterService.getProducts(this.searchName);
   }
-
-  resetSearch() {
-    if (this.searchName === '') {
-      this.getProducts();
-    }
-  }
+  // resetSearch() {
+  //    this._filterService.getProducts(this.searchName)
+  //     this.getProducts();
+  //   }
+  // }
 }
