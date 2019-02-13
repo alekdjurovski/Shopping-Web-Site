@@ -1,3 +1,24 @@
+<form
+class="form-inline flex-row-reverse justify-content-center align-items-center"
+>
+<img
+  src="../../../../assets/img/icons8-search-512.png"
+  alt="search"
+  class="icon-style edit"
+  (click)="search()"
+/>
+
+<input
+  class="form-control search-style"
+  type="search"
+  name="search" placeholder="Search by name"
+  aria-label="Search"
+  [(ngModel)]="searchName"
+  (input)="resetSearch()"
+/>
+</form>
+
+
 <div class="main">
     <div class="container">
       <div class="row">

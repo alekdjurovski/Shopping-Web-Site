@@ -17,7 +17,7 @@
 
 .logo-text {
   color: $color-logo;
-  height: 50px;
+  height: 35px;
   text-shadow: 1px 1px 15px rgba(224, 209, 255, 0.94);
   &:hover {
     color: darken($color-logo, 4);
@@ -43,7 +43,8 @@
   // margin-top: 20px;
   &:focus {
     transition: 0.5s;
-    width: 80% !important;
+    transform: scaleX(100px);
+    // width: 60% !important;
     font-size: 1.3em;
     opacity: 1;
     color: #00bcd4;

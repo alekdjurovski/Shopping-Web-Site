@@ -15,7 +15,6 @@ import { IProduct } from 'src/app/model/iproduct';
 export class ProductsComponent implements OnInit {
   products: IProduct;
   searchName: string;
-  showSearch = false;
   bsModalRef: BsModalRef;
   categories: ICategories;
   categoriesLength: number;
@@ -54,7 +53,6 @@ export class ProductsComponent implements OnInit {
 
   search() {
     if (this.searchName) {
-      this.showSearch = true;
       this._productService
         .searchProduct(this.searchName)
         .subscribe((res: IProduct) => {
@@ -69,12 +67,6 @@ export class ProductsComponent implements OnInit {
     if (this.searchName === '') {
       this.getProducts();
     }
-  }
-
-  clearSearch() {
-    this.searchName = '';
-    this.resetSearch();
-    this.showSearch = false;
   }
 
   openModalWithComponent(id: number, param: string) {

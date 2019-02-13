@@ -5,19 +5,16 @@ import { IProduct } from '../model/iproduct';
   providedIn: 'root'
 })
 export class CartService {
-  shoppingCart: any;
+  shoppingCart: string;
   deleteId: number;
   deleteParam: any;
 
+  product: IProduct;
+
   constructor() {}
 
-  addToCart(item: IProduct) {
-    if (localStorage && localStorage.shoppingCart) {
-      this.shoppingCart = JSON.parse(localStorage.shoppingCart);
-    } else {
-      this.shoppingCart = { items: []};
-    }
-    this.shoppingCart.items.push(item);
-    localStorage.shoppingCart = JSON.stringify(this.shoppingCart);
+  addToCart(item) {
+    localStorage.setItem('productkey', JSON.stringify(item));
   }
+
 }

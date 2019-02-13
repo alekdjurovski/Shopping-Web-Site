@@ -12,9 +12,15 @@ import { ToastrService } from 'ngx-toastr';
 export class ProductListComponent implements OnInit {
   products: IProduct;
   addProduct: any;
-  constructor(private _productService: ProductService,
-              private _cartService: CartService,
-              private _toastr: ToastrService) {}
+  searchName: any;
+  shoppingCart: any;
+  // itemsCount: any;
+
+  constructor(
+    private _productService: ProductService,
+    private _cartService: CartService,
+    private _toastr: ToastrService
+  ) {}
 
   ngOnInit() {
     this.getProducts();
@@ -26,11 +32,33 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-addToCart(i: number) {
-  this.addProduct = this.products[i];
-  this._cartService.addToCart(this.addProduct);
-  this._toastr.info('Product is Successful Added');
+  addToCart(i: number) {
+    this.addProduct = this.products[i];
+    if (localStorage.productkey) {
+      this.shoppingCart = JSON.parse(localStorage.productkey);
+    } else {
+      this.shoppingCart = { shoppingList: [] };
+    }
+    this.shoppingCart.shoppingList.push(this.addProduct);
+    this._cartService.addToCart(this.shoppingCart);
+    this._toastr.info('Product is Successful Added');
+  }
 
-}
+  search() {
+    if (this.searchName) {
+      this._productService
+        .searchProduct(this.searchName)
+        .subscribe((res: IProduct) => {
+          return (this.products = res);
+        });
+    } else {
+      this.resetSearch();
+    }
+  }
 
+  resetSearch() {
+    if (this.searchName === '') {
+      this.getProducts();
+    }
+  }
 }

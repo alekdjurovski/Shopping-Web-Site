@@ -3,7 +3,7 @@
 <div class="container">
   <h1 class="well">Shopping Cart</h1>
   <hr />
-  <p *ngIf="shoppingCart.items.length === 0">Your cart is empty</p>
+  <p *ngIf="shoppingLength === 0">Your cart is empty</p>
   <table class="table table-striped">
     <thead>
       <tr class="head-row">
@@ -16,7 +16,7 @@
       </tr>
     </thead>
     <tbody class="">
-      <tr *ngFor="let item of shoppingCart.items">
+      <tr *ngFor="let item of shoppingCart.shoppingList">
         <td><img [src]="item.imageUrl" alt="" height="40px" /></td>
         <td>{{ item.name }}</td>
         <td>{{ item.price }}</td>
@@ -37,6 +37,6 @@
   </table>
   <hr>
   <p>Total: 0 $</p>
-  <button class="btn btn-primary">Checkout</button>
-    <button class="btn" type="submit" (click)="emptyCart()">Clear Cart</button>
+  <button class="btn btn-primary" (click)="onCheckout()">Checkout</button>
+    <button class="btn btn-secondary" type="submit" (click)="emptyCart()">Clear Cart</button>
 </div>

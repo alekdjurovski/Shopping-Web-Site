@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { ModalComponent } from '../../main/modal/modal.component';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -11,18 +13,28 @@ import { ModalComponent } from '../../main/modal/modal.component';
 export class CartComponent implements OnInit {
   shoppingCart: any;
   bsModalRef: BsModalRef;
+  shoppingLength: any;
 
-  constructor(private _cartService: CartService,
-    private modalService: BsModalService) {}
+  constructor(
+    private _cartService: CartService,
+    private modalService: BsModalService,
+    private router: Router,
+    private _toastr: ToastrService
+  ) {}
 
   ngOnInit() {
-    if (localStorage && localStorage.shoppingCart) {
-      this.shoppingCart = JSON.parse(localStorage.shoppingCart);
+    this.getProductFromStorage();
+  }
+
+  getProductFromStorage() {
+    if (localStorage.productkey) {
+      this.shoppingCart = JSON.parse(localStorage.productkey);
     } else {
       this.shoppingCart = {
-        items: []
+        shoppingList: []
       };
     }
+    this.shoppingLength = this.shoppingCart.shoppingList.length;
   }
 
   openModalWithComponent(id: number, param: string) {
@@ -36,11 +48,15 @@ export class CartComponent implements OnInit {
     this.bsModalRef.content.okBtnName = 'Ok';
   }
 
+  onCheckout() {
+this.router.navigate(['/portal']);
+    this._toastr.info('Your Order is Sent');
+  }
+
   emptyCart() {
     this.shoppingCart = {
       items: []
     };
-    delete window.localStorage.shoppingCart;
+    delete localStorage.productkey;
   }
-
 }

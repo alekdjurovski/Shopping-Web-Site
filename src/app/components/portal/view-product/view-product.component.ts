@@ -14,6 +14,7 @@ export class ViewProductComponent implements OnInit {
   productId: number;
   product: IProduct;
   shoppingList: any;
+  shoppingCart: any;
 
   constructor(private activeRoute: ActivatedRoute,
             private _productService: ProductService,
@@ -27,13 +28,21 @@ export class ViewProductComponent implements OnInit {
   }
 
   getOneProduct() {
-    this._productService.getOneProduct(this.productId).subscribe((product: IProduct) => {
-      this.product = product;
+    this._productService.getOneProduct(this.productId).subscribe((res: IProduct) => {
+      this.product = res;
+
     });
   }
 
   addToCart() {
-    this._cartService.addToCart(this.product);
+    if (localStorage.productkey) {
+      this.shoppingCart = JSON.parse(localStorage.productkey);
+    } else {
+      this.shoppingCart = { shoppingList: [] };
+    }
+    this.shoppingCart.shoppingList.push(this.product);
+    this._cartService.addToCart(this.shoppingCart);
     this._toastr.info('Product is Successful Added');
   }
-}
+
+  }
