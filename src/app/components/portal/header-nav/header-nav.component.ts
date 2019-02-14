@@ -1,16 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { ICategories } from "src/app/model/category";
-import { CategoryService } from "src/app/services/category.service";
-import { CartService } from "src/app/services/cart.service";
-import { ProductService } from "src/app/services/product.service";
-import { IProduct } from "src/app/model/iproduct";
-import { FilterService } from "src/app/services/filter.service";
-import { ProductsComponent } from "../../main/products/products.component";
+import { Component, OnInit } from '@angular/core';
+import { ICategories } from 'src/app/model/category';
+import { CategoryService } from 'src/app/services/category.service';
+import { CartService } from 'src/app/services/cart.service';
+import { ProductService } from 'src/app/services/product.service';
+import { IProduct } from 'src/app/model/iproduct';
+import { FilterService } from 'src/app/services/filter.service';
+import { ProductsComponent } from '../../main/products/products.component';
 
 @Component({
-  selector: "app-header-nav",
-  templateUrl: "./header-nav.component.html",
-  styleUrls: ["./header-nav.component.scss"]
+  selector: 'app-header-nav',
+  templateUrl: './header-nav.component.html',
+  styleUrls: ['./header-nav.component.scss']
 })
 export class HeaderNavComponent implements OnInit {
   categories: ICategories;
@@ -20,6 +20,8 @@ export class HeaderNavComponent implements OnInit {
   shoppingLength: any;
   parentC: any;
   parentCategory = [];
+  categoryAll: ICategories;
+  newParent: any;
 
   constructor(
     private _categoriesService: CategoryService,
@@ -49,8 +51,8 @@ export class HeaderNavComponent implements OnInit {
 
   getCategories() {
     this._categoriesService.getCategories().subscribe((data: ICategories) => {
-      this.categories = data.slice(4);
-
+      // this.categories = data.slice(4);
+       this.categories = data;
       console.log(this.categories);
       debugger;
       for (let i = 0; i < this.categories.length; i++) {
@@ -60,7 +62,10 @@ export class HeaderNavComponent implements OnInit {
             this.parentCategory.push(this.parentC);
           } else {
             for (let x = 0; x < this.parentCategory.length; x++) {
-              if (this.parentCategory[x] !== this.parentC) {
+              if (this.parentCategory[x] === this.parentC) {
+                break;
+              } else {
+                this.newParent = this.parentCategory[x];
                 this.parentCategory.push(this.parentC);
               }
             }
@@ -68,9 +73,9 @@ export class HeaderNavComponent implements OnInit {
         }
 
       }
-      console.log("OVAAA" + this.parentCategory);
+      console.log('OVAAA' + this.parentCategory);
 
-      this.parentCategories = data.slice(0, 4);
+      // this.parentCategories = data.slice(0, 4);
       this._categoriesService.categoriesList = data;
     });
   }
@@ -80,7 +85,7 @@ export class HeaderNavComponent implements OnInit {
   }
 
   resetSearch() {
-    if (this.searchName === "") {
+    if (this.searchName === '') {
       this._filterService.getProducts(this.searchName);
     }
   }
