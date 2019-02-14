@@ -12,6 +12,12 @@ export class FilterService {
   private products = new BehaviorSubject<any>([]);
   castProd = this.products.asObservable();
 
+  private counter = new BehaviorSubject<number>(0);
+  counterItems = this.counter.asObservable();
+  shopList: number;
+  shoppingCart: any;
+  shoppingLength: any;
+
   constructor(
     private _categoryService: CategoryService,
     private _productService: ProductService,
@@ -26,7 +32,8 @@ export class FilterService {
           this.products.next(res);
         });
     } else if (searchName === '') {
-      this._productService.getProducts().subscribe((data: IProduct) => {
+      this._productService.getProducts()
+        .subscribe((data: IProduct) => {
         this.products.next(data);
       });
     }
@@ -35,15 +42,25 @@ export class FilterService {
   filterProduct(categoryId) {
     if (categoryId) {
       this._productService
-      .filterProduct(categoryId)
-      .subscribe((filter: IProduct) => {
-        this.products.next(filter);
-      });
+        .filterProduct(categoryId)
+        .subscribe((filter: IProduct) => {
+          this.products.next(filter);
+        });
     } else {
-      this._productService.getProducts().subscribe((data: IProduct) => {
+      this._productService.getProducts()
+        .subscribe((data: IProduct) => {
         this.products.next(data);
       });
     }
+  }
 
+  updateCartCounter() {
+    if (localStorage.productkey) {
+      this.shoppingCart = JSON.parse(localStorage.productkey);
+      this.shoppingLength = this.shoppingCart.length;
+    } else {
+      this.shoppingLength = 0;
+    }
+    this.counter.next(this.shoppingLength);
   }
 }

@@ -16,10 +16,12 @@ export class ViewProductComponent implements OnInit {
   shoppingList: any;
   shoppingCart: any;
 
-  constructor(private activeRoute: ActivatedRoute,
-            private _productService: ProductService,
-            private _cartService: CartService,
-            private _toastr: ToastrService) { }
+  constructor(
+    private activeRoute: ActivatedRoute,
+    private _productService: ProductService,
+    private _cartService: CartService,
+    private _toastr: ToastrService
+  ) {}
 
   ngOnInit() {
     // tslint:disable-next-line:radix
@@ -28,21 +30,21 @@ export class ViewProductComponent implements OnInit {
   }
 
   getOneProduct() {
-    this._productService.getOneProduct(this.productId).subscribe((res: IProduct) => {
-      this.product = res;
-
-    });
+    this._productService
+      .getOneProduct(this.productId)
+      .subscribe((res: IProduct) => {
+        this.product = res;
+      });
   }
 
   addToCart() {
     if (localStorage.productkey) {
       this.shoppingCart = JSON.parse(localStorage.productkey);
     } else {
-      this.shoppingCart = { shoppingList: [] };
+      this.shoppingCart = [];
     }
-    this.shoppingCart.shoppingList.push(this.product);
+    this.shoppingCart.push(this.product);
     this._cartService.addToCart(this.shoppingCart);
     this._toastr.info('Product is Successful Added');
   }
-
-  }
+}

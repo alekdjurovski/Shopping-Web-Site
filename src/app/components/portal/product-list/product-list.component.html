@@ -1,18 +1,32 @@
 <div class="main">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let item of products; let i = index">
-          <div class="card">
-            <img src="{{ item.imageUrl }}" class="card-img-top" alt="" [routerLink]="['/portal', 'view', item.id]"
-            routerLinkActive="router-link-active" />
-            <div class="card-body">
-              <h5 class="card-title">{{ item.name }}</h5>
-              <p class="card-text">{{ item.shortDescription }}</p>
-              <p class="card-text">{{ item.price }}$</p>
-              <a class="btn btn-style" (click)="addToCart(i)">Add to cart</a>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div
+        class="col-lg-3 col-md-4 col-sm-6"
+        *ngFor="let item of products; let i = index"
+      >
+        <div class="card">
+          <img
+            src="{{ item.imageUrl }}"
+            class="card-img-top cursor-pointer"
+            alt=""
+            [routerLink]="['/portal', 'view', item.id]"
+            routerLinkActive="router-link-active"
+          />
+          <div class="card-body">
+            <h5
+              class="card-title  cursor-pointer"
+              [routerLink]="['/portal', 'view', item.id]"
+              routerLinkActive="router-link-active"
+            >
+              {{ item.name }}
+            </h5>
+            <p class="card-text">{{ item.shortDescription }}</p>
+            <p class="card-text">{{ item.price }}$</p>
+            <a class="btn btn-style" (click)="addToCart(i)">Add to cart</a>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

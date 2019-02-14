@@ -4,6 +4,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { ModalComponent } from '../../main/modal/modal.component';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { FilterService } from 'src/app/services/filter.service';
 
 @Component({
   selector: 'app-cart',
@@ -19,7 +20,9 @@ export class CartComponent implements OnInit {
     private _cartService: CartService,
     private modalService: BsModalService,
     private router: Router,
-    private _toastr: ToastrService
+    private _toastr: ToastrService,
+
+    private _filterService: FilterService
   ) {}
 
   ngOnInit() {
@@ -29,12 +32,15 @@ export class CartComponent implements OnInit {
   getProductFromStorage() {
     if (localStorage.productkey) {
       this.shoppingCart = JSON.parse(localStorage.productkey);
+      console.log(this.shoppingCart);
     } else {
-      this.shoppingCart = {
+      this.shoppingCart = [{
         shoppingList: []
-      };
+      }];
     }
-    this.shoppingLength = this.shoppingCart.shoppingList.length;
+    this.shoppingLength = this.shoppingCart.length;
+    // localStorage.productkey.shoppingList.length;
+    console.log(this.shoppingLength);
   }
 
   openModalWithComponent(id: number, param: string) {
@@ -54,9 +60,8 @@ this.router.navigate(['/portal']);
   }
 
   emptyCart() {
-    this.shoppingCart = {
-      items: []
-    };
+    this.shoppingCart = [];
     delete localStorage.productkey;
+    this._filterService.updateCartCounter();
   }
 }

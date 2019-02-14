@@ -14,9 +14,9 @@ import { FilterService } from 'src/app/services/filter.service';
 export class HeaderNavComponent implements OnInit {
   categories: ICategories;
   searchName: any;
-  itemsCount: 3;
   products: IProduct;
   parentCategories: any;
+  shoppingLength: any;
 
   constructor(
     private _categoriesService: CategoryService,
@@ -28,6 +28,9 @@ export class HeaderNavComponent implements OnInit {
   ngOnInit() {
     this.getCategories();
     this.getProducts();
+    this._filterService.counterItems.subscribe(res => {
+      this.shoppingLength = res;
+    });
   }
 
   getProducts() {
@@ -47,6 +50,7 @@ export class HeaderNavComponent implements OnInit {
       this._categoriesService.categoriesList = data;
     });
   }
+
   search() {
     this._filterService.getProducts(this.searchName);
   }
@@ -60,6 +64,4 @@ export class HeaderNavComponent implements OnInit {
   filterByCategory(categoryId: number) {
     this._filterService.filterProduct(categoryId);
   }
-
-
 }

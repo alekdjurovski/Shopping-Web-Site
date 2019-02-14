@@ -46,9 +46,9 @@ export class ProductListComponent implements OnInit {
     if (localStorage.productkey) {
       this.shoppingCart = JSON.parse(localStorage.productkey);
     } else {
-      this.shoppingCart = { shoppingList: [] };
+      this.shoppingCart = [];
     }
-    this.shoppingCart.shoppingList.push(this.addProduct);
+    this.shoppingCart.push(this.addProduct);
     this._cartService.addToCart(this.shoppingCart);
     this._toastr.info('Product is Successful Added');
   }
