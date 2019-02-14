@@ -53,21 +53,21 @@ export class ProductListComponent implements OnInit {
     this._toastr.info('Product is Successful Added');
   }
 
-  search() {
-    if (this.searchName) {
-      this._productService
-        .searchProduct(this.searchName)
-        .subscribe((res: IProduct) => {
-          this.products = res;
-        });
-    } else {
-      this.resetSearch();
-    }
-  }
+  // search() {
+  //   if (this.searchName) {
+  //     this._productService
+  //       .searchProduct(this.searchName)
+  //       .subscribe((res: IProduct) => {
+  //         this.products = res;
+  //       });
+  //   } else {
+  //     this.resetSearch();
+  //   }
+  // }
 
-  resetSearch() {
-    if (this.searchName === '') {
-      this.getProducts();
-    }
-  }
+  // resetSearch() {
+  //   if (this.searchName === '') {
+  //     this.getProducts();
+  //   }
+  // }
 }

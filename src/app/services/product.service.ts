@@ -10,6 +10,8 @@ export class ProductService {
   public productsUrl = 'http://127.0.0.1:3000/products';
   public searchUrl =
     'http://127.0.0.1:3000/products?filter[where][name][eq]=';
+    public filterUrl =
+    'http://127.0.0.1:3000/products?filter[where][categoryId][eq]=';
 
   deleteId: number;
   deleteParam: string;
@@ -36,6 +38,10 @@ export class ProductService {
   searchProduct(name) {
     return this.http.get(this.searchUrl + name);
   }
+
+  filterProduct(categoryId) {
+    return this.http.get(this.filterUrl + categoryId);
+}
 
   deleteProduct() {
     return this.http.delete(this.productsUrl + '/' + this.deleteId);

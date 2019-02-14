@@ -12,11 +12,11 @@ import { FilterService } from 'src/app/services/filter.service';
   styleUrls: ['./header-nav.component.scss']
 })
 export class HeaderNavComponent implements OnInit {
-
   categories: ICategories;
   searchName: any;
   itemsCount: 3;
   products: IProduct;
+  parentCategories: any;
 
   constructor(
     private _categoriesService: CategoryService,
@@ -36,19 +36,30 @@ export class HeaderNavComponent implements OnInit {
     });
   }
 
+  allProduct() {
+    this._filterService.filterProduct(null);
+  }
 
   getCategories() {
     this._categoriesService.getCategories().subscribe((data: ICategories) => {
-      this.categories = data;
+      this.categories = data.slice(4);
+      this.parentCategories = data.slice(0, 4);
       this._categoriesService.categoriesList = data;
     });
   }
   search() {
-      this._filterService.getProducts(this.searchName);
+    this._filterService.getProducts(this.searchName);
   }
-  // resetSearch() {
-  //    this._filterService.getProducts(this.searchName)
-  //     this.getProducts();
-  //   }
-  // }
+
+  resetSearch() {
+    if (this.searchName === '') {
+      this._filterService.getProducts(this.searchName);
+    }
+  }
+
+  filterByCategory(categoryId: number) {
+    this._filterService.filterProduct(categoryId);
+  }
+
+
 }
