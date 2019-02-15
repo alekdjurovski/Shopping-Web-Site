@@ -1,8 +1,6 @@
 @import "../../../../styles.scss";
 @import "../header-nav/header-nav.component.scss";
 
-
-
 .main {
   background: linear-gradient(
       0deg,
@@ -11,6 +9,7 @@
     ),
     url("../../../../assets/img/bg-portal.jpg");
   background-size: cover;
+  min-height: calc(100vh - 90px);
 }
 
 div.card{

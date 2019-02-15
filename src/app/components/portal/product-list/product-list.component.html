@@ -7,7 +7,7 @@
       >
         <div class="card">
           <img
-            src="{{ item.imageUrl }}"
+            [src]="item.imageUrl"
             class="card-img-top cursor-pointer"
             alt=""
             [routerLink]="['/portal', 'view', item.id]"

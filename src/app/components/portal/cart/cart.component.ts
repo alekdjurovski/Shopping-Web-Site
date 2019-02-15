@@ -21,7 +21,6 @@ export class CartComponent implements OnInit {
     private modalService: BsModalService,
     private router: Router,
     private _toastr: ToastrService,
-
     private _filterService: FilterService
   ) {}
 
@@ -30,17 +29,11 @@ export class CartComponent implements OnInit {
   }
 
   getProductFromStorage() {
-    if (localStorage.productkey) {
-      this.shoppingCart = JSON.parse(localStorage.productkey);
-      console.log(this.shoppingCart);
+    if (localStorage.productKey) {
+      this.shoppingCart = JSON.parse(localStorage.productKey);
     } else {
-      this.shoppingCart = [{
-        shoppingList: []
-      }];
+      this.shoppingCart = [];
     }
-    this.shoppingLength = this.shoppingCart.length;
-    // localStorage.productkey.shoppingList.length;
-    console.log(this.shoppingLength);
   }
 
   openModalWithComponent(id: number, param: string) {
@@ -55,13 +48,14 @@ export class CartComponent implements OnInit {
   }
 
   onCheckout() {
-this.router.navigate(['/portal']);
+    this.router.navigate(['/portal']);
     this._toastr.info('Your Order is Sent');
+    this.emptyCart();
   }
 
   emptyCart() {
     this.shoppingCart = [];
-    delete localStorage.productkey;
+    delete localStorage.productKey;
     this._filterService.updateCartCounter();
   }
 }

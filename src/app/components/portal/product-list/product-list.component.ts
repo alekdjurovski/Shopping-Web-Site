@@ -15,7 +15,6 @@ export class ProductListComponent implements OnInit {
   addProduct: any;
   searchName: any;
   shoppingCart: any;
-  // itemsCount: any;
 
   constructor(
     private _productService: ProductService,
@@ -43,8 +42,8 @@ export class ProductListComponent implements OnInit {
 
   addToCart(i: number) {
     this.addProduct = this.products[i];
-    if (localStorage.productkey) {
-      this.shoppingCart = JSON.parse(localStorage.productkey);
+    if (localStorage.productKey) {
+      this.shoppingCart = JSON.parse(localStorage.productKey);
     } else {
       this.shoppingCart = [];
     }
@@ -52,22 +51,4 @@ export class ProductListComponent implements OnInit {
     this._cartService.addToCart(this.shoppingCart);
     this._toastr.info('Product is Successful Added');
   }
-
-  // search() {
-  //   if (this.searchName) {
-  //     this._productService
-  //       .searchProduct(this.searchName)
-  //       .subscribe((res: IProduct) => {
-  //         this.products = res;
-  //       });
-  //   } else {
-  //     this.resetSearch();
-  //   }
-  // }
-
-  // resetSearch() {
-  //   if (this.searchName === '') {
-  //     this.getProducts();
-  //   }
-  // }
 }

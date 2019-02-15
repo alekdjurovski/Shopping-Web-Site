@@ -38,6 +38,7 @@ import { ViewProductComponent } from './components/portal/view-product/view-prod
 import { ProductListComponent } from './components/portal/product-list/product-list.component';
 import { HeaderNavComponent } from './components/portal/header-nav/header-nav.component';
 import { CartComponent } from './components/portal/cart/cart.component';
+import { FooterComponent } from './components/portal/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { CartComponent } from './components/portal/cart/cart.component';
     ViewProductComponent,
     ProductListComponent,
     HeaderNavComponent,
-    CartComponent
+    CartComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

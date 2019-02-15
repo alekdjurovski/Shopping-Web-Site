@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ICategories } from 'src/app/model/category';
 import { CategoryService } from 'src/app/services/category.service';
-import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 import { IProduct } from 'src/app/model/iproduct';
 import { FilterService } from 'src/app/services/filter.service';
-import { ProductsComponent } from '../../main/products/products.component';
 
 @Component({
   selector: 'app-header-nav',
@@ -13,20 +10,18 @@ import { ProductsComponent } from '../../main/products/products.component';
   styleUrls: ['./header-nav.component.scss']
 })
 export class HeaderNavComponent implements OnInit {
-  categories: ICategories;
+  categories = [];
   searchName: any;
   products: IProduct;
-  parentCategories: any;
   shoppingLength: any;
-  parentC: any;
-  parentCategory = [];
-  categoryAll: ICategories;
-  newParent: any;
+  childCategory: any;
+  parentCategory: any;
+  childArray = [];
+  parentArray = [];
 
   constructor(
     private _categoriesService: CategoryService,
     private _productService: ProductService,
-    private _cartService: CartService,
     private _filterService: FilterService
   ) {}
 
@@ -41,7 +36,6 @@ export class HeaderNavComponent implements OnInit {
   getProducts() {
     this._productService.getProducts().subscribe((data: IProduct) => {
       this.products = data;
-      console.log(this.products);
     });
   }
 
@@ -50,33 +44,17 @@ export class HeaderNavComponent implements OnInit {
   }
 
   getCategories() {
-    this._categoriesService.getCategories().subscribe((data: ICategories) => {
-      // this.categories = data.slice(4);
-       this.categories = data;
-      console.log(this.categories);
-      debugger;
+    this._categoriesService.getCategories().subscribe((data: any) => {
+      this.categories = data;
       for (let i = 0; i < this.categories.length; i++) {
         if (this.categories[i].parentCategoryName) {
-          this.parentC = this.categories[i].parentCategoryName;
-          if (this.parentCategory.length === 0) {
-            this.parentCategory.push(this.parentC);
-          } else {
-            for (let x = 0; x < this.parentCategory.length; x++) {
-              if (this.parentCategory[x] === this.parentC) {
-                break;
-              } else {
-                this.newParent = this.parentCategory[x];
-                this.parentCategory.push(this.parentC);
-              }
-            }
-          }
+          this.childCategory = this.categories[i];
+          this.childArray.push(this.childCategory);
+        } else {
+          this.parentCategory = this.categories[i];
+          this.parentArray.push(this.parentCategory);
         }
-
       }
-      console.log('OVAAA' + this.parentCategory);
-
-      // this.parentCategories = data.slice(0, 4);
-      this._categoriesService.categoriesList = data;
     });
   }
 

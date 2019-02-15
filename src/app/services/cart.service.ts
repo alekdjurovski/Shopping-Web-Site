@@ -15,7 +15,7 @@ export class CartService {
 
   addToCart(item) {
 
-    localStorage.setItem('productkey', JSON.stringify(item));
+    localStorage.setItem('productKey', JSON.stringify(item));
     this._filterService.updateCartCounter();
   }
 }

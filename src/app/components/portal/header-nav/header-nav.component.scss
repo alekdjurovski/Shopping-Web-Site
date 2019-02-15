@@ -27,24 +27,34 @@
 }
 
 .icon-style {
-  height: 43px;
-  // margin-top: 16px;
+  height: 35px;
   &:hover {
     transition: 0.4s;
     cursor: pointer;
-    border-radius: 15px;
-    background-color: rgba(208, 235, 221, 0.397);
   }
+}
+
+div {
+  .counter {
+    background-color: rgba(255, 255, 255, 0.842);
+    border-radius: 15px;
+    padding: 0px 8px;
+    font-weight: 800;
+    font-size: 14px;
+    margin: 5px 5px 8px 0px;
+  }
+}
+
+.nav-link {
+  margin: 0px 8px;
 }
 
 .search-style {
   border-radius: 15px;
-  width: 50%;
-  // margin-top: 20px;
+  width: 60%;
   &:focus {
     transition: 0.5s;
-    transform: scaleX(100px);
-    // width: 60% !important;
+    transform: scaleX(70px);
     font-size: 1.3em;
     opacity: 1;
     color: #00bcd4;

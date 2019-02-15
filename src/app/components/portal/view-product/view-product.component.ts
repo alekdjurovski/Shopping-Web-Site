@@ -38,8 +38,8 @@ export class ViewProductComponent implements OnInit {
   }
 
   addToCart() {
-    if (localStorage.productkey) {
-      this.shoppingCart = JSON.parse(localStorage.productkey);
+    if (localStorage.productKey) {
+      this.shoppingCart = JSON.parse(localStorage.productKey);
     } else {
       this.shoppingCart = [];
     }

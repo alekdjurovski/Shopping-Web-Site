@@ -1,12 +1,5 @@
 @import "../../../styles.scss";
 
-// .head {
-//   margin-right: 0px;
-//   margin-left: 0px;
-//   height: 90px;
-//   background: url("../../../assets/img/bg-pattern-blue.png");
-// }
-
 #logo {
   height: 50px;
   &:hover {
@@ -28,7 +21,6 @@
 
 .icon-style {
   height: 43px;
-  // margin-top: 16px;
   &:hover {
     transition: 0.4s;
     cursor: pointer;
@@ -40,7 +32,6 @@
 .search-style {
   border-radius: 15px;
   width: 50%;
-  // margin-top: 20px;
   &:focus {
     transition: 0.5s;
     width: 80% !important;

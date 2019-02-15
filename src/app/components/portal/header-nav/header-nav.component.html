@@ -2,7 +2,11 @@
   <div class="overlay"></div>
   <div class="col-lg-3 col-md-3 col-sm-1 col-xs-2">
     <div class="d-flex">
-      <a class="navbar-brand justify-content-end" [routerLink]="['']">
+      <a
+        class="navbar-brand justify-content-end"
+        [routerLink]="['']"
+        (click)="allProduct(null)"
+      >
         <img
           id="logo"
           class="d-inline"
@@ -35,6 +39,18 @@
       />
     </form>
   </div>
+
+  <div class="col-lg-2 col-md-2 col-sm-1 col-xs-2 d-flex justify-content-end">
+    <img
+      src="../../../../assets/img/cart.png"
+      alt="search"
+      class="icon-style edit"
+      (click)="search()"
+      [routerLink]="['/cart']"
+      routerLinkActive="router-link-active"
+    />
+    <span class="counter" *ngIf="shoppingLength"> {{ shoppingLength }} </span>
+  </div>
 </div>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -58,7 +74,7 @@
         >
       </li>
 
-      <ng-container *ngFor="let category of parentCategories">
+      <ng-container *ngFor="let category of parentArray">
         <li class="nav-item">
           <a
             class="nav-link"
@@ -81,10 +97,10 @@
           All Categories
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <ul *ngFor="let category of categories">
+          <ul *ngFor="let category of childArray">
             <li>
               <a
-                class="dropdown-item  cursor-pointer"
+                class="dropdown-item cursor-pointer"
                 (click)="filterByCategory(category.id)"
                 >{{ category.name }}</a
               >
@@ -93,15 +109,5 @@
         </div>
       </li>
     </ul>
-  </div>
-  <div class="col-lg-2 col-md-2 col-sm-1 col-xs-2">
-    <img
-      class="logo-text"
-      src="../../../assets/img/icons8-checkout-96.png"
-      alt="logo"
-      [routerLink]="['/cart']"
-      routerLinkActive="router-link-active"
-    />
-    <span> ({{ shoppingLength }}) </span>
   </div>
 </nav>
