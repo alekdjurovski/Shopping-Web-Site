@@ -14,7 +14,6 @@ export class CartService {
   constructor(private _filterService: FilterService) {}
 
   addToCart(item) {
-
     localStorage.setItem('productKey', JSON.stringify(item));
     this._filterService.updateCartCounter();
   }

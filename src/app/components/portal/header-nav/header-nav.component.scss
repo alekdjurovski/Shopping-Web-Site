@@ -9,10 +9,6 @@
 
 #logo {
   height: 50px;
-  &:hover {
-    color: darken($color-logo, 4);
-    border-radius: 50px;
-  }
 }
 
 .logo-text {
