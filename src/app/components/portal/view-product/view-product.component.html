@@ -17,9 +17,9 @@
           <p>{{ product.shortDescription }}</p>
           <p><span>Manufacturer: </span> {{ product.manufacturer }}</p>
           <p><span> Availability: </span>{{ product.isAvailable }}</p>
-          <p><span>Quantity: </span> <input type="number" /></p>
-          <p><span>Total Price:</span> {{ product.price }}$</p>
-          <a class="btn btn-style" (click)="addToCart()">Add to cart</a>
+          <p><span>Quantity: </span> <input type="number" [disabled]="sold" [(ngModel)]="quantity" (input)="onQuantityChange()" min="1" /></p>
+          <p><span>Total Price:</span> {{ totalPrice }}$</p>
+          <button class="btn btn-style" [disabled]="sold" (click)="addToCart()">Add to cart</button>
         </div>
       </div>
     </div>

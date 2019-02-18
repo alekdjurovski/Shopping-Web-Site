@@ -23,7 +23,7 @@
             </h5>
             <p class="card-text">{{ item.shortDescription }}</p>
             <p class="card-text">{{ item.price }}$</p>
-            <a class="btn btn-style" (click)="addToCart(i)">Add to cart</a>
+            <button class="btn btn-style"  [disabled]="sold" (click)="addToCart(i)">Add to cart</button>
           </div>
         </div>
       </div>

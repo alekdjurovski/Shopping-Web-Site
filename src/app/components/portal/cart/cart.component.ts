@@ -15,6 +15,8 @@ export class CartComponent implements OnInit {
   shoppingCart: any;
   bsModalRef: BsModalRef;
   shoppingLength: any;
+  quantity = 1;
+  quant: any;
 
   constructor(
     private _cartService: CartService,
@@ -33,6 +35,22 @@ export class CartComponent implements OnInit {
       this.shoppingCart = JSON.parse(localStorage.productKey);
     } else {
       this.shoppingCart = [];
+    }
+  }
+
+  onQuantityChange(i) {
+    this.shoppingCart[i].quantity =  this.quant;
+  }
+
+  decrease(i) {
+    if (this.shoppingCart[i].quantity) {
+      this.shoppingCart[i].quantity -= 1;
+    }
+  }
+
+  increase(i) {
+    if (this.shoppingCart[i].quantity) {
+      this.shoppingCart[i].quantity += 1;
     }
   }
 

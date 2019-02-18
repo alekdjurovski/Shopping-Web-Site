@@ -12,13 +12,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MainComponent } from './components/main/main.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MatButtonModule,
-  MatCheckboxModule,
-  MatFormFieldModule,
-  MatSelectModule,
-  MatInputModule
-} from '@angular/material';
+// import {
+//   MatButtonModule,
+//   MatCheckboxModule,
+//   MatFormFieldModule,
+//   MatSelectModule,
+//   MatInputModule
+// } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { AlertModule } from 'ngx-bootstrap';
@@ -65,13 +65,13 @@ import { FooterComponent } from './components/portal/footer/footer.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatCheckboxModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatInputModule,
+    // MatCheckboxModule,
+    // MatButtonModule,
+    // MatFormFieldModule,
+    // MatSelectModule,
+    // MatInputModule,
     CommonModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({positionClass: 'toast-bottom-right'}),
     AlertModule.forRoot(),
     ModalModule.forRoot(),
     AngularFireStorageModule,
