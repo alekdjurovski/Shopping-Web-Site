@@ -18,6 +18,7 @@ export class ProductListComponent implements OnInit {
   shoppingCart: any;
   quantity: number;
   sold: boolean;
+  canAdd: boolean;
 
   constructor(
     private _productService: ProductService,
@@ -59,17 +60,20 @@ export class ProductListComponent implements OnInit {
     if (this.quantity === 1) {
       if (localStorage.productKey) {
         this.shoppingCart = JSON.parse(localStorage.productKey);
-        // tslint:disable-next-line:no-shadowed-variable
         for (let i = 0; i < this.shoppingCart.length; i++) {
           if (this.shoppingCart[i].id === this.addProduct.id) {
             this._toastr.error('Product is already in the cart');
             this.router.navigate(['/cart']);
+            this.canAdd = false;
             break;
           } else {
-            this.shoppingCart.push(this.addProduct);
-            this._cartService.addToCart(this.shoppingCart);
-            this._toastr.info('Product is Successful Added');
+            this.canAdd = true;
           }
+        }
+        if (this.canAdd) {
+          this.shoppingCart.push(this.addProduct);
+          this._cartService.addToCart(this.shoppingCart);
+          this._toastr.info('Product is Successful Added');
         }
       } else {
         this.shoppingCart = [];

@@ -3,7 +3,7 @@ import { ICategories } from '../../../model/category';
 import { CategoryService } from '../../../services/category.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { ModalComponent } from '../modal/modal.component';
-import { ReloadCategoriesService } from 'src/app/services/reload-categories.service';
+import { ReloadService } from 'src/app/services/reload.service';
 
 @Component({
   selector: 'app-categories',
@@ -18,7 +18,7 @@ export class CategoriesComponent implements OnInit {
   constructor(
     private _service: CategoryService,
     private modalService: BsModalService,
-    private _reloadService: ReloadCategoriesService
+    private _reloadService: ReloadService
   ) {}
 
   ngOnInit() {

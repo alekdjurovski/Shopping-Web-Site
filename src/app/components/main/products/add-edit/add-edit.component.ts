@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { CategoryService } from 'src/app/services/category.service';
-import { ReloadCategoriesService } from 'src/app/services/reload-categories.service';
+import { ReloadService } from 'src/app/services/reload.service';
 import { ToastrService } from 'ngx-toastr';
 import { IProduct } from 'src/app/model/iproduct';
 import { ICategories } from '../../../../model/category';
@@ -37,7 +37,7 @@ export class AddEditComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private route: Router,
     private _toastr: ToastrService,
-    private _serviceReloadCategories: ReloadCategoriesService,
+    private _serviceReloadCategories: ReloadService,
     private fireStorage: AngularFireStorage
   ) {}
 

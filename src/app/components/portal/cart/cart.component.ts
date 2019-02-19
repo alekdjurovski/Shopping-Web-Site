@@ -6,8 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { FilterService } from 'src/app/services/filter.service';
 import { ProductService } from 'src/app/services/product.service';
-import { ReloadCategoriesService } from 'src/app/services/reload-categories.service';
-import { summaryFileName } from '@angular/compiler/src/aot/util';
+import { ReloadService } from 'src/app/services/reload.service';
 
 @Component({
   selector: 'app-cart',
@@ -31,7 +30,7 @@ export class CartComponent implements OnInit {
     private router: Router,
     private _toastr: ToastrService,
     private _filterService: FilterService,
-    private _reloadService: ReloadCategoriesService
+    private _reloadService: ReloadService
   ) {}
 
   ngOnInit() {
@@ -68,12 +67,23 @@ export class CartComponent implements OnInit {
   increase(i) {
     if (this.shoppingCart[i].quantity) {
       this.shoppingCart[i].quantity += 1;
+      debugger;
+    }
+  }
+
+  updateQuantity(i, newQuantity) {
+    if (this.shoppingCart[i].quantity) {
+      this.shoppingCart[i].quantity = newQuantity;
+      localStorage.setItem('productKey', JSON.stringify(this.shoppingCart));
+      this._reloadService.reloadCart();
+      this.total = 0;
+      this.totalSum();
+
     }
   }
 
   del(i) {
     this.itemRemove = JSON.parse(localStorage.productKey);
-    console.log(this.itemRemove[i]);
     this.itemRemove.splice(i, 1);
     localStorage.setItem('productKey', JSON.stringify(this.itemRemove));
     this._reloadService.reloadCart();
@@ -95,6 +105,7 @@ export class CartComponent implements OnInit {
       this.sum = this.shoppingCart[i].price * this.shoppingCart[i].quantity;
       this.total += this.sum;
     }
+
   }
 
   onCheckout() {

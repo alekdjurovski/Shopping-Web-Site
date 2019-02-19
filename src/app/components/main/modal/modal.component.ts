@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
 import { CategoryService } from 'src/app/services/category.service';
 import { ToastrService } from 'ngx-toastr';
-import { ReloadCategoriesService } from 'src/app/services/reload-categories.service';
+import { ReloadService } from 'src/app/services/reload.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class ModalComponent implements OnInit {
     public bsModalRef: BsModalRef,
     private _categoryService: CategoryService,
     private _toastr: ToastrService,
-    private _reloadService: ReloadCategoriesService,
+    private _reloadService: ReloadService,
     private _productService: ProductService
   ) {}
 

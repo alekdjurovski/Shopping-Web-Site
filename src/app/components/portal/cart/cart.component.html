@@ -22,10 +22,23 @@
         <td>{{ item.price }}$</td>
         <td>
           <span>
-            <button class="btnMinus" (click)="decrease(i)">
-              -</button
-            >{{ item.quantity }}
-            <button type="button" class="btnPlus" (click)="increase(i)">
+            <button
+              class="btnMinus"
+              (click)="decrease(i); updateQuantity(i, item.quantity)"
+            >
+              -
+            </button>
+            <input
+              [(ngModel)]="item.quantity"
+              value="item.quantity"
+              (input)="updateQuantity(i, item.quantity)"
+            />
+            {{ item.quantity }}
+            <button
+              type="button"
+              class="btnPlus"
+              (click)="increase(i); updateQuantity(i, item.quantity)"
+            >
               +
             </button>
           </span>
@@ -46,7 +59,7 @@
     </tbody>
   </table>
   <hr />
-  <p>Total: {{total}} $</p>
+  <p>Total: {{ total }} $</p>
   <button class="btn btn-primary" (click)="onCheckout()">Checkout</button>
   <button class="btn btn-secondary" type="submit" (click)="emptyCart()">
     Clear Cart

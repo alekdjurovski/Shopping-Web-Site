@@ -6,7 +6,7 @@ import { ProductService } from './product.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ReloadCategoriesService {
+export class ReloadService {
   private categories = new BehaviorSubject<any>([]);
   cast = this.categories.asObservable();
 
@@ -42,6 +42,5 @@ export class ReloadCategoriesService {
     }
     this.productInCart.next(this.shoppingCart);
   }
-
 
 }

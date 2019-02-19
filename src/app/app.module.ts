@@ -24,7 +24,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AlertModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ModalComponent } from './components/main/modal/modal.component';
-import { ReloadCategoriesService } from './services/reload-categories.service';
+import { ReloadService } from './services/reload.service';
 import { AddEditComponent } from './components/main/products/add-edit/add-edit.component';
 import { ProductService } from './services/product.service';
 import { AngularFireModule } from 'angularfire2';
@@ -79,7 +79,7 @@ import { FooterComponent } from './components/portal/footer/footer.component';
     AngularFireDatabaseModule,
     NgxPaginationModule
   ],
-  providers: [CategoryService, ReloadCategoriesService, ProductService],
+  providers: [CategoryService, ReloadService, ProductService],
   bootstrap: [AppComponent],
   entryComponents: [ModalComponent]
 })
