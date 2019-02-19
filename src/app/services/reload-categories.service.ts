@@ -8,9 +8,14 @@ import { ProductService } from './product.service';
 })
 export class ReloadCategoriesService {
   private categories = new BehaviorSubject<any>([]);
-  private products = new BehaviorSubject<any>([]);
   cast = this.categories.asObservable();
+
+  private products = new BehaviorSubject<any>([]);
   castProd = this.products.asObservable();
+
+  private productInCart = new BehaviorSubject<any>([]);
+  cartCast = this.productInCart.asObservable();
+  shoppingCart: any;
 
   constructor(
     private _categoryService: CategoryService,
@@ -28,4 +33,15 @@ export class ReloadCategoriesService {
       this.products.next(res);
     });
   }
+
+  reloadCart() {
+    if (localStorage.productKey) {
+      this.shoppingCart = JSON.parse(localStorage.productKey);
+    } else {
+      this.shoppingCart = [];
+    }
+    this.productInCart.next(this.shoppingCart);
+  }
+
+
 }

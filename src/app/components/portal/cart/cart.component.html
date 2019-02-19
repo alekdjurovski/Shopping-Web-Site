@@ -22,18 +22,10 @@
         <td>{{ item.price }}$</td>
         <td>
           <span>
-            <button
-              class="btnMinus"
-              (click)="decrease(i)"
-            >
-              -
-            </button>
-            <input type="number" [(ngModel)]="quant" value="{{ item.quantity }}" (input)="onQuantityChange(i)" > {{ item.quantity }}
-            <button
-              type="button"
-              class="btnPlus"
-              (click)="increase(i) "
-            >
+            <button class="btnMinus" (click)="decrease(i)">
+              -</button
+            >{{ item.quantity }}
+            <button type="button" class="btnPlus" (click)="increase(i)">
               +
             </button>
           </span>
@@ -46,7 +38,7 @@
               src="../../../../assets/img/icons8-trash-96.png"
               class="icon-style del"
               alt="delete"
-              (click)="openModalWithComponent(item.id, 'deleteProduct')"
+              (click)="del(i)"
             />
           </div>
         </td>
@@ -54,7 +46,7 @@
     </tbody>
   </table>
   <hr />
-  <p>Total: 0 $</p>
+  <p>Total: {{total}} $</p>
   <button class="btn btn-primary" (click)="onCheckout()">Checkout</button>
   <button class="btn btn-secondary" type="submit" (click)="emptyCart()">
     Clear Cart

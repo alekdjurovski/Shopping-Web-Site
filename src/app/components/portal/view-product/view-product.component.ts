@@ -18,7 +18,7 @@ export class ViewProductComponent implements OnInit {
   totalPrice: number;
   quantity: number;
   sold: boolean;
-  newProduct: any;
+  newProduct = [];
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -57,20 +57,24 @@ export class ViewProductComponent implements OnInit {
   }
 
   addToCart() {
-    this.newProduct = {
-      imageUrl: this.product.imageUrl,
-      name: this.product.name,
-      price: this.product.price,
-      quantity: this.quantity
-    };
-
+    this.product.quantity = this.quantity;
     if (localStorage.productKey) {
       this.shoppingCart = JSON.parse(localStorage.productKey);
+      for (let i = 0; i < this.shoppingCart.length; i++) {
+        if (this.shoppingCart[i].id === this.product.id) {
+          this._toastr.error('Product is already in the cart');
+          break;
+        } else {
+          this.shoppingCart.push(this.product);
+          this._cartService.addToCart(this.shoppingCart);
+          this._toastr.info('Product is Successful Added');
+        }
+      }
     } else {
       this.shoppingCart = [];
+      this.shoppingCart.push(this.product);
+      this._cartService.addToCart(this.shoppingCart);
+      this._toastr.info('Product is Successful Added');
     }
-    this.shoppingCart.push(this.newProduct);
-    this._cartService.addToCart(this.shoppingCart);
-    this._toastr.info('Product is Successful Added');
   }
 }

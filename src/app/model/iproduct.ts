@@ -8,4 +8,5 @@ export interface IProduct {
   shortDescription: string;
   fullDescription: string;
   categoryId: number;
+  quantity: number;
 }

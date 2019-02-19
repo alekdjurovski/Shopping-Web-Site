@@ -28,11 +28,14 @@ export class ModalComponent implements OnInit {
     this.activePage = this._productService.deleteParam;
   }
   removeCategory() {
-    if (this.activePage) {
+    if (this.activePage === 'deleteProduct') {
       this._productService.deleteProduct().subscribe(res => {
         this._reloadService.getAllProducts();
         this._toastr.error('Product is Successful Deleted');
       });
+    } else if (this.activePage === 'deleteProductFromCart') {
+      localStorage.clear();
+
     } else {
       this._categoryService.deleteCategories().subscribe(res => {
         this._reloadService.getAllCategories();

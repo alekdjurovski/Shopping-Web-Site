@@ -55,11 +55,12 @@ export class ProductListComponent implements OnInit {
   addToCart(i: number) {
     this.addProduct = this.products[i];
     this.initialPrice();
+    this.addProduct.quantity = this.quantity;
     if (this.quantity === 1) {
       if (localStorage.productKey) {
         this.shoppingCart = JSON.parse(localStorage.productKey);
+        // tslint:disable-next-line:no-shadowed-variable
         for (let i = 0; i < this.shoppingCart.length; i++) {
-          debugger;
           if (this.shoppingCart[i].id === this.addProduct.id) {
             this._toastr.error('Product is already in the cart');
             this.router.navigate(['/cart']);
