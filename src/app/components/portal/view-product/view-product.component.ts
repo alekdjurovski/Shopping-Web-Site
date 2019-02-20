@@ -4,6 +4,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { IProduct } from 'src/app/model/iproduct';
 import { CartService } from 'src/app/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-view-product',
@@ -19,15 +20,20 @@ export class ViewProductComponent implements OnInit {
   quantity: number;
   sold: boolean;
   newProduct = [];
+  loading = false;
 
   constructor(
     private activeRoute: ActivatedRoute,
     private _productService: ProductService,
     private _cartService: CartService,
-    private _toastr: ToastrService
+    private _toastr: ToastrService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit() {
+
+    this.loading = true;
+
     // tslint:disable-next-line:radix
     this.productId = parseInt(this.activeRoute.snapshot.params.id);
     this.getOneProduct();
@@ -38,6 +44,7 @@ export class ViewProductComponent implements OnInit {
       .getOneProduct(this.productId)
       .subscribe((res: IProduct) => {
         this.product = res;
+        this.loading = false;
         this.initialPrice();
       });
   }

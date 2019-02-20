@@ -3,6 +3,7 @@ import { CategoryService } from 'src/app/services/category.service';
 import { ICategories } from 'src/app/model/category';
 import { IProduct } from 'src/app/model/iproduct';
 import { FilterService } from 'src/app/services/filter.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-portal',
@@ -17,10 +18,20 @@ export class PortalComponent implements OnInit {
 
   constructor(
     private _categoriesService: CategoryService,
-    private _filterService: FilterService
+    private _filterService: FilterService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit() {
+ /** spinner starts on init */
+ this.spinner.show();
+
+ setTimeout(() => {
+     /** spinner ends after 5 seconds */
+     this.spinner.hide();
+ }, 200);
+
+
     this.getCategories();
     this._filterService.updateCartCounter();
   }

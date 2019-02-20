@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { FilterService } from 'src/app/services/filter.service';
 import { ProductService } from 'src/app/services/product.service';
 import { ReloadService } from 'src/app/services/reload.service';
+import { IProduct } from 'src/app/model/iproduct';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-cart',
@@ -14,7 +16,7 @@ import { ReloadService } from 'src/app/services/reload.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  shoppingCart: any;
+  shoppingCart = [];
   bsModalRef: BsModalRef;
   shoppingLength: any;
   quantity = 1;
@@ -22,6 +24,7 @@ export class CartComponent implements OnInit {
   itemRemove: any;
   total = 0;
   sum: number;
+  showLoader = true;
 
   constructor(
     private _cartService: CartService,
@@ -30,27 +33,33 @@ export class CartComponent implements OnInit {
     private router: Router,
     private _toastr: ToastrService,
     private _filterService: FilterService,
-    private _reloadService: ReloadService
+    private _reloadService: ReloadService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit() {
-    // this.getProductFromStorage();
+     /** spinner starts on init */
+     this.spinner.show();
+
+     setTimeout(() => {
+         /** spinner ends after 5 seconds */
+         this.spinner.hide();
+     }, 2000);
+
     this.reload();
     this.totalSum();
-  }
 
-  // getProductFromStorage() {
-  //   if (localStorage.productKey) {
-  //     this.shoppingCart = JSON.parse(localStorage.productKey);
-  //   } else {
-  //     this.shoppingCart = [];
-  //   }
-  // }
+  }
 
   reload() {
     this._reloadService.reloadCart();
     this._reloadService.cartCast.subscribe(res => {
       this.shoppingCart = res;
+      // this.spinner.hide();
+      setTimeout(() => {
+        /** spinner ends after 5 seconds */
+        this.spinner.hide();
+    }, 1000);
     });
   }
 
@@ -65,14 +74,13 @@ export class CartComponent implements OnInit {
   }
 
   increase(i) {
-    if (this.shoppingCart[i].quantity) {
+    if (this.shoppingCart[i].quantity > 0) {
       this.shoppingCart[i].quantity += 1;
-      debugger;
     }
   }
 
   updateQuantity(i, newQuantity) {
-    if (this.shoppingCart[i].quantity) {
+    if (this.shoppingCart[i].quantity > 0) {
       this.shoppingCart[i].quantity = newQuantity;
       localStorage.setItem('productKey', JSON.stringify(this.shoppingCart));
       this._reloadService.reloadCart();

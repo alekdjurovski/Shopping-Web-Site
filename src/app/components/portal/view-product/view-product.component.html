@@ -1,7 +1,10 @@
 <app-header-nav></app-header-nav>
 
+<div *ngIf="loading" class="lds-hourglass"></div>
 <div class="main">
   <div class="container">
+      <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]=""></ngx-loading>
+
     <div class="row">
       <div class="col-lg-4 col-md-4 col-sm-6">
         <img
@@ -17,9 +20,20 @@
           <p>{{ product.shortDescription }}</p>
           <p><span>Manufacturer: </span> {{ product.manufacturer }}</p>
           <p><span> Availability: </span>{{ product.isAvailable }}</p>
-          <p><span>Quantity: </span> <input type="number" [disabled]="sold" [(ngModel)]="quantity" (input)="onQuantityChange()" min="1" /></p>
+          <p>
+            <span>Quantity: </span>
+            <input
+              type="number"
+              [disabled]="sold"
+              [(ngModel)]="quantity"
+              (input)="onQuantityChange()"
+              min="1"
+            />
+          </p>
           <p><span>Total Price:</span> {{ totalPrice }}$</p>
-          <button class="btn btn-style" [disabled]="sold" (click)="addToCart()">Add to cart</button>
+          <button class="btn btn-style" [disabled]="sold" (click)="addToCart()">
+            Add to cart
+          </button>
         </div>
       </div>
     </div>

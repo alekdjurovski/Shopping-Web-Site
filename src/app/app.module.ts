@@ -12,13 +12,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MainComponent } from './components/main/main.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import {
-//   MatButtonModule,
-//   MatCheckboxModule,
-//   MatFormFieldModule,
-//   MatSelectModule,
-//   MatInputModule
-// } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { AlertModule } from 'ngx-bootstrap';
@@ -39,6 +32,8 @@ import { ProductListComponent } from './components/portal/product-list/product-l
 import { HeaderNavComponent } from './components/portal/header-nav/header-nav.component';
 import { CartComponent } from './components/portal/cart/cart.component';
 import { FooterComponent } from './components/portal/footer/footer.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxLoadingModule } from 'ngx-loading';
 
 @NgModule({
   declarations: [
@@ -65,11 +60,6 @@ import { FooterComponent } from './components/portal/footer/footer.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    // MatCheckboxModule,
-    // MatButtonModule,
-    // MatFormFieldModule,
-    // MatSelectModule,
-    // MatInputModule,
     CommonModule,
     ToastrModule.forRoot({positionClass: 'toast-bottom-right'}),
     AlertModule.forRoot(),
@@ -77,7 +67,9 @@ import { FooterComponent } from './components/portal/footer/footer.component';
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.fireBaseConfig),
     AngularFireDatabaseModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxSpinnerModule,
+    NgxLoadingModule.forRoot({})
   ],
   providers: [CategoryService, ReloadService, ProductService],
   bootstrap: [AppComponent],

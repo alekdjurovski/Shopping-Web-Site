@@ -17,6 +17,7 @@ export class FilterService {
   shopList: number;
   shoppingCart: any;
   shoppingLength: any;
+  categoryId = null;
 
   constructor(
     private _categoryService: CategoryService,
@@ -40,12 +41,14 @@ export class FilterService {
 
   filterProduct(categoryId) {
     if (categoryId) {
+      this.categoryId = categoryId;
       this._productService
         .filterProduct(categoryId)
         .subscribe((filter: IProduct) => {
           this.products.next(filter);
         });
     } else {
+      this.categoryId = null;
       this._productService.getProducts().subscribe((data: IProduct) => {
         this.products.next(data);
       });

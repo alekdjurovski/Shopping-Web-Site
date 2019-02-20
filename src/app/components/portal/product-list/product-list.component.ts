@@ -5,6 +5,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { FilterService } from 'src/app/services/filter.service';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-product-list',
@@ -19,30 +20,46 @@ export class ProductListComponent implements OnInit {
   quantity: number;
   sold: boolean;
   canAdd: boolean;
+  allProducts = null;
 
   constructor(
     private _productService: ProductService,
     private _cartService: CartService,
     private _filterService: FilterService,
     private router: Router,
-    private _toastr: ToastrService
+    private _toastr: ToastrService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit() {
-    this.getProducts();
+    /** spinner starts on init */
+ this.spinner.show();
+
+
+
     this.reloadProduct();
   }
 
-  getProducts() {
-    this._productService.getProducts().subscribe((data: IProduct) => {
-      this.products = data;
-    });
-  }
-
   reloadProduct() {
-    this._filterService.castProd.subscribe((res: IProduct) => {
-      this.products = res;
-    });
+    this.allProducts = this._filterService.categoryId;
+    if (this.allProducts) {
+      this._filterService.castProd.subscribe((res: IProduct) => {
+        this.products = res;
+      //   setTimeout(() => {
+      //     /** spinner ends after 5 seconds */
+      //     this.spinner.hide();
+      // }, 2000);
+      });
+    } else {
+      this._filterService.filterProduct(null);
+      this._filterService.castProd.subscribe((res: IProduct) => {
+        this.products = res;
+        setTimeout(() => {
+          /** spinner ends after 5 seconds */
+          this.spinner.hide();
+      }, 2000);
+      });
+    }
   }
 
   initialPrice() {
@@ -60,6 +77,7 @@ export class ProductListComponent implements OnInit {
     if (this.quantity === 1) {
       if (localStorage.productKey) {
         this.shoppingCart = JSON.parse(localStorage.productKey);
+        // tslint:disable-next-line:no-shadowed-variable
         for (let i = 0; i < this.shoppingCart.length; i++) {
           if (this.shoppingCart[i].id === this.addProduct.id) {
             this._toastr.error('Product is already in the cart');

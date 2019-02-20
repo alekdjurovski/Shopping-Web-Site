@@ -11,6 +11,7 @@ import { CartComponent } from './components/portal/cart/cart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/portal', pathMatch: 'full' },
+  // { path: '**', redirectTo: '/portal', pathMatch: 'full' },
   { path: 'home', component: MainComponent },
   {
     path: 'categories',
@@ -32,10 +33,10 @@ const routes: Routes = [
     path: 'portal',
     children: [
       { path: '', component: PortalComponent },
-      { path: 'view/:id', component: ViewProductComponent }
+      { path: 'view/:id', component: ViewProductComponent },
+      { path: ':mode/:id', component: PortalComponent }
     ]
   },
-  { path: 'view/:id', component: ViewProductComponent },
   { path: 'cart', component: CartComponent}
 ];
 
