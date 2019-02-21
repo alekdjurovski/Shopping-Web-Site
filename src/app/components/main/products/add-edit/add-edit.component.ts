@@ -8,9 +8,8 @@ import { IProduct } from 'src/app/model/iproduct';
 import { ICategories } from '../../../../model/category';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-add-edit',

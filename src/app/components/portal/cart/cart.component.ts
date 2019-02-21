@@ -38,29 +38,18 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-     /** spinner starts on init */
-     this.spinner.show();
-
-     setTimeout(() => {
-         /** spinner ends after 5 seconds */
-         this.spinner.hide();
-     }, 2000);
 
     this.reload();
     this.totalSum();
-
   }
 
   reload() {
+    this.spinner.show();
     this._reloadService.reloadCart();
     this._reloadService.cartCast.subscribe(res => {
       this.shoppingCart = res;
-      // this.spinner.hide();
-      setTimeout(() => {
-        /** spinner ends after 5 seconds */
-        this.spinner.hide();
-    }, 1000);
-    });
+      this.spinner.hide();
+      });
   }
 
   onQuantityChange(i) {

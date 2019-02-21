@@ -32,32 +32,20 @@ export class ProductListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    /** spinner starts on init */
- this.spinner.show();
-
-
-
     this.reloadProduct();
   }
 
   reloadProduct() {
     this.allProducts = this._filterService.categoryId;
-    if (this.allProducts) {
+    this.searchName = this._filterService.searchName;
+    if (this.allProducts || this.searchName) {
       this._filterService.castProd.subscribe((res: IProduct) => {
         this.products = res;
-      //   setTimeout(() => {
-      //     /** spinner ends after 5 seconds */
-      //     this.spinner.hide();
-      // }, 2000);
       });
     } else {
       this._filterService.filterProduct(null);
       this._filterService.castProd.subscribe((res: IProduct) => {
         this.products = res;
-        setTimeout(() => {
-          /** spinner ends after 5 seconds */
-          this.spinner.hide();
-      }, 2000);
       });
     }
   }

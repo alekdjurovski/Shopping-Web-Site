@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
 import { IProduct } from '../model/iproduct';
 import { BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -18,20 +18,33 @@ export class FilterService {
   shoppingCart: any;
   shoppingLength: any;
   categoryId = null;
+  searchName: string;
+  noProduct: any;
+  newArray: any;
 
   constructor(
-    private _categoryService: CategoryService,
     private _productService: ProductService,
-    private http: HttpClient
+    private router: Router,
+    private _toastr: ToastrService
   ) {}
 
   getProducts(searchName) {
     if (searchName) {
-      this._productService
-        .searchProduct(searchName)
-        .subscribe((res: IProduct) => {
+      this.searchName = searchName;
+
+      this._productService.searchProduct(searchName).subscribe(res => {
+        this.newArray = res;
+        if (this.newArray.length !== 0) {
           this.products.next(res);
-        });
+        } else {
+          this._toastr.warning(
+            'Sorry, your search did not match any products. Please try again.',
+            '',
+            { positionClass: 'toast-top-full-width', timeOut: 3000 }
+          );
+          this.router.navigate(['']);
+        }
+      });
     } else if (searchName === '') {
       this._productService.getProducts().subscribe((data: IProduct) => {
         this.products.next(data);

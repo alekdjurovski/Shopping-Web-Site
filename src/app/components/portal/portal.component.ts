@@ -23,15 +23,6 @@ export class PortalComponent implements OnInit {
   ) {}
 
   ngOnInit() {
- /** spinner starts on init */
- this.spinner.show();
-
- setTimeout(() => {
-     /** spinner ends after 5 seconds */
-     this.spinner.hide();
- }, 200);
-
-
     this.getCategories();
     this._filterService.updateCartCounter();
   }
@@ -39,6 +30,7 @@ export class PortalComponent implements OnInit {
   getCategories() {
     this._categoriesService.getCategories().subscribe((data: ICategories) => {
       this.categories = data;
+      this.spinner.hide();
       this._categoriesService.categoriesList = data;
     });
   }
