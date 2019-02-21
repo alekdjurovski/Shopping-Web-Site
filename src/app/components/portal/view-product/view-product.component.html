@@ -1,19 +1,16 @@
 <app-header-nav></app-header-nav>
 
-<div *ngIf="loading" class="lds-hourglass"></div>
 <div class="main">
   <div class="container">
-      <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]=""></ngx-loading>
-
     <div class="row">
-      <div class="col-lg-4 col-md-4 col-sm-6">
+      <div class="col-lg-5 col-md-5 col-sm-5">
         <img
           [src]="product.imageUrl"
           class="card-img-top mt-4"
           alt="productImg"
         />
       </div>
-      <div class="col-lg-8">
+      <div class="col-lg-7 col-md-7 col-sm-7">
         <div>
           <h5 class="mt-4">{{ product.name }}</h5>
           <hr />

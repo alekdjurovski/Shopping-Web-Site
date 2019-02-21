@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductsComponent } from './components/main/products/products.component';
 import { CategoriesComponent } from './components/main/categories/categories.component';
-import { MainComponent } from './components/main/main.component';
 import { AddEditComponent } from './components/main/products/add-edit/add-edit.component';
 import { PortalComponent } from './components/portal/portal.component';
 import { AddEditCategoryComponent } from './components/main/categories/add-edit-category/add-edit-category.component';
@@ -11,8 +10,7 @@ import { CartComponent } from './components/portal/cart/cart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/portal', pathMatch: 'full' },
-  // { path: '**', redirectTo: '/portal', pathMatch: 'full' },
-  { path: 'home', component: MainComponent },
+  { path: 'dashboard', component: CategoriesComponent },
   {
     path: 'categories',
     children: [

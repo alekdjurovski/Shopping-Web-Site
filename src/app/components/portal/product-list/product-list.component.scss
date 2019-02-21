@@ -12,10 +12,10 @@
   min-height: calc(100vh - 90px);
 }
 
-div.card{
+div.card {
   text-align: center;
   margin: 17px 0px;
-  .card-text{
+  .card-text {
     height: 10px;
   }
   .card-img-top {
@@ -33,5 +33,23 @@ div.card{
   font-family: $btn-text;
   &:hover {
     background-color: lighten($color-btn, 4);
+  }
+}
+
+@media (max-width: 576px) {
+  .display-center {
+    display: flex;
+    justify-content: center;
+  }
+  .card {
+    width: 80%;
+    display: block;
+    .card-img-top {
+      height: 200px;
+      width: 250px;
+      padding: 10px;
+      // max-width: 100%;
+      max-height: 100%;
+    }
   }
 }

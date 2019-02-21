@@ -21,6 +21,7 @@ export class ViewProductComponent implements OnInit {
   sold: boolean;
   newProduct = [];
   loading = false;
+  canAdd: boolean;
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -69,14 +70,20 @@ export class ViewProductComponent implements OnInit {
       this.shoppingCart = JSON.parse(localStorage.productKey);
       for (let i = 0; i < this.shoppingCart.length; i++) {
         if (this.shoppingCart[i].id === this.product.id) {
-          this._toastr.error('Product is already in the cart');
+          this.shoppingCart[i].quantity = this.quantity;
+          this._cartService.addToCart(this.shoppingCart);
+          this._toastr.info('Quantity is Updated');
+          this.canAdd = false;
           break;
-        } else {
+        }  else {
+          this.canAdd = true;
+        }
+      }
+        if (this.canAdd) {
           this.shoppingCart.push(this.product);
           this._cartService.addToCart(this.shoppingCart);
           this._toastr.info('Product is Successful Added');
         }
-      }
     } else {
       this.shoppingCart = [];
       this.shoppingCart.push(this.product);

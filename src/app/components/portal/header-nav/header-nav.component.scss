@@ -47,7 +47,7 @@ div {
 
 .search-style {
   border-radius: 15px;
-  width: 60%;
+  width: 75%;
   &:focus {
     transition: 0.5s;
     transform: scaleX(70px);
@@ -55,4 +55,30 @@ div {
     opacity: 1;
     color: #00bcd4;
   }
+}
+
+@media (max-width: 576px) {
+  .head{
+    height: 120px;
+  }
+  #logo {
+    height: 40px;
+}
+  .upper-row{
+    max-width: 100%;
+  }
+  .d-flex {
+    justify-content: center;
+    height: 36px;
+}
+  .down-row-left{
+max-width: 75%;
+  }
+  .down-row-rigth{
+    max-width: 25%;
+  }
+
+  &.search-style {
+    width: 85%;
+}
 }
