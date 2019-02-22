@@ -7,8 +7,6 @@ import { Router } from '@angular/router';
 import { FilterService } from 'src/app/services/filter.service';
 import { ProductService } from 'src/app/services/product.service';
 import { ReloadService } from 'src/app/services/reload.service';
-import { IProduct } from 'src/app/model/iproduct';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-cart',
@@ -33,8 +31,7 @@ export class CartComponent implements OnInit {
     private router: Router,
     private _toastr: ToastrService,
     private _filterService: FilterService,
-    private _reloadService: ReloadService,
-    private spinner: NgxSpinnerService
+    private _reloadService: ReloadService
   ) {}
 
   ngOnInit() {
@@ -43,11 +40,9 @@ export class CartComponent implements OnInit {
   }
 
   reload() {
-    this.spinner.show();
     this._reloadService.reloadCart();
     this._reloadService.cartCast.subscribe(res => {
       this.shoppingCart = res;
-      this.spinner.hide();
       });
   }
 
@@ -79,8 +74,12 @@ export class CartComponent implements OnInit {
 
   del(i) {
     this.itemRemove = JSON.parse(localStorage.productKey);
-    this.itemRemove.splice(i, 1);
-    localStorage.setItem('productKey', JSON.stringify(this.itemRemove));
+    if (this.itemRemove.length === 1) {
+      localStorage.clear();
+    } else {
+      this.itemRemove.splice(i, 1);
+      localStorage.setItem('productKey', JSON.stringify(this.itemRemove));
+    }
     this._reloadService.reloadCart();
     this.total = 0;
     this.totalSum();
