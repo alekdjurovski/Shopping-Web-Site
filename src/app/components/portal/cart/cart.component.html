@@ -1,16 +1,5 @@
 <app-header-nav></app-header-nav>
 
-<ngx-spinner
-bdOpacity = 0.8
-bdColor = "rgb(28, 146, 91);"
-size = "medium"
-color = "#4f83e0"
-type = "pacman"
-fullScreen = "false"
->
-<p style="color: rgb(57, 64, 104)" > Loading... </p>
-</ngx-spinner>
-
 <div class="container">
   <h1 class="well">Shopping Cart</h1>
   <hr />
@@ -32,27 +21,36 @@ fullScreen = "false"
         <td>{{ item.name }}</td>
         <td>{{ item.price }}$</td>
         <td>
-          <span>
-            <button
-              class="btnMinus"
-              (click)="decrease(i); updateQuantity(i, item.quantity)"
-            >
-              -
-            </button>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend justify-content-around" id="">
+              <button
+                class="btn btn-outline-secondary btn-minus"
+                type="button"
+                (click)="decrease(i); updateQuantity(i, item.quantity)"
+              >
+                -
+              </button>
+            </div>
             <input
+              type="text"
+              class="form-control"
+              placeholder=""
+              aria-label="Example text with two button addons"
+              aria-describedby="button-addon3"
               [(ngModel)]="item.quantity"
               value="item.quantity"
               (input)="updateQuantity(i, item.quantity)"
             />
-            {{ item.quantity }}
-            <button
-              type="button"
-              class="btnPlus"
-              (click)="increase(i); updateQuantity(i, item.quantity)"
-            >
-              +
-            </button>
-          </span>
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary btn-plus"
+                type="button"
+                (click)="increase(i); updateQuantity(i, item.quantity)"
+              >
+                +
+              </button>
+            </div>
+          </div>
         </td>
 
         <td>{{ item.price * item.quantity }}</td>
@@ -70,9 +68,16 @@ fullScreen = "false"
     </tbody>
   </table>
   <hr />
-  <p>Total: {{ total }} $</p>
-  <button class="btn btn-primary" (click)="onCheckout()">Checkout</button>
-  <button class="btn btn-secondary" type="submit" (click)="emptyCart()">
-    Clear Cart
-  </button>
+  <div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-8"></div>
+    <div class="col-lg-4 col-md-4 col-sm-4">
+        <p class="total">Total: {{ total }} $</p>
+        <button class="btn btn-primary" (click)="onCheckout()">Checkout</button>
+        <button class="btn btn-secondary" type="submit" (click)="emptyCart()">
+          Clear Cart
+        </button>
+    </div>
+  </div>
+
+
 </div>

@@ -14,10 +14,9 @@
 .logo-text {
   color: $color-logo;
   height: 35px;
-  text-shadow: 1px 1px 15px rgba(224, 209, 255, 0.94);
+  font-family: $font-logo;
   &:hover {
-    color: darken($color-logo, 4);
-    font-weight: 800;
+    color: lighten($color-logo, 4);
     cursor: pointer;
   }
 }
@@ -58,27 +57,28 @@ div {
 }
 
 @media (max-width: 576px) {
-  .head{
+  .head {
     height: 120px;
-  }
-  #logo {
-    height: 40px;
-}
-  .upper-row{
-    max-width: 100%;
-  }
-  .d-flex {
-    justify-content: center;
-    height: 36px;
-}
-  .down-row-left{
-max-width: 75%;
-  }
-  .down-row-rigth{
-    max-width: 25%;
-  }
 
-  &.search-style {
-    width: 85%;
-}
+    #logo {
+      height: 40px;
+    }
+    .upper-row {
+      max-width: 100%;
+    }
+    .d-flex {
+      justify-content: center;
+      height: 36px;
+    }
+    .down-row-left {
+      max-width: 75%;
+    }
+    .down-row-rigth {
+      max-width: 25%;
+    }
+
+    &.search-style {
+      width: 85%;
+    }
+  }
 }

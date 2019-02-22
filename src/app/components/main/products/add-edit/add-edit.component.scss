@@ -52,7 +52,7 @@ textarea {
   background-color: $color-btn;
   color: $light-text;
   border: 1px solid $primary-color;
-  font-family: $btn-text;
+  font-family: $font-btn;
   &:hover {
     background-color: lighten($color-btn, 4);
   }

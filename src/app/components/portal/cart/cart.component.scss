@@ -10,19 +10,22 @@
   }
 }
 
-
-.btnMinus{
-  background: #f44336;
-  border-radius: 1.1em;
-  font-size: 17px;
-  font-weight: normal;
-  margin:0px 15px 0px 25px;
-}
-
-.btnPlus{
-  background: #4CAF50;
+.btn-minus{
+  background: #d6434386;
+  color: black;
   border-radius: 1.1em;
   font-size:17px;
-  font-weight: 500;
-  margin:0px 0px 0px 15px;
+  font-weight: 700;
+}
+
+.btn-plus{
+  background: rgba(41, 175, 112, 0.459);
+  color: black;
+  border-radius: 1.1em;
+  font-size:17px;
+  font-weight: 700;
+}
+
+.rigth{
+  float: right;
 }

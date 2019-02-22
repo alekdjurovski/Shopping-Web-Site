@@ -13,7 +13,7 @@
   background-color: $color-btn;
   color: $light-text;
   border: 1px solid $primary-color;
-  font-family: $btn-text;
+  font-family: $font-btn;
   &:hover {
     background-color: lighten($color-btn, 4);
   }
@@ -43,17 +43,10 @@ button{
 .btn-dark {
   background-color: $color-btn;
   color: $light-text;
-  font-family: $btn-text;
+  font-family: $font-btn;
   border: none;
   border-radius: 12px;
 }
-//   i {
-//     color: rgb(204, 135, 132);
-//     &.fa-edit {
-//       color: #f0f2a6;
-//     }
-//   }
-// }
 
 .search-style {
   border-radius: 15px;

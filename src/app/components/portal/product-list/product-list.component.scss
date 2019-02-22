@@ -2,21 +2,37 @@
 @import "../header-nav/header-nav.component.scss";
 
 .main {
-  background: linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.459),
-      rgba(255, 255, 255, 0.3)
-    ),
-    url("../../../../assets/img/bg-portal.jpg");
-  background-size: cover;
+  background: $bg-body;
   min-height: calc(100vh - 90px);
 }
 
-div.card {
+div .card {
   text-align: center;
-  margin: 17px 0px;
+  margin: 10px 0px;
+  font-family: $font-btn;
+  .card-title {
+    font-weight: 700;
+  }
   .card-text {
-    height: 10px;
+    font-size: 0.8em;
+    color: rgb(86, 112, 112);
+    font-weight: 400;
+    .available {
+      background: #2fca2f;
+      color: #2fca2f;
+      font-size: 5px;
+      box-shadow: 0px -2px 12px 4px #2fca2f;
+    }
+    .not-available {
+      background: red;
+      color: red;
+      font-size: 5px;
+      box-shadow: 0px -2px 12px 4px  red;
+    }
+  }
+  .card-price {
+    font-size: 0.9em;
+    font-weight: 700;
   }
   .card-img-top {
     height: 200px;
@@ -30,7 +46,7 @@ div.card {
   background-color: $color-btn;
   color: $light-text;
   border: 1px solid $primary-color;
-  font-family: $btn-text;
+  font-family: $font-btn;
   &:hover {
     background-color: lighten($color-btn, 4);
   }

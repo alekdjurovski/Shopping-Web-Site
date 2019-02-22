@@ -1,15 +1,15 @@
 <div class="main">
   <div class="container">
-      <ngx-spinner
-      bdOpacity = 0.2
-      bdColor = "#333"
-      size = "medium"
-      color = "#fff"
-      type = "ball-atom"
-      fullScreen = "false"
-      >
-      <p style="color: white" > Loading... </p>
-      </ngx-spinner>
+    <ngx-spinner
+      bdOpacity="0.2"
+      bdColor="#333"
+      size="medium"
+      color="#fff"
+      type="ball-atom"
+      fullScreen="false"
+    >
+      <p style="color: white">Loading...</p>
+    </ngx-spinner>
 
     <div class="row">
       <div
@@ -32,9 +32,21 @@
             >
               {{ item.name }}
             </h5>
-            <p class="card-text">{{ item.shortDescription }}</p>
-            <p class="card-text">{{ item.price }}$</p>
-            <button class="btn btn-style"  [disabled]="sold" (click)="addToCart(i)">Add to cart</button>
+            <p class="card-text ">
+              Available:
+              <i
+                [ngClass]="(item.isAvailable) ? 'fas fa-dot-circle available' : 'fas fa-dot-circle not-available' "
+
+              ></i>
+            </p>
+            <p class="card-price">{{ item.price }}$</p>
+            <button
+              class="btn btn-style"
+              [disabled]="!item.isAvailable"
+              (click)="addToCart(i)"
+            >
+              Add to cart
+            </button>
           </div>
         </div>
       </div>

@@ -75,7 +75,6 @@ export class CartComponent implements OnInit {
       this._reloadService.reloadCart();
       this.total = 0;
       this.totalSum();
-
     }
   }
 
@@ -84,6 +83,8 @@ export class CartComponent implements OnInit {
     this.itemRemove.splice(i, 1);
     localStorage.setItem('productKey', JSON.stringify(this.itemRemove));
     this._reloadService.reloadCart();
+    this.total = 0;
+    this.totalSum();
   }
 
   openModalWithComponent(id: number, param: string) {
@@ -102,7 +103,6 @@ export class CartComponent implements OnInit {
       this.sum = this.shoppingCart[i].price * this.shoppingCart[i].quantity;
       this.total += this.sum;
     }
-
   }
 
   onCheckout() {

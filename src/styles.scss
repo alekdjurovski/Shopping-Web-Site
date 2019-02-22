@@ -1,4 +1,4 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+// @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 $primary-color: #12405b;
 $secondary-color: #b679e3;
@@ -8,21 +8,22 @@ $dark-text: rgb(49, 47, 95);
 $light-text: #f7f7ff;
 $background-color: #f1f2eb;
 $color-btn: rgb(43, 118, 153);
-$body-txt: "Noto Serif SC", serif;
-$btn-text: "Prompt", sans-serif;
-$title-font: "Viga", sans-serif;
 $bg-body: url("https://www.toptal.com/designers/subtlepatterns/patterns/subtle_white_feathers.png");
-$bg-nav: #1e415f;
+// $bg-nav: #1e415f;
+$font-logo: 'Paytone One', sans-serif;
+$font-body: "Noto Serif SC", serif;
+$font-btn: "Prompt", sans-serif;
+$font-title: "Viga", sans-serif;
 
 body {
   margin: 0;
   padding: 0;
   background: $background-color;
-  font-family: $body-txt;
+  font-family: $font-body;
   font-size: 17px;
 }
 .title {
-  font-family: $title-font;
+  font-family: $font-title;
   margin-top: 50px;
   padding: 20px;
   text-align: center;

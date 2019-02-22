@@ -3,10 +3,24 @@
 .footer {
   margin-right: 0px;
   margin-left: 0px;
-  height: 90px;
+  height: 95px;
   width: 100%;
   background: url("../../../../assets/img/bg-pattern-blue.png");
+  .row-footer {
+    width: 100%;
+    justify-content: center;
+  }
   p {
     color: white;
+    font-size: 15px;
+  }
+}
+
+li {
+  display: inline-block;
+  margin: 10px 40px 0px 0px;
+  & .social-icon {
+    color: white;
+    font-size: 30px;
   }
 }

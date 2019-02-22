@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/services/product.service';
 import { IProduct } from 'src/app/model/iproduct';
 import { CartService } from 'src/app/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { FilterService } from 'src/app/services/filter.service';
 import { Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-product-list',
@@ -14,31 +12,31 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class ProductListComponent implements OnInit {
   products: IProduct;
-  addProduct: any;
-  searchName: any;
-  shoppingCart: any;
+  addProduct: IProduct;
+  searchName: string;
+  shoppingCart = [];
   quantity: number;
   sold: boolean;
   canAdd: boolean;
-  allProducts = null;
+  categoryId = null;
 
   constructor(
-    private _productService: ProductService,
     private _cartService: CartService,
     private _filterService: FilterService,
-    private router: Router,
     private _toastr: ToastrService,
-    private spinner: NgxSpinnerService
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.reloadProduct();
+
+    // validacija
   }
 
   reloadProduct() {
-    this.allProducts = this._filterService.categoryId;
+    this.categoryId = this._filterService.categoryId;
     this.searchName = this._filterService.searchName;
-    if (this.allProducts || this.searchName) {
+    if (this.categoryId || this.searchName) {
       this._filterService.castProd.subscribe((res: IProduct) => {
         this.products = res;
       });
@@ -65,7 +63,7 @@ export class ProductListComponent implements OnInit {
     if (this.quantity === 1) {
       if (localStorage.productKey) {
         this.shoppingCart = JSON.parse(localStorage.productKey);
-        // tslint:disable-next-line:no-shadowed-variable
+        // tslint:disable-next-line: no-shadowed-variable
         for (let i = 0; i < this.shoppingCart.length; i++) {
           if (this.shoppingCart[i].id === this.addProduct.id) {
             this._toastr.error('Product is already in the cart');
