@@ -4,7 +4,6 @@ import { ProductService } from 'src/app/services/product.service';
 import { IProduct } from 'src/app/model/iproduct';
 import { CartService } from 'src/app/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-view-product',
@@ -27,8 +26,7 @@ export class ViewProductComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private _productService: ProductService,
     private _cartService: CartService,
-    private _toastr: ToastrService,
-    private spinner: NgxSpinnerService
+    private _toastr: ToastrService
   ) {}
 
   ngOnInit() {
