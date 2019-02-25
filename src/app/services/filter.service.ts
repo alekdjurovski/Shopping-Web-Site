@@ -58,6 +58,7 @@ export class FilterService {
       this._productService
         .filterProduct(categoryId)
         .subscribe((filter: IProduct) => {
+          debugger;
           this.products.next(filter);
         });
     } else {

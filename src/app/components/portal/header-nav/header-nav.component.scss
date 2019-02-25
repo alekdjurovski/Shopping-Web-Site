@@ -4,7 +4,18 @@
   margin-right: 0px;
   margin-left: 0px;
   height: 90px;
-  background: url("../../../../assets/img/bg-pattern-blue.png");
+  background: $color-bg-dark;
+}
+
+.menu {
+  background: $color-bg-blue;
+  .nav-link {
+    color: $light-text;
+    font-family: $font-btn;
+  }
+  .dropdown-item{
+    list-style-type: none;
+  }
 }
 
 #logo {
@@ -31,7 +42,7 @@
 
 div {
   .counter {
-    background-color: rgba(255, 255, 255, 0.842);
+    background-color: $light-text;
     border-radius: 15px;
     padding: 0px 8px;
     font-weight: 800;
@@ -52,7 +63,7 @@ div {
     transform: scaleX(70px);
     font-size: 1.3em;
     opacity: 1;
-    color: #00bcd4;
+    color: $primary-color;
   }
 }
 
