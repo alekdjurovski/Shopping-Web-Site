@@ -84,7 +84,7 @@
         >
       </li>
 
-      <ng-container *ngFor="let category of parentArray">
+      <!-- <ng-container *ngFor="let category of parentArray">
         <li class="nav-item">
           <a
             class="nav-link"
@@ -117,7 +117,37 @@
             </li>
           </ul>
         </div>
-      </li>
+      </li> -->
+
+      <ng-container *ngFor="let category of parentArray">
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              {{ category.name }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+              <ul *ngFor="let item of childArray">
+                  <ng-container *ngIf="item.id === category.id">
+                <li>
+                  <a
+                    class="dropdown-item cursor-pointer"
+                    (click)="filterByCategory(item.id)"
+                    >{{ item.name }}</a
+                  >
+                </li>
+              </ng-container>
+              </ul>
+
+            </div>
+          </li>
+        </ng-container>
     </ul>
   </div>
 </nav>
