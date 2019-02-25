@@ -1,9 +1,8 @@
-@import "../../../styles.scss";
+@import "../../../../styles.scss";
 
 nav {
-  // background-color: $primary-color;
-  // background: darken($bg-nav, 6);
-  background: url('../../../assets/img/bg-dark-blue.png');
+  background: $color-bg-dark;
+  font-family: $font-logo;
   color: $dark-text;
   height: 80px;
   box-shadow: 8px 1px 23px darken($primary-color, 10);

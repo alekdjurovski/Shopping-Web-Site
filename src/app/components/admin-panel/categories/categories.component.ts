@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ICategories } from '../../../model/category';
 import { CategoryService } from '../../../services/category.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
-import { ModalComponent } from '../modal/modal.component';
+import { ModalComponent } from '../../modal/modal.component';
 import { ReloadService } from 'src/app/services/reload.service';
 
 @Component({

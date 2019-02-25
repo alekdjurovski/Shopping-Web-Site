@@ -19,6 +19,7 @@ export class ProductListComponent implements OnInit {
   sold: boolean;
   canAdd: boolean;
   categoryId = null;
+  noProduct: boolean;
 
   constructor(
     private _cartService: CartService,
@@ -29,8 +30,6 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.reloadProduct();
-
-    // validacija
   }
 
   reloadProduct() {
@@ -46,6 +45,7 @@ export class ProductListComponent implements OnInit {
         this.products = res;
       });
     }
+    console.log(this.products);
   }
 
   initialPrice() {

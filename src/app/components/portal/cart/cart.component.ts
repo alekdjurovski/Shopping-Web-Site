@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
-import { ModalComponent } from '../../main/modal/modal.component';
+import { ModalComponent } from '../../modal/modal.component';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { FilterService } from 'src/app/services/filter.service';

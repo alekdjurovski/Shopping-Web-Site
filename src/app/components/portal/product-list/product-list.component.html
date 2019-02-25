@@ -1,6 +1,6 @@
 <div class="main">
   <div class="container">
-    <div class="row">
+    <div class="row" *ngIf="products">
       <div
         class="col-lg-3 col-md-4 col-sm-6 display-center"
         *ngFor="let item of products; let i = index"
@@ -24,8 +24,11 @@
             <p class="card-text ">
               Available:
               <i
-                [ngClass]="(item.isAvailable) ? 'fas fa-dot-circle available' : 'fas fa-dot-circle not-available' "
-
+                [ngClass]="
+                  item.isAvailable
+                    ? 'fas fa-dot-circle available'
+                    : 'fas fa-dot-circle not-available'
+                "
               ></i>
             </p>
             <p class="card-price">{{ item.price }}$</p>
@@ -39,6 +42,13 @@
           </div>
         </div>
       </div>
+      <div
+        class="col-lg-3 col-md-4 col-sm-6 display-center"
+        *ngIf="noProduct"
+      >
+      <p>No Product in this category</p>
     </div>
+    </div>
+    <div class="row" *ngIf="!products"><p>No Product in this category</p></div>
   </div>
 </div>

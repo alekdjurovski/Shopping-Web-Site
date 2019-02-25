@@ -14,13 +14,13 @@ export class FilterService {
 
   private counter = new BehaviorSubject<number>(0);
   counterItems = this.counter.asObservable();
+
   shopList: number;
-  shoppingCart: any;
-  shoppingLength: any;
+  shoppingLength: number;
   categoryId = null;
   searchName: string;
-  noProduct: any;
-  newArray: any;
+  newArray: any; /* This is any because I need length of array*/
+  shoppingCart = [];
 
   constructor(
     private _productService: ProductService,
@@ -31,7 +31,6 @@ export class FilterService {
   getProducts(searchName) {
     if (searchName) {
       this.searchName = searchName;
-
       this._productService.searchProduct(searchName).subscribe(res => {
         this.newArray = res;
         if (this.newArray.length !== 0) {
@@ -58,8 +57,17 @@ export class FilterService {
       this._productService
         .filterProduct(categoryId)
         .subscribe((filter: IProduct) => {
-          debugger;
-          this.products.next(filter);
+          this.newArray = filter;
+          if (this.newArray.length !== 0) {
+            this.products.next(filter);
+          } else {
+            this.router.navigate(['']);
+            this._toastr.error(
+              'NO PRODUCT IN THIS CATEGORY',
+              '',
+              { positionClass: 'toast-top-full-width', timeOut: 3000 }
+            );
+          }
         });
     } else {
       this.categoryId = null;

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ProductsComponent } from './components/main/products/products.component';
-import { CategoriesComponent } from './components/main/categories/categories.component';
-import { AddEditComponent } from './components/main/products/add-edit/add-edit.component';
+import { ProductsComponent } from './components/admin-panel/products/products.component';
+import { CategoriesComponent } from './components/admin-panel/categories/categories.component';
+import { AddEditComponent } from './components/admin-panel/products/add-edit/add-edit.component';
 import { PortalComponent } from './components/portal/portal.component';
-import { AddEditCategoryComponent } from './components/main/categories/add-edit-category/add-edit-category.component';
+import { AddEditCategoryComponent } from './components/admin-panel/categories/add-edit-category/add-edit-category.component';
 import { ViewProductComponent } from './components/portal/view-product/view-product.component';
 import { CartComponent } from './components/portal/cart/cart.component';
 
