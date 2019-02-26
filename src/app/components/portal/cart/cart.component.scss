@@ -1,3 +1,10 @@
+@import "../product-list/product-list.component.scss";
+
+.title-cart {
+  font-family: $font-title;
+  padding: 20px;
+}
+
 .icon-style {
   height: 35px;
   &:hover {
@@ -10,26 +17,49 @@
   }
 }
 
-.form-control {
-  width: 15px;
-}
+// .form-control {
+//   width: 15px;
+// }
 
-.btn-minus{
+.btn-minus {
   background: #d6434386;
   color: black;
   border-radius: 1.1em;
-  font-size:17px;
+  font-size: 17px;
   font-weight: 700;
 }
 
-.btn-plus{
+.btn-plus {
   background: rgba(41, 175, 112, 0.459);
   color: black;
   border-radius: 1.1em;
-  font-size:17px;
+  font-size: 17px;
   font-weight: 700;
 }
 
-.rigth{
-  float: right;
+.align-center {
+  text-align: center;
+}
+
+// .rigth {
+//   float: right;
+// }
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    font-size: 0.8em;
+  }
+  .input-group {
+    flex-wrap: nowrap;
+  }
+  .col10{
+    width: 10%;
+  }
+}
+
+@media (max-width: 528px) {
+  .btn-minus, .btn-plus {
+    display: none;
+  }
 }
