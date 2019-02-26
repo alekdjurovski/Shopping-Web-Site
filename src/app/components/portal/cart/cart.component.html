@@ -4,6 +4,68 @@
   <h1 class="well title-cart">Shopping Cart</h1>
   <hr />
   <p *ngIf="shoppingLength === 0">Your cart is empty</p>
+<!-- <div class="">
+  <ul class="row d-flex justify-content-center">
+    <li class="col-lg-1 col-md-1 col-sm-1 col-xs-1">Picture</li>
+    <li class="col-lg-3 col-md-3 col-sm-2 col-xs-3">Product</li>
+    <li class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Price</li>
+    <li class="col-lg-3 col-md-3 col-sm-2 col-xs-3">Quantity</li>
+    <li class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Total Price</li>
+    <li class="col-lg-1 col-md-1 col-sm-1 col-xs-1">Remove</li>
+  </ul>
+  <ul  class="row d-flex justify-content-center" *ngFor="let item of shoppingCart; let i = index">
+    <li class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><img [src]="item.imageUrl" alt="" height="40px" /></li>
+    <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3">{{ item.name }}</li>
+    <li class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{ item.price }}$</li>
+    <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend justify-content-around" id="">
+          <button
+            class="btn btn-outline-secondary btn-minus"
+            type="button"
+            (click)="decrease(i); updateQuantity(i, item.quantity)"
+          >
+            -
+          </button>
+        </div>
+        <input
+          type="text"
+          class="form-control width-fix"
+          placeholder=""
+          aria-label="Example text with two button addons"
+          aria-describedby="button-addon3"
+          [(ngModel)]="item.quantity"
+          value="item.quantity"
+          (input)="updateQuantity(i, item.quantity)"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary btn-plus"
+            type="button"
+            (click)="increase(i); updateQuantity(i, item.quantity)"
+          >
+            +
+          </button>
+        </div>
+      </div>
+    </li>
+
+    <li class="col-lg-2 col-md-2 col-sm-2 col-xs-2 align-center">{{ item.price * item.quantity }}</li>
+    <li class="col-lg-1 col-md-1 col-sm-1 col-xs-1 align-center">
+      <div class="d-flex justify-content-around">
+        <img
+          src="../../../../assets/img/icons8-trash-96.png"
+          class="icon-style del"
+          alt="delete"
+          (click)="del(i)"
+        />
+      </div>
+    </li>
+  </ul>
+</div> -->
+
+
+
   <table class="table fluid">
     <thead>
       <tr class="">
@@ -20,7 +82,7 @@
         <td><img [src]="item.imageUrl" alt="" height="40px" /></td>
         <td class="col10">{{ item.name }}</td>
         <td>{{ item.price }}$</td>
-        <td>
+        <td class="w-5 d-inline-block">
           <div class="input-group mb-3">
             <div class="input-group-prepend justify-content-around" id="">
               <button
