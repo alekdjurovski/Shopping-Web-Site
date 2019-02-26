@@ -30,9 +30,7 @@ export class ViewProductComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
     this.loading = true;
-
     // tslint:disable-next-line:radix
     this.productId = parseInt(this.activeRoute.snapshot.params.id);
     this.getOneProduct();
