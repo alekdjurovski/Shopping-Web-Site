@@ -23,11 +23,11 @@ export class ProductService {
     return this.http.get<IProduct>(this.productsUrl);
   }
 
-  addProduct(product) {
+  addProduct(product: IProduct) {
     return this.http.post<IProduct>(this.productsUrl, product);
   }
 
-  getOneProduct(id): Observable<IProduct> {
+  getOneProduct(id: number): Observable<IProduct> {
     return this.http.get<IProduct>(this.productsUrl + '/' + id);
   }
 
@@ -35,12 +35,12 @@ export class ProductService {
     return this.http.put<IProduct>(this.productsUrl + '/' + productId, product);
   }
 
-  searchProduct(name) {
-    return this.http.get(this.searchUrl + name);
+  searchProduct(name: string): Observable<IProduct> {
+    return this.http.get<IProduct>(this.searchUrl + name);
   }
 
-  filterProduct(categoryId) {
-    return this.http.get(this.filterUrl + categoryId);
+  filterProduct(categoryId: number): Observable<IProduct> {
+    return this.http.get<IProduct>(this.filterUrl + categoryId);
 }
 
   deleteProduct() {

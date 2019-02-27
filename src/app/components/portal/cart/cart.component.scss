@@ -18,7 +18,7 @@
 }
 
 li {
- list-style-type: none;
+  list-style-type: none;
 }
 
 .btn-minus {
@@ -39,27 +39,15 @@ li {
 
 .align-center {
   text-align: center;
+  text-align: -webkit-center;
 }
-
-// .rigth {
-//   float: right;
-// }
-
-@media (max-width: 768px) {
-  .container {
-    max-width: 100%;
-    font-size: 0.8em;
-  }
-  .input-group {
-    flex-wrap: nowrap;
-  }
-  .col10{
-    width: 10%;
-  }
+.form-control {
+  width: 30%;
 }
-
-@media (max-width: 528px) {
-  .btn-minus, .btn-plus {
-    display: none;
-  }
+.width-fix {
+  width: 100%;
+  text-align: -webkit-center;
+}
+.col-quantity {
+  width: 25px;
 }

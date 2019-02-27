@@ -5,8 +5,8 @@
     <div class="row">
       <div class="col-lg-5 col-md-5 col-sm-5">
         <img
-          [src]="product?.imageUrl"
-          class="card-img-top mt-4"
+          [src]="product.imageUrl"
+          class="mt-4 img-fluid img-thumbnail"
           alt="productImg"
         />
       </div>
@@ -17,10 +17,11 @@
           <p>{{ product.shortDescription }}</p>
           <p><span>Manufacturer: </span> {{ product.manufacturer }}</p>
           <p><span> Availability: </span>{{ product.isAvailable }}</p>
-          <p>
+          <p class="form-inline">
             <span>Quantity: </span>
             <input
               type="number"
+              class="form-control width-fix ml-3"
               [disabled]="sold"
               [(ngModel)]="quantity"
               (input)="onQuantityChange()"

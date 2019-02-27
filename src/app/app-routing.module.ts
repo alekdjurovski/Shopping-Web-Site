@@ -31,8 +31,8 @@ const routes: Routes = [
     path: 'portal',
     children: [
       { path: '', component: PortalComponent },
-      { path: 'view/:id', component: ViewProductComponent },
-      { path: ':mode/:id', component: PortalComponent }
+      { path: ':view/:id', component: ViewProductComponent }
+      // { path: ':mode/:id', component: PortalComponent }
     ]
   },
   { path: 'cart', component: CartComponent}

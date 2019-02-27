@@ -11,16 +11,13 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./view-product.component.scss']
 })
 export class ViewProductComponent implements OnInit {
+  product: IProduct = {} as IProduct;
   productId: number;
-  product: IProduct;
-  shoppingList: any;
-  shoppingCart: any;
   totalPrice: number;
   quantity: number;
   sold: boolean;
-  newProduct = [];
-  loading = false;
   canAdd: boolean;
+  shoppingCart = [];
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -30,7 +27,6 @@ export class ViewProductComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loading = true;
     // tslint:disable-next-line:radix
     this.productId = parseInt(this.activeRoute.snapshot.params.id);
     this.getOneProduct();
@@ -41,7 +37,6 @@ export class ViewProductComponent implements OnInit {
       .getOneProduct(this.productId)
       .subscribe((res: IProduct) => {
         this.product = res;
-        this.loading = false;
         this.initialPrice();
       });
   }
@@ -71,15 +66,15 @@ export class ViewProductComponent implements OnInit {
           this._toastr.info('Quantity is Updated');
           this.canAdd = false;
           break;
-        }  else {
+        } else {
           this.canAdd = true;
         }
       }
-        if (this.canAdd) {
-          this.shoppingCart.push(this.product);
-          this._cartService.addToCart(this.shoppingCart);
-          this._toastr.info('Product is Successful Added');
-        }
+      if (this.canAdd) {
+        this.shoppingCart.push(this.product);
+        this._cartService.addToCart(this.shoppingCart);
+        this._toastr.info('Product is Successful Added');
+      }
     } else {
       this.shoppingCart = [];
       this.shoppingCart.push(this.product);

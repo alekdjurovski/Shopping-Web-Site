@@ -45,7 +45,6 @@ export class ProductListComponent implements OnInit {
         this.products = res;
       });
     }
-    console.log(this.products);
   }
 
   initialPrice() {

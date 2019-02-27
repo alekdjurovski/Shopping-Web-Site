@@ -8,7 +8,7 @@
         <div class="card">
           <img
             [src]="item.imageUrl"
-            class="card-img-top cursor-pointer"
+            class="cursor-pointer img-fluid img-thumbnail"
             alt=""
             [routerLink]="['/portal', 'view', item.id]"
             routerLinkActive="router-link-active"
@@ -42,12 +42,9 @@
           </div>
         </div>
       </div>
-      <div
-        class="col-lg-3 col-md-4 col-sm-6 display-center"
-        *ngIf="noProduct"
-      >
-      <p>No Product in this category</p>
-    </div>
+      <div class="col-lg-3 col-md-4 col-sm-6 display-center" *ngIf="noProduct">
+        <p>No Product in this category</p>
+      </div>
     </div>
     <div class="row" *ngIf="!products"><p>No Product in this category</p></div>
   </div>

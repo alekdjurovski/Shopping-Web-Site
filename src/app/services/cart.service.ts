@@ -12,17 +12,10 @@ export class CartService {
   deleteParam: any;
   product: IProduct;
 
-  constructor(private _filterService: FilterService,
-    private http: HttpClient) {}
+  constructor(private _filterService: FilterService) {}
 
   addToCart(item) {
     localStorage.setItem('productKey', JSON.stringify(item));
     this._filterService.updateCartCounter();
   }
-
-  deleteProduct() {
-
-  }
-
-
 }

@@ -1,9 +1,6 @@
 @import "../product-list/product-list.component.scss";
 @import "../cart/cart.component.scss";
 
-
-.card-img-top {
-  height: 300px;
-  width: 85%;
+.width-fix {
+  max-width: 15%;
 }
-

@@ -4,7 +4,7 @@
   <h1 class="well title-cart">Shopping Cart</h1>
   <hr />
   <p *ngIf="shoppingLength === 0">Your cart is empty</p>
-<!-- <div class="">
+  <!-- <div class="">
   <ul class="row d-flex justify-content-center">
     <li class="col-lg-1 col-md-1 col-sm-1 col-xs-1">Picture</li>
     <li class="col-lg-3 col-md-3 col-sm-2 col-xs-3">Product</li>
@@ -64,17 +64,15 @@
   </ul>
 </div> -->
 
-
-
   <table class="table fluid">
     <thead>
       <tr class="">
-        <th >Picture</th>
-        <th >Product</th>
-        <th >Price</th>
-        <th class="col10 align-center">Quantity</th>
-        <th class="col10 align-center">Total Price</th>
-        <th class="col10 align-center">Remove</th>
+        <th>Picture</th>
+        <th>Product</th>
+        <th>Price</th>
+        <th class="align-center col-quantity">Quantity</th>
+        <th class="align-center">Total Price</th>
+        <th class="align-center">Remove</th>
       </tr>
     </thead>
     <tbody class="table table-striped ">
@@ -82,37 +80,15 @@
         <td><img [src]="item.imageUrl" alt="" height="40px" /></td>
         <td class="col10">{{ item.name }}</td>
         <td>{{ item.price }}$</td>
-        <td class="w-5 d-inline-block">
-          <div class="input-group mb-3">
-            <div class="input-group-prepend justify-content-around" id="">
-              <button
-                class="btn btn-outline-secondary btn-minus"
-                type="button"
-                (click)="decrease(i); updateQuantity(i, item.quantity)"
-              >
-                -
-              </button>
-            </div>
-            <input
-              type="text"
-              class="form-control width-fix"
-              placeholder=""
-              aria-label="Example text with two button addons"
-              aria-describedby="button-addon3"
-              [(ngModel)]="item.quantity"
-              value="item.quantity"
-              (input)="updateQuantity(i, item.quantity)"
-            />
-            <div class="input-group-append">
-              <button
-                class="btn btn-outline-secondary btn-plus"
-                type="button"
-                (click)="increase(i); updateQuantity(i, item.quantity)"
-              >
-                +
-              </button>
-            </div>
-          </div>
+        <td class="align-center">
+          <input
+            type="number"
+            class="form-control width-fix"
+            [(ngModel)]="item.quantity"
+            value="item.quantity"
+            (input)="updateQuantity(i, item.quantity)"
+            min="1"
+          />
         </td>
 
         <td class="col10 align-center">{{ item.price * item.quantity }}</td>
@@ -133,13 +109,15 @@
   <div class="row">
     <div class="col-lg-8 col-md-7 col-sm-6"></div>
     <div class="col-lg-4 col-md-5 col-sm-6">
-        <p class="total">Total: {{ total }} $</p>
-        <button class="btn btn-style" (click)="onCheckout()">Checkout</button>
-        <button class="btn btn-secondary ml-1" type="submit" (click)="emptyCart()">
-          Clear Cart
-        </button>
+      <p class="total">Total: {{ total }} $</p>
+      <button class="btn btn-style" (click)="onCheckout()">Checkout</button>
+      <button
+        class="btn btn-secondary ml-1"
+        type="submit"
+        (click)="emptyCart()"
+      >
+        Clear Cart
+      </button>
     </div>
   </div>
-
-
 </div>
