@@ -50,18 +50,6 @@ export class CartComponent implements OnInit {
     this.shoppingCart[i].quantity = this.quant;
   }
 
-  decrease(i) {
-    if (this.shoppingCart[i].quantity > 1) {
-      this.shoppingCart[i].quantity -= 1;
-    }
-  }
-
-  increase(i) {
-    if (this.shoppingCart[i].quantity > 0) {
-      this.shoppingCart[i].quantity += 1;
-    }
-  }
-
   updateQuantity(i, newQuantity) {
     if (this.shoppingCart[i].quantity > 0) {
       this.shoppingCart[i].quantity = newQuantity;

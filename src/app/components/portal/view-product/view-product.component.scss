@@ -4,18 +4,21 @@
 .width-fix {
   max-width: 15%;
 }
+
 .fa-dot-circle {
-  margin-left: 10px;
-}
-.available {
-  background: #2fca2f;
-  color: #2fca2f;
-  font-size: 5px;
-  box-shadow: 0px -2px 12px 4px #2fca2f;
-}
-.not-available {
-  background: red;
-  color: red;
-  font-size: 5px;
-  box-shadow: 0px -2px 12px 4px red;
-}
+    margin-left: 10px;
+  }
+  .available {
+    background: #2fca2f;
+    color: #2fca2f;
+    font-size: 5px;
+    box-shadow: 0px -2px 12px 4px #2fca2f;
+  }
+  .not-available {
+    background: red;
+    color: red;
+    font-size: 5px;
+    box-shadow: 0px -2px 12px 4px red;
+  }
+
+
