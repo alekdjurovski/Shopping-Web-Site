@@ -16,7 +16,16 @@
           <hr />
           <p>{{ product.shortDescription }}</p>
           <p><span>Manufacturer: </span> {{ product.manufacturer }}</p>
-          <p><span> Availability: </span>{{ product.isAvailable }}</p>
+          <p>
+            <span> Availability: </span
+            ><i
+              [ngClass]="
+                product.isAvailable
+                  ? 'fas fa-dot-circle available'
+                  : 'fas fa-dot-circle not-available'
+              "
+            ></i>
+          </p>
           <p class="form-inline">
             <span>Quantity: </span>
             <input
