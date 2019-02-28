@@ -71,15 +71,17 @@ export class ViewProductComponent implements OnInit {
         }
       }
       if (this.canAdd) {
-        this.shoppingCart.push(this.product);
-        this._cartService.addToCart(this.shoppingCart);
-        this._toastr.info('Product is Successful Added');
+        this.addNewProduct();
       }
     } else {
-      this.shoppingCart = [];
-      this.shoppingCart.push(this.product);
-      this._cartService.addToCart(this.shoppingCart);
-      this._toastr.info('Product is Successful Added');
+      this.addNewProduct();
     }
   }
+
+  addNewProduct() {
+    this.shoppingCart.push(this.product);
+    this._cartService.addToCart(this.shoppingCart);
+    this._toastr.info('Product is Successful Added');
+  }
+
 }

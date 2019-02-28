@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '../model/iproduct';
 import { FilterService } from './filter.service';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'

@@ -8,9 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class ProductService {
   public productsUrl = 'http://127.0.0.1:3000/products';
-  public searchUrl =
-    'http://127.0.0.1:3000/products?filter[where][name][eq]=';
-    public filterUrl =
+  public searchUrl = 'http://127.0.0.1:3000/products?filter[where][name][eq]=';
+  public filterUrl =
     'http://127.0.0.1:3000/products?filter[where][categoryId][eq]=';
 
   deleteId: number;
@@ -41,11 +40,9 @@ export class ProductService {
 
   filterProduct(categoryId: number): Observable<IProduct> {
     return this.http.get<IProduct>(this.filterUrl + categoryId);
-}
+  }
 
   deleteProduct() {
     return this.http.delete(this.productsUrl + '/' + this.deleteId);
   }
-
-
 }
