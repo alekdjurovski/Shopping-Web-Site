@@ -3,7 +3,11 @@
     <div class="row" *ngIf="products">
       <div
         class="col-lg-3 col-md-4 col-sm-6 display-center"
-        *ngFor="let item of products; let i = index"
+        *ngFor="
+          let item of (products
+            | paginate: { itemsPerPage: 12, currentPage: page });
+          let i = index
+        "
       >
         <div class="card">
           <img
@@ -42,10 +46,10 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-md-4 col-sm-6 display-center" *ngIf="noProduct">
-        <p>No Product in this category</p>
-      </div>
     </div>
-    <div class="row" *ngIf="!products"><p>No Product in this category</p></div>
+    <pagination-controls
+      (pageChange)="page = $event"
+      style="float:right"
+    ></pagination-controls>
   </div>
 </div>
