@@ -5,9 +5,15 @@
   margin-left: 0px;
   height: 90px;
   background: $color-bg-dark;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 .menu {
+  position: sticky;
+  top: 90px;
+  z-index: 20;
   background: $color-bg-blue;
   .nav-link {
     color: $light-text;
