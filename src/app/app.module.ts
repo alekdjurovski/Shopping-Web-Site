@@ -34,6 +34,8 @@ import { CartComponent } from './components/portal/cart/cart.component';
 import { FooterComponent } from './components/portal/footer/footer.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxLoadingModule } from 'ngx-loading';
+import { LoginComponent } from './components/shared/login/login.component';
+import { RegistrationComponent } from './components/shared/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { NgxLoadingModule } from 'ngx-loading';
     ProductListComponent,
     HeaderNavComponent,
     CartComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

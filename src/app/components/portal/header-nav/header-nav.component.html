@@ -1,6 +1,6 @@
 <div class="row head align-items-center">
   <div class="overlay"></div>
-  <div class="col-lg-3 col-md-3 col-sm-3 upper-row">
+  <div class="col-lg-2 col-md-2 col-sm-2 upper-row">
     <div class="d-flex">
       <a
         class="navbar-brand justify-content-end"
@@ -18,7 +18,7 @@
     </div>
   </div>
 
-  <div class="col-lg-7 col-md-7 col-sm-7 down-row-left">
+  <div class="col-lg-6 col-md-6 col-sm-6 down-row-left">
     <form
       class="form-inline flex-row-reverse justify-content-center align-items-center"
     >
@@ -49,8 +49,17 @@
       class="fas fa-user-edit icon-style admin-icon"
       [routerLink]="['/dashboard']"
       routerLinkActive="router-link-active"
-    ></i>
+    >Admin Panel</i>
+    <i
+    class="fas fa-user-edit icon-style admin-icon"
+    [routerLink]="['/login']"
+    routerLinkActive="router-link-active"
+  >Login</i>
 
+    </div>
+  <div
+    class="col-lg-2 col-md-2 col-sm-2 down-row-rigth d-flex justify-content-end"
+  >
     <img
       src="../../../../assets/img/cart.png"
       alt="search"

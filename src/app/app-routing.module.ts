@@ -7,6 +7,8 @@ import { PortalComponent } from './components/portal/portal.component';
 import { AddEditCategoryComponent } from './components/admin-panel/categories/add-edit-category/add-edit-category.component';
 import { ViewProductComponent } from './components/portal/view-product/view-product.component';
 import { CartComponent } from './components/portal/cart/cart.component';
+import { LoginComponent } from './components/shared/login/login.component';
+import { RegistrationComponent } from './components/shared/registration/registration.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/portal', pathMatch: 'full' },
@@ -35,7 +37,9 @@ const routes: Routes = [
       // { path: ':mode/:id', component: PortalComponent }
     ]
   },
-  { path: 'cart', component: CartComponent}
+  { path: 'cart', component: CartComponent},
+  { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegistrationComponent}
 ];
 
 @NgModule({
